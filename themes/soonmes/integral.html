@@ -1,0 +1,81 @@
+{include file="header.html"}
+<div id="main">
+	<div class="wrap950 list_1">
+		<div class="title"></div>
+	</div>
+		{list module="integral" function="GetList" var="loop"}
+		<div style="border: 1px solid #d5d5d5;">
+		<table border="0" cellspacing="0" width="100%">
+			<tr style="height:30px;font-weight:bold;text-align:center">
+			  <td width="18%">物品</td>
+			  <td width="16%">物品名称</td>
+			  <td width="16%">所需积分</td>
+			  <td width="24%">数量</td>
+			  <td width="16%">已兑换数量</td>
+			  <td width="">操作</td>
+			</tr>
+			{foreach from="$loop.list" item="var" }
+			<tr style="border-top: 1px solid #d5d5d5;height:90px;text-align:center">
+			  <td align="center">
+			  	<div style="margin-left:20px;" >
+					<a href="a{$var.id}.html"><img src="{$var.litpic}" border="0" class="picborder" width="90px" height="80px"/></a>
+				</div>
+			  </td>
+			  <td><strong><a href="a{$var.id}.html" title="{$var.name}">{$var.name}</a></strong></td>
+			  <td><font color="#FF0000">{$var.need} 分</font></td>
+			<td>{$var.number|default:0}份</td>
+			<td>{$var.ex_number|default:0}份</td>
+			<td valign="center"><a href="/integral/a{$var.id}.html?detail=true" class="btn-action">马上兑换</a></td>
+			</tr>
+			{/foreach}
+		</table>
+		</div>
+		<div>
+			<table align="center" class="list_table_page">
+			<tr align="center">
+			<td height="25" ><Div align="center" >{$loop.showpage}</Div></td>
+			</tr>
+			</table>
+		</div>
+		{/list}
+</div>
+{literal}
+<script type="text/javascript">
+    var Account;
+$(".endtime").each(function(){
+    var iTime = $(this).html();
+    RemainTime(iTime,this);
+});
+function RemainTime(iTime,ob){
+var iDay,iHour,iMinute,iSecond;
+var sDay="",sTime="";
+    if (iTime >= 0){
+        iDay = parseInt(iTime/24/3600);
+        iHour = parseInt((iTime/3600)%24);
+        iMinute = parseInt((iTime/60)%60);
+        iSecond = parseInt(iTime%60);
+  
+   if (iDay > 0){ 
+    sDay = iDay + "天"; 
+   }
+   sTime =sDay + iHour + "小时" + iMinute + "分钟" + iSecond + "秒";
+  
+        if(iTime==0){
+           clearTimeout(Account);
+           sTime="<span style='color:green'>时间到了！</span>";
+        }else{
+           Account = setTimeout("RemainTime()",1000);
+        }
+        iTime=iTime-1;
+    }else{
+        sTime="<span style='color:red'>此标已过期！</span>";
+    }
+	ob.innerHTML = sTime;
+}
+</script>
+<style type="text/css">
+.title{line-height:15px; text-indent:30px}
+</style>
+{/literal}
+ 
+{include file="footer.html"}

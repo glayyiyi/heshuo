@@ -1,0 +1,37 @@
+/*容器*/
+slider ul, #slider li
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/*数字导航样式*/
+#flashnvanum
+{
+    bottom: 10px;
+    position: absolute;
+    right: 0px;
+    width: 60px;
+}
+#flashnvanum span
+{
+    background: transparent url(../bg/flashbutton.gif) no-repeat scroll -15px 0;
+    color: #86A2B8;
+    cursor: pointer;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    height: 15px;
+    line-height: 15px;
+    margin: 1px;
+    text-align: center;
+    width: 15px;
+}
+#flashnvanum span.on
+{
+    background: transparent url(../bg/flashbutton.gif) no-repeat scroll 0 0;
+    color: #FFFFFF;
+    height: 15px;
+    line-height: 15px;
+    width: 15px;
+}

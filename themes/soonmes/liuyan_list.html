@@ -1,0 +1,128 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" /> 
+<script>
+var user_id = '{$_G.user_id}';
+{literal}
+function check_form(){
+	if (user_id==""){
+		alert('你还没有登录，请先登录');
+		return true;
+	}
+	 var frm = document.forms['form1'];
+	 var title = frm.elements['title'].value;
+	 var content = frm.elements['content'].value;
+	 var valicode = frm.elements['valicode'].value;
+	 var errorMsg = '';
+	  if (title.length == 0 ) {
+		errorMsg += '标题必须填写' + '\n';
+	  }
+	  if (content.length == 0 ) {
+		errorMsg += '内容必须填写' + '\n';
+	  }
+	  if (valicode.length == 0 ) {
+		errorMsg += '验证码必须填写' + '\n';
+	  }
+	  if (errorMsg.length > 0){
+		alert(errorMsg); return false;
+	  } else{  
+		return true;
+	  }
+}
+
+</script>
+{/literal}
+<div id="main" class="clearfix">
+
+
+<div class=cor_divtop>
+<div id=left class=left>
+<div class="NavLinkHeader"><span>咨询服务中心</span></div>
+		<div class="NavLinkContent">
+		{loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1}
+		<div id="item5" class="page" onClick="showsubmenu(1, 12)"><span class="txtspan"><a href="/{$var.nid}/index.html">{$var.name}</a></span></div>
+		<div style="display: none" id="open_item5"></div>
+		{/loop}
+</div>
+</div>
+<div class="site_id" style="display: none">{$_G.site_result.nid}</div>
+	<script>
+	{literal}
+		function showSecond(){
+			var $ = jQuery;
+			var siteId = $(".site_id").text();
+			var oBox = $(".NavLinkContent");
+			var oA = $("a" ,oBox);
+			var Rel = "";
+			oA.each(function(){
+				var index = oA.index(this);
+				Rel = $(oA[index]).attr("rel");
+				console.log(Rel,siteId)
+				if(Rel == siteId){
+					$(oA[index]).addClass("hover");
+				}
+				
+			})
+		}
+		showSecond();
+		{/literal}
+	</script>
+<div id=right class=right>
+<div>
+<div id="MainBanner">
+<div style="border-bottom:2px solid #c51e0b;" class="box_name">
+				<a href="#" class="btn-action" style="margin-top:8px;text-decoration:none;color:#fff;"  >{$_G.site_result.name} </a>
+		</div>
+</div>
+<div style="clear: both"></div>
+<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">
+
+
+		<form name="form1" method="post" action="/index.php?user&q=code/liuyan/add&s={$site_id}" onsubmit="return check_form();" enctype="multipart/form-data" >
+<table width="100%" border="0"  cellspacing="1" class="liuyan">
+	<tr>
+		<td width="15%" align="right">类型：</td>
+		<td align="left"  class="main_td1" >&nbsp; 
+		<select name="type">
+			{loop module="liuyan" function="GetTypeList"}
+			<option value="{$var}">{$var}</option>
+			{/loop}
+		</select>  
+		</td>
+	</tr>
+	<tr>
+		<td width="15%" align="right">标题：</td>
+		<td align="left"  class="main_td1" >&nbsp;&nbsp;<input type="text" name="title"  class="input_border" value="{ $result.title}" size="30" />  
+		</td>
+	</tr>
+	<tr >
+		<td width="15%" align="right">姓名：</td>
+		<td align="left" class="main_td1" >&nbsp;&nbsp;<input type="text" name="name"  class="input_border" value="{ $result.name}" size="30" /></td>
+	</tr>
+	<tr>
+		<td width="15%" align="right">电话:</td>
+		<td align="left" class="main_td1">&nbsp;&nbsp;<input type="text" name="tel"  class="input_border" value="{ $result.tel}" size="30" /></td>
+	</tr>
+	<tr >
+		<td align="right">内容:</td>
+		<td align="left" class="main_td1">&nbsp;&nbsp;<textarea name="content" class="input_border" style="height:80px;" cols="35" rows="5">{$result.content}</textarea></td>
+	</tr>
+	<tr >
+		<td align="right">验证码:</td>
+		<td align="left" class="main_td1">&nbsp;&nbsp;<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" /></td>
+	</tr>
+	<tr>
+		<td  colspan="2"  align="center">
+		{ if $t == "edit" }<input type="hidden" name="id" value="{ $result.id }" />{/if}
+		<input type="submit" class="btn-action"  name="submit" value="确认提交" />
+		<input type="reset" class="btn-action"  name="reset" value="重置表单" />
+		</td>
+	</tr>
+</table>
+</form>
+		
+			
+
+</div></div></div></div></div></div>
+{include file="footer.html"}

@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+{literal}
+<style type="text/css">
+TD{vertical-align: middle;}
+a{text-decoration:none}
+.title{font-size:25px;font-weight:bold;text-align:center}
+{/literal}
+</style>
+</head>
+<body>
+<div class="title">{$title}</div>
+{if $excelType=="borrowlist"}
+	<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+	<tr>
+	{foreach name=bt from=$excel_title item=v}
+		<td><b>{$v}</b></td>
+	{/foreach}
+	</tr>
+	{foreach name=yq from=$excelresult item=item}
+	<tr>
+		<td>{$item.id}</td>
+		<td>{$item.username}</td>
+        <td>{if $item.is_fast}质押标{elseif $item.is_jin}净值标{elseif $item.is_xin}信用标{elseif $item.is_lz}流转标{elseif $item.biao_type=="miao"}流转标{/if}</td>
+		<td><a href="{$_G.weburl}/invest/a{$item.borrow_id}.html" target="_blank">{$item.name}</a></td>
+		<td>{$item.account}</td>
+        <td>{$item.apr}%</td>
+        <td>{if $item.isday ==1}{$item.time_limit_day}天{else}{$item.time_limit}个月{/if}</td>
+		<td>{$item.addtime|date_format:"Y-m-d"}</td>
+        <td>{if $item.status ==1}{if $item.account>$item.account_yes}正在招标..{else}满标审核中{/if}
+			{elseif $item.status==0}等待初审{elseif $item.status==-1}<font color="#999999">尚未发布</font>{elseif $item.status==3}满标借款成功{elseif $item.status==4}复审未通过{elseif $item.status==5}被撤回{else}初审未通过{/if}</td>
+	</tr>
+	{/foreach}
+	</table>
+
+{elseif $excelType=="repaymentlist"}
+	<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+    <tr>
+	{foreach name=bt from=$excel_title item=v}
+		<td><b>{$v}</b></td>
+	{/foreach}
+	</tr>
+    {foreach name=yq from=$excelresult item=item}
+    <tr>
+    	<td>{$item.id}</td>
+        <td class="main_td1" align="center">{$item.username}</td>
+		<td align="left">
+		<span style="color:#FF0000">【{if $item.biao_type=="fast"}质押标{elseif $item.biao_type=="jin"}净值标{elseif $item.biao_type=="xin"}信用标{elseif $item.biao_type=="miao"}秒标{elseif $item.biao_type=="lz"}流转标{/if}】</span>
+		<a href="{$_G.weburl}/invest/a{$item.borrow_id}.html" target="_blank">{$item.borrow_name|truncate:10}</a></td>
+		<td>{$item.order+1 }/{$item.time_limit }</td>
+		<td>{$item.repayment_time|date_format:"Y-m-d"}</td>
+		<td>{$item.repayment_account}元</td>
+		<td>{$item.interest}元</td>
+		<td>{$item.repayment_yestime|date_format:"Y-m-d"|default:-}</td>
+		<td>{if $item.status==1}<font color="#006600">已还</font>{elseif $item.status==2}<font color="#006600">网站代还</font>{else}<font color="#FF0000">未还</font>{/if}</td>
+    </tr>
+    {/foreach}
+    </table>
+
+{elseif $excelType=="lateFast"}
+	<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+    <tr>
+	{foreach name=bt from=$excel_title item=v}
+		<td><b>{$v}</b></td>
+	{/foreach}
+	</tr>
+    {foreach name=yq from=$excelresult item=item}
+    <tr>
+		<td>{$item.id}</td>
+		<td>{$item.username}</td>
+		<td align="left">
+		<span style="color:#FF0000">【{if $item.biao_type=="fast"}质押标{elseif $item.biao_type=="jin"}净值标{elseif $item.biao_type=="xin"}信用标{elseif $item.biao_type=="miao"}秒标{elseif $item.biao_type=="lz"}流转标{/if}】</span>
+		<a href="{$_G.weburl}/invest/a{$item.borrow_id}.html" target="_blank">{$item.borrow_name}</a></td>
+		<td>{$item.order+1 }/{$item.time_limit}</td>
+		<td>{$item.repayment_time|date_format:"Y-m-d"}</td>
+		<td>{$item.repayment_account }元</td>
+		<td>{$item.interest}元</td>
+		<td>{$item.late_days}天</td>
+		<td>{$item.late_interest}</td>
+		<td>{if $item.status==2}<font color="#FF0000">已代还</font>{else}{if  $item.status==1}已还{else}未还{/if}{/if}</td>
+	</tr>
+    {/foreach}
+    </table>
+
+{elseif $excelType=="late"}
+	<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+    <tr>
+	{foreach name=bt from=$excel_title item=v}
+		<td><b>{$v}</b></td>
+	{/foreach}
+	</tr>
+	{foreach name=yq from=$excelresult item=item}
+    <tr {if $key%2==1} class="tr2"{/if}>
+			<td>{$item.id}</td>
+			<td align="center">{$item.username}</td>
+		<td align="left">
+			<span style="color:#FF0000">【{if $item.biao_type=="fast"}质押标{elseif $item.biao_type=="jin"}净值标{elseif $item.biao_type=="xin"}信用标{elseif $item.biao_type=="miao"}秒标{elseif $item.biao_type=="lz"}流转标{/if}】</span>
+			<a href="{$_G.weburl}/invest/a{$item.borrow_id}.html" target="_blank">{$item.borrow_name}</a></td>
+		<td>{$item.order+1 }/{$item.time_limit}</td>
+		<td>{$item.repayment_time|date_format:"Y-m-d"}</td>
+		<td>{$item.repayment_account }元</td>
+		<td>{$item.late_days}天</td>
+		<td>{$item.late_interest}</td>
+		<td>{if $item.status==2}<font color="#FF0000">已代还</font>{else}{if $item.status==1}已还款{else}未还{/if}{/if}</td>
+	</tr>
+    {/foreach}
+	</table>
+
+{elseif $excelType=="borrowListDay"}
+	<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+		{foreach from=$_A.borrow_list item=item}
+		<tr>
+			{foreach from=$_A.excel_title item=v}
+			<td><b>{$v}</b></td>
+			{/foreach}
+		</tr>
+		<tr>
+			<td>
+			{if $item.is_mb == 1}<span style="color:#FF0000">【秒标】</span>{/if}
+			{if $item.is_fast == 1}<span style="color:#FF0000">【给力标】</span>{/if}
+			{if $item.is_xin == 1}<span style="color:#FF0000">【信用标】</span>{/if}
+			{if $item.is_jin == 1}<span style="color:#FF0000">【净值标】</span>{/if}
+			{if $item.is_lz == 1}<span style="color:#FF0000">【流转标】</span>{/if}
+			<a href="{$_G.weburl}/invest/a{$item.id}.html" target="_blank">{$item.name}</a>
+			</td>
+			<td><a href="{$_G.weburl}/u/{$item.user_id}" target="_blank">{$item.username}</a></td>
+			<td>{$item.account}</td>
+			<td>{$item.addtime|date_format:"Y-m-d"}</td>
+			<td>{if $item.isday==1}
+                {$item.time_limit_day}天
+                {else}
+                {$item.time_limit}个月
+				{/if}{$item.success_time|date_format:"Y-m-d"}</td>
+			<td colspan="7">
+				<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+					{loop module="borrow" function="GetTenderResult" limit="all" var="vat" borrow_id="$item.id" }
+					<tr>
+						<td><a href="{$_G.weburl}/u/{$vat.user_id}" target="_blank">{$vat.username}</a></td>
+						<td>{$vat.realname}</td>
+						<td>{$vat.account}</td>
+						{if $key==0}
+						<td rowspan="{$item.tender_times}">{$item.apr}%</td>
+						{/if}
+						<td>{$vat.interest}</td>
+						{if $key==0}
+						<td rowspan="{$item.tender_times}">{$vat.award_apr}</td>
+						{/if}
+						<td>{$vat.award}</td>
+					</tr>
+					{/loop}
+				</table>
+			</td>
+			<td>
+				{foreach from=$vat.repayment_time item=v}
+				{$v.repayment_time|date_format:"Y-m-d"}<br/>
+				{/foreach}
+			</td>
+		</tr>
+		<tr><td>合计</td><td></td><td></td><td></td><td></td><td></td><td></td><td>{$vat.render_num}</td><td></td><td>{$vat.interest_account}</td><td></td><td>{$vat.award_sum}</td><td></td></tr>
+		<tr><td>管理费</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>{$vat.admin_account}</td><td></td><td></td><td></td></tr>
+		<tr><td>实际合计</td><td></td><td></td><td></td><td></td><td></td><td></td><td>{$vat.render_num}</td><td></td><td>{$vat.interest_real_sum}</td><td></td><td></td><td></td></tr>
+		<tr><td colspan="13"></td></tr>
+		{/foreach}
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td rowspan="3">共计</td><td>利息</td><td>{$_A.statistics.interest_account_all}</td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>奖励</td><td>{$_A.statistics.award_sum_all}</td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>管理费</td><td>{$_A.statistics.admin_account_all}</td><td></td><td></td></tr>
+	</table>
+
+{elseif $excelType=="cash"}
+	<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+        <tr>
+        {foreach name=bt from=$excel_title item=v}
+            <td><b>{$v}</b></td>
+        {/foreach}
+        </tr>
+		{foreach  from=$excelresult key=key item=item}
+		<tr>
+			<td>{$item.id}</td>
+			<td>{$item.username}</td>
+			<td>{$item.realname}</td>
+			<td>&nbsp;{$item.account}</td>
+			<td>{$item.bank_name}</td>
+			<td>{$item.branch}</td>
+			<td>{$item.total}</td>
+			<td>{$item.credited}</td>
+			<td>{$item.fee}</td>	
+			<td>{$item.hongbao}</td>
+			<td>{$item.addtime|date_format:"Y-m-d H:i"}</td>
+			<td>{if $item.status==0}审核中{elseif $item.status==1}已通过{elseif $item.status==2}被拒绝{/if}</td>
+		</tr>
+		{/foreach}
+	</table>
+    
+{elseif $excelType=="recharge"}
+	<table width="100%" border="1" align="center" cellspacing="1" cellpadding="1">
+    	<tr>
+        {foreach name=bt from=$excel_title item=v}
+            <td><b>{$v}</b></td>
+        {/foreach}
+        </tr>
+        {foreach  from=$excelresult key=key item=item}
+		<tr>
+			<td>{$item.id}</td>
+			<td>{$item.trade_no}</td>
+			<td>{$item.username}</td>
+			<td>{$item.realname}</td>
+			<td>{if $item.type==1}网上充值{else}线下充值{/if}</td>
+			<td>{if $item.payment==0}手动充值{else}{$item.payment_name}{/if}</td>
+			<td>{$item.money}元</td>
+			<td>{$item.fee}元</td>
+			<td><font color="#FF0000">{$item.total}元</font></td>
+			<td>{$item.hongbao}元</td>
+			<td><font color="#FF3300">提交：{$item.addtime|date_format:"Y-m-d H:i:s"}</font><br/>
+			<font color="#aaaaaa">完成：{$item.verify_time|date_format:"Y-m-d H:i:s"}</font>
+			</td>
+			<td>{if $item.status==0 || $item.status== -1}<font color="#6699CC">待审核</font>{elseif  $item.status==1} 成功 {else}<font color="#FF0000">失败</font>{/if}</td>
+            <td>{if $item.return==""&& $item.type==1}<span style="color:#F00">线上未到帐</span>{elseif $item.return<>""&& $item.type==1} 线上已到账{else}线下核对{/if}</td>
+		</tr>
+		{/foreach}
+    </table>
+{/if}
+</body>
+</html>

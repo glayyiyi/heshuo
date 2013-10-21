@@ -1,0 +1,141 @@
+<link rel=stylesheet type="text/css" href="{$tempdir}/media/css/common.css">
+<div class="footbg">
+    <div class="footer">
+        <div class="friendbox">
+            <dl class="clearfix hezuo">
+                <dt>
+                    合作伙伴
+                </dt>
+                {foreach from=$_G.partner key=key item=item}
+                <dd>
+                	<a href="{$item.url}" target="_blank" id="partner_{$key}"></a>
+                    <img src="{if $item.logoimg!=''}/{$item.logoimg}{else}{$item.logo}{/if}" alt="" class="fdimg" width="152" height="36" onclick="document.getElementById('partner_{$key}').click()" style="cursor:pointer">
+                </dd>
+                {/foreach}
+            </dl>
+            <dl class="clearfix youqing">
+                <dt>
+                    友情链接
+                </dt>
+                {foreach from=$_G.blogroll key=key item=item}
+                <dd><a href="{$item.url}" target="_blank">{$item.webname}</a></dd>
+                {/foreach}
+            </dl>
+          
+        </div>
+        <div class="foottxt clearfix">
+            <ul>
+                <li class="ft-title title1">关于我们</li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="ft-title title2">关于我们</li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="ft-title title3">关于我们</li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="ft-title title4">关于我们</li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+                <li>
+                    <a href="#">公司介绍</a>
+                </li>
+            </ul>
+            <img src="{$tempdir}/images/footlogo.png" alt="" class="footlogo">
+        </div>
+    </div>
+
+    <div class="message">
+        <div class="messagetxt">
+            <p>
+                <a href="#">关于合硕成投</a>　|　<a href="#">官方微博</a>　|　<a href="#">公司证件</a>　|　<a href="#">招聘英才</a>　|　<a href="#">联系我们</a>　|　合硕成投版权所有 2013年
+            </p>
+            <p>
+                地址：{$_G.system.con_address}  客服热线：{$_G.system.con_fuwutel}
+            </p>
+        </div>
+    </div>
+</div>
+
+
+ <!-- 
+{literal}
+<div id=floatTools class=float0831>
+  <div class=floatL><a style="display: none" id=aFloatTools_Show class=btnOpen 
+title=查看在线客服 
+onclick="javascript:jQuery('#divFloatToolsView').animate({width: 'show', opacity: 'show'}, 'normal',function(){ jQuery('#divFloatToolsView').show();kf_setCookie('RightFloatShown', 0, '', '/', 'www.istudy.com.cn'); });jQuery('#aFloatTools_Show').attr('style','display:none');jQuery('#aFloatTools_Hide').attr('style','display:block');" 
+href="javascript:void(0);">展开</a> <a id=aFloatTools_Hide class=btnCtn 
+title=关闭在线客服 
+onclick="javascript:jQuery('#divFloatToolsView').animate({width: 'hide', opacity: 'hide'}, 'normal',function(){jQuery('#divFloatToolsView').hide();kf_setCookie('RightFloatShown', 1, '', '/', 'www.istudy.com.cn'); });jQuery('#aFloatTools_Show').attr('style','display:block');jQuery('#aFloatTools_Hide').attr('style','display:none');" 
+href="javascript:void(0);">收缩</a> </div>
+  <div id=divFloatToolsView class=floatR style="display: none">
+    <div class=tp></div>
+    <div class=cn>
+      <ul>
+        <li class=top>
+          <H3 class=titZx>QQ咨询</H3>
+        </li>
+        <li><span class=icoZx style="color:#30b2ed;font-size:14px;font-weight:bold;">温州贷</span> </li>
+         <li style="text-align:left;"><a target="_blank"  href="http://wpa.qq.com/msgrd?v=3&uin=2595175761&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2595175761:45" alt="点击这里给我发消息" title="点击这里给我发消息">&nbsp;&nbsp;客服-01</a></li>
+		<li style="text-align:left;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2595175761&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2595175761:45" alt="点击这里给我发消息" title="点击这里给我发消息">&nbsp;&nbsp;客服-02</a></li>          
+		<li style="text-align:left;"><a target="_blank"  href="http://wpa.qq.com/msgrd?v=3&uin=2595175761&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2595175761:45" alt="点击这里给我发消息" title="点击这里给我发消息">&nbsp;&nbsp;客服-03</a></li>
+        <li style="text-align:left;"><a target="_blank"    href="http://wpa.qq.com/msgrd?v=3&uin=2595175761&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2595175761:45" alt="点击这里给我发消息" title="点击这里给我发消息">&nbsp;&nbsp;审核-04</a></li>  
+        <li style="text-align:left;"><a target="_blank"    href="http://wpa.qq.com/msgrd?v=3&uin=2595175761&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2595175761:45" alt="点击这里给我发消息" title="点击这里给我发消息">&nbsp;&nbsp;审核-05</a></li>
+        <li style="text-align:left;"><a target="_blank"   href="http://wpa.qq.com/msgrd?v=3&uin=2595175761&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2595175761:45" alt="点击这里给我发消息" title="点击这里给我发消息">&nbsp;&nbsp;审核-06</a></li>
+		
+         
+							 
+		
+      </ul>
+    </div>
+  </div>
+</div>
+{/literal}
+<script type="text/javascript" src="{$tempdir}/media/js/kefu.js"></script>
+
+ -->
+</body>
+</html>

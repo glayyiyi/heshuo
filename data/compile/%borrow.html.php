@@ -1,0 +1,151 @@
+<? $this->magic_include(array('file' => "header.html", 'vars' => array()));?>
+<link href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/css/borrow_new.css" rel="stylesheet" type="text/css" />
+<link href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/css/modal.css" rel="stylesheet" type="text/css" />
+<div id="main" class="clearfix">
+<div class="foot" style="border:0 none; height:10px"></div>
+<div class="alert">
+	  <span>请选择相应的标种发布借款标</span>
+</div>
+        <div class="ui-grid-24">
+            <div class="help-tab1 fn-clear">
+            <? if (!isset($this->magic_vars['_G']['biao_type']['xin']['available'])) $this->magic_vars['_G']['biao_type']['xin']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['xin']['available']==1): ?>
+               <div class="help-item" >
+			   <div class="help-bottom">     
+                网站给予的信用额度内<br>发布借款<br>
+                <a hef="/question/a143.html">详细介绍 &gt;</a>
+                <br><a href="/publish/index.html?biao_type=xin" class="btn-action" >发布信用标</a>    
+               </div>
+			   </div>
+			   <? endif; ?>
+			   <? if (!isset($this->magic_vars['_G']['biao_type']['lz']['available'])) $this->magic_vars['_G']['biao_type']['lz']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['lz']['available']==1): ?>
+               <div class="help-item" >
+			   <div class="help-bottom">     
+                购买后及时生息<br>发布借款<br>
+                <a hef="/question/a144.html">详细介绍 &gt;</a>
+                <br><a href="/publish/index.html?biao_type=lz" class="btn-action" >发布流转标</a>        
+               </div>
+			   </div>
+			   <? endif; ?>
+			   <? if (!isset($this->magic_vars['_G']['biao_type']['jin']['available'])) $this->magic_vars['_G']['biao_type']['jin']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['jin']['available']==1): ?>
+               <div class="help-item" >
+			   <div class="help-bottom">     
+                会员用网站留存的净值<br>金额发布借款<br>
+                <a hef="/question/a184.html">详细介绍 &gt;</a>
+                <br><a href="/publish/index.html?biao_type=jin" class="btn-action" >发布净值标</a>     
+               </div>
+			   </div>
+			   <? endif; ?>
+			   <? if (!isset($this->magic_vars['_G']['biao_type']['miao']['available'])) $this->magic_vars['_G']['biao_type']['miao']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['miao']['available']==1): ?>
+               <div class="help-item" >
+			   <div class="help-bottom">     
+                借款成功系统自动还款<br>娱乐反馈标<br>
+                <a hef="/question/a145.html">详细介绍 &gt;</a>
+                <br><a href="/publish/index.html?biao_type=miao" class="btn-action" >发布秒还标</a>      
+               </div>
+			   </div>
+			   <? endif; ?>
+			   <? if (!isset($this->magic_vars['_G']['biao_type']['fast']['available'])) $this->magic_vars['_G']['biao_type']['fast']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['fast']['available']==1): ?>
+               <div class="help-item">
+			   <div class="help-bottom">
+                小微企业现场审核抵押<br>发布借款 <br>
+                <a hef="/question/a146.html">详细介绍 &gt;</a>
+                <br><a href="/publish/index.html?biao_type=fast" class="btn-action" >发布抵押标</a>    
+               </div>
+			   </div>
+			   <? endif; ?>
+</div></div>
+<div class="alert">
+	  <span>您需要完成以下步骤才能成功借款</span>
+</div>
+<div>
+	<ul id="tab" class="list-tab clearfix">
+		<li class="active"><a href="#zchy" data-toggle="tab">1)注册会员</a></li>
+		<li><a href="#txzl" data-toggle="tab">=>2)填写资料</a></li>
+        <li><a href="#smrz" data-toggle="tab">=>3)实名认证</a></li>
+        <li><a href="#vip" data-toggle="tab">=>4)VIP认证</a></li>
+        <li><a href="#sczl" data-toggle="tab">=>5)上传资料</a></li>
+        <li><a href="#sprz" data-toggle="tab">=>6)视频认证</a></li>
+        <li><a href="#sqed" data-toggle="tab">=>7)申请额度</a></li>
+        <li><a href="#fbjk" data-toggle="tab">=>8)发布借款</a></li>
+	</ul>
+</div>
+<div id="myTabContent" class="tab-content">
+	<!--注册会员-->
+	<div class="list-tab-con tab-pane fade in active" id="zchy">
+			<span><strong><p class="text-red">注册操作步骤</p></strong></span>
+			1、进入<? if (!isset($this->magic_vars['_G']['system']['con_webname'])) $this->magic_vars['_G']['system']['con_webname'] = ''; echo $this->magic_vars['_G']['system']['con_webname']; ?>首页，点击左上角“<a href="/?user&q=going/getreg">注册</a>”按钮<br>
+			2、此时您已进入注册页面，根据提示信息，填写您的注册邮箱、用户名、密码，角色，点击 ”就完成了<br>
+			3、注册成功后，系统会发送一封账户激活邮件到您的注册邮箱，进入注册邮箱，点击激活链接，激活账户<br>
+			<span><strong><p class="text-red">注册时，一直没有收到确认电子邮件怎么办？</p></strong></span>
+			1、请先到您的垃圾邮件文件夹里面寻找确认邮件<br>
+			2、个别邮箱会误屏蔽<? if (!isset($this->magic_vars['_G']['system']['con_webname'])) $this->magic_vars['_G']['system']['con_webname'] = ''; echo $this->magic_vars['_G']['system']['con_webname']; ?>确认邮件。如果你也碰到类似问题，请尝试使用由另一个邮件服务商提供的邮箱重新收取确认邮件。强烈建议你使用gmail免费邮箱、网易163免费邮箱、126免费邮箱，QQ邮箱。可随时联系网站客服人员
+			<br><br>
+		<div class="alert"><span><p class="text-red"><a href="/?user&q=going/getreg">免费注册会员</a></p></span></div>
+	</div>
+	<!--填写资料-->
+	<div class="list-tab-con tab-pane fade" id="txzl">
+			<span><strong><p class="text-red">填写资料操作步骤</p></strong></span>
+			1、登录系统成功后，进入我的账户<br>
+			2、在基本设置那里填写个人资料，个人资料包括：房产资料、单位资料、私营业主、财务状况、联系方式、配偶资料、教育背景等<br>
+			3、资料完善的好处：资料上传的越详细完整，获得的信用积分相应也会增加<br><br>
+        <div class="alert"><span><p class="text-red"><a href="/index.php?user&q=code/userinfo">填写资料</a></p></span></div>
+	</div>
+	<!--实名认证-->
+	<div class="list-tab-con tab-pane fade" id="smrz">
+			<span><strong><p class="text-red">实名认证操作步骤</p></strong></span>
+			1、登录系统成功后，进入我的账户<br>
+			2、在认证中心菜单下面，进入实名认证<br>
+			3、填写姓名，身份证号码，出生年月，户籍所在地，同时上传身份证正反面<br>
+			4、注：实名认证一旦通过后将不能再修改真实姓名，请谨慎操作<br><br>
+        <div class="alert"><span><p class="text-red"><a href="/index.php?user&q=code/user/realname">实名认证</a></p></span></div>
+	</div>
+	<!--VIP认证-->
+	<div class="list-tab-con tab-pane fade" id="vip">
+			<span><strong><p class="text-red">关于VIP的权利和义务</p></strong></span>
+	为了<? if (!isset($this->magic_vars['_G']['system']['con_webname'])) $this->magic_vars['_G']['system']['con_webname'] = ''; echo $this->magic_vars['_G']['system']['con_webname']; ?>网站的稳定运营，方便更多用户参与网络借款中介平台，投资者成为VIP会员不需要提交资料，VIP会员享有坏账保障的功能<br>
+　　1.用户先在网站上注册账户，并向其账户充值150元，提交VIP申请；等审核通过后，网站自动扣除VIP费用<br>
+　　2.借入者成为VIP后，一年以内可在信用额度内多次借款，并享有客服跟踪服务<br>
+　　3.借出者申请VIP时需提交身份证及联系电话，提现银行账号户名与身份证一致<br>
+　　4.借出者成为VIP后，借出本金享有<? if (!isset($this->magic_vars['_G']['system']['con_webname'])) $this->magic_vars['_G']['system']['con_webname'] = ''; echo $this->magic_vars['_G']['system']['con_webname']; ?>网站合作商的全额担保，最大限度降低投资风险<br>
+　　5.VIP用户同时享有借入和借出权利，<? if (!isset($this->magic_vars['_G']['system']['con_webname'])) $this->magic_vars['_G']['system']['con_webname'] = ''; echo $this->magic_vars['_G']['system']['con_webname']; ?>网站将根据个人资料及信用积分审核信用借款额度，并根据还款情况及借出资金总额作出调整<br><br>
+        <div class="alert"><span><p class="text-red"><a href="/vip/index.html">申请VIP</a></p></span></div>
+	</div>
+	<!--上传资料-->
+	<div class="list-tab-con tab-pane fade" id="sczl">
+			<span><strong><p class="text-red">上传资料操作步骤</p></strong></span>
+			1、登录系统成功后，进入我的账户<br>
+			2、在认证中心菜单下面，进入资料上传页面，资料类别主要有：居住证(暂住证)、住房公积金、社保、行驶证、驾驶证等等<br>
+			3、资料上传的好处：资料上传的越详细完整，获得的信用积分相应也会增加<br><br>
+        <div class="alert"><span><p class="text-red"><a href="/index.php?user&q=code/attestation/one">上传资料</a></p></span></div>
+	</div>
+	<!--视频认证-->
+	<div class="list-tab-con tab-pane fade" id="sprz">
+			<span><strong><p class="text-red">视频认证操作步骤</p></strong></span>
+			1、登录系统成功后，进入我的账户<br>
+			2、在认证中心菜单下面，进入视频认证页面，点击申请视频认证，然后联系客户，进行安排视频认证，客服在于您视频完毕后会进行认证通过操作<br>
+			3、视频认证能增加您的信用积分<br><br>
+        <div class="alert"><span><p class="text-red"><a href="/index.php?user&q=code/user/video_status">视频认证</a></p></span></div>
+	</div>
+	<!--申请额度-->
+	<div class="list-tab-con tab-pane fade" id="sqed">
+			<span><strong><p class="text-red">申请操作步骤</p></strong></span>
+			1、登录系统成功后，进入我的账户<br>
+			2、在个人账户主页面上，点击”额度申请“，进入额度申请页面，提交自己需要申请的信用借款额度，交由审核部门审核，审核人员会根据您的自身信用状况给予一定的信用借款额度<br>
+			<br><br>
+        <div class="alert"><span><p class="text-red"><a href="/index.php?user&q=code/borrow/limitapp">申请额度</a></p></span></div>
+	</div>
+	<!--发布借款-->
+	<div class="list-tab-con tab-pane fade" id="fbjk">
+			<span><strong><p class="text-red">发布借款标步骤</p></strong></span>
+			目前系统的借款标种有：秒还标，信用标，抵押标，净值标，流转标，用户可根据自身情况选择发布不同类型借款标
+			<br><br>
+        <div class="alert"><span><p class="text-red"><a href="/borrow/index.html">发布借款标</a></p></span></div>
+	</div>
+</div>
+<div class="foot" style="border:0 none; height:10px"></div>
+</div>
+<!--贷款帮助 结束-->
+<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/modal.js"></script>
+<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/tab.js"></script>
+<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/transition.js"></script>
+<? $this->magic_include(array('file' => "footer.html", 'vars' => array()));?>

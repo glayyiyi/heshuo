@@ -1,0 +1,90 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" />
+<div id="main" class="clearfix">
+{loop module="scrollpic" function="GetList"  var="var"  limit="all" type_id="4"}  
+<img src="/{$var.pic}" alt="" >
+{/loop}
+
+<div class="cor_divtop">
+<div id="left" class="left">
+<div class="NavLinkHeader"><span>咨询服务中心</span></div>
+		<div class="NavLinkContent">
+		{loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1}
+		<div id="item5" class="page" onClick="showsubmenu(1, 12)"><span class="txtspan"><a href="/{$var.nid}/index.html">{$var.name}</a></span></div>
+		<div style="display: none" id="open_item5"></div>
+		{/loop}
+</div>
+</div>
+<div class="site_id" style="display: none">{$_G.site_result.nid}</div>
+	<script>
+	{literal}
+		function showSecond(){
+			var $ = jQuery;
+			var siteId = $(".site_id").text();
+			var oBox = $(".NavLinkContent");
+			var oA = $("a" ,oBox);
+			var Rel = "";
+			oA.each(function(){
+				var index = oA.index(this);
+				Rel = $(oA[index]).attr("rel");
+				console.log(Rel,siteId)
+				if(Rel == siteId){
+					$(oA[index]).addClass("hover");
+				}
+				
+			})
+		}
+		showSecond();
+		{/literal}
+	</script>
+<div id="right" class="right">
+
+<div>
+<div id="MainBanner">
+<div style="border-bottom:2px solid #c51e0b;" class="box_name">
+				<a href="#" class="btn-action" style="margin-top:8px;text-decoration:none;color:#fff;"  >{$_G.site_result.name} </a>
+		</div>
+</div>
+<div style="clear: both"></div>
+<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">
+{literal}
+<style>
+.kefu_li li{ list-style:none; line-height:25px;}
+</style>
+{/literal}
+		
+				<div style="padding-left:10px; overflow:hidden; height:auto; width:98%">
+				{loop module="user" function="GetList" limit="20" type_id=3}
+					<div style="width:300px; float:left; margin:10px ">
+						<div class="floatl" style="width:120px">
+							<img src="{$var.user_id|avatar}" width="100" height="99" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li">
+								<li>{$var.username}</li>
+								<li>姓名：{$var.realname}</li>
+								<li>电话:{$var.phone}</li>
+								<li>
+
+                                                                    
+                                                   <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$var.qq}&site=qq&menu=yes">
+                                                    <img border="0" src="http://wpa.qq.com/pa?p=2:{$var.qq}:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                   </li>
+								<!--<li>{$var.content}</li>-->
+							</ul>
+						</div>
+					</div>
+				{/loop}
+				</div>
+		
+			
+
+</div></div></div></div></div></div></div>
+
+
+
+
+{include file="footer.html"}

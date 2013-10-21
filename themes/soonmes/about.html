@@ -1,0 +1,90 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" /> 
+ <div id="main" class="clearfix">
+<div class="cor_divtop" >
+	<div id="left" class="left">
+
+		<div class="NavLinkHeader"><span>网站栏目</span></div>
+
+		<div class="NavLinkContent">
+		{loop module="article" function="GetSiteList" var="var" epage="20"  pid="1"  keywords="request" status=1 }
+		<div id="item1" class="page" onClick="showsubmenu( 1, 10)"><span class="txtspan"><a href="/{$var.nid}/index.html" rel="{$var.nid}" >{$var.name}</a></span></div>
+		{/loop}
+		</div>
+
+		<div class="navlinkline"></div>
+		<div style="margin-top: 20px !important" class="displayimg"><a 
+			href="/linekefu/index.html"><img border=0 
+			src="{$tempdir}/media/bg/cs_info.gif" width="184px" height="85px"></a>
+		</div>
+			<script defer>onInit();</script>
+	</div><!--left-->
+
+	<div class="site_id" style="display: none">{$_G.site_result.nid}</div>
+	<script>
+	{literal}
+		function showSecond(){
+			var $ = jQuery;
+			var siteId = $(".site_id").text();
+			var oBox = $(".NavLinkContent");
+			var oA = $("a" ,oBox);
+			var Rel = "";
+			oA.each(function(){
+				var index = oA.index(this);
+				Rel = $(oA[index]).attr("rel");
+				console.log(Rel,siteId)
+				if(Rel == siteId){
+					$(oA[index]).addClass("hover");
+				}
+				
+			})
+		}
+		showSecond();
+		{/literal}
+	</script>
+	
+	<div id="right" class="right">
+
+		<div style="border-bottom:2px solid #c51e0b;" class="box_name">
+				<a href="#" class="btn-action" style="margin-top:8px;text-decoration:none;color:#fff;"  >{$_G.site_result.name} </a>
+		</div>
+		<div style="clear: both"></div>
+		<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">
+			{list module="article" function="GetList" var="loop" epage="20"  site_id="0"  keywords="request" status=1 }
+						<!--列表开始-->
+						<div class="content_list">
+							<ul class="list_li_1">
+								{foreach from="$loop.list" item="var"}
+								<li>
+						{if $_G.site_result.name == "最新公告" || $_G.site_result.name == "媒体报道"}
+											[{$var.addtime|date_format:"Y-m-d"}]
+						{/if}
+
+								<a href="a{$var.id}.html"  style="color:#000000; text-decoration:none; margin-bottom:1px;">{$var.name}</a></li>
+								{/foreach}
+							</ul>
+						</div>
+						<!--兼职列表结束-->
+
+
+						<!--分页开始-->
+						<div>
+							<table align="center" class="list_table_page">
+								<tr align="center">
+									<td height="25" ><div align="center">{$loop.showpage}</div></td>
+								</tr>
+							</table>
+						</div>
+							<!--分页结束-->
+									{/list}			
+			</div><!--info-->
+		</div><!--myTabContent-->
+	</div><!--right-->
+</div><!--cor_divtop-->
+</div><!--main-->
+<script src="{$tempdir}/media/js/modal.js"></script>
+<script src="{$tempdir}/media/js/tab.js"></script>
+<script src="{$tempdir}/media/js/alert.js"></script>
+{include file="footer.html"}

@@ -1,0 +1,224 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" />
+<div id="main" class="clearfix">
+<!--子栏目 开始-->
+<!--
+<div class="wrap950 header_site_sub">
+	{foreach from="$_G.site_brother_list" item="var"}
+	<a href="/{$var.nid}/index.html">{$var.name}</a>
+	{/foreach}
+</div>
+-->
+<!--子栏目 结束-->
+
+
+<div class="wrap950 list_li_3">
+	
+	{literal}
+	<?
+		$account = isset($_REQUEST['account'])?$_REQUEST['account']:"";
+		$lilv = isset($_REQUEST['lilv'])?$_REQUEST['lilv']:"";
+		$times = isset($_REQUEST['times'])?$_REQUEST['times']:"";
+		$type = isset($_REQUEST['type'])?$_REQUEST['type']:"";
+        $isday=isset($_REQUEST['isday'])?$_REQUEST['isday']:"";
+        $time_limit_day=isset($_REQUEST['time_limit_day'])?$_REQUEST['time_limit_day']:"";
+	?>
+	
+	<?
+	
+	if($account>'0'){
+	
+?>
+	
+	
+
+	<?
+	if($isday=='1'){
+	?>
+	<div class="content">
+		<br />
+		<div class="alert"><font color="#FF0000"></font> 
+		</div><br />
+		<div class="well">
+			天标：<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10"  value="<? echo isset($_REQUEST['account'])?$_REQUEST['account']:""; ?>" value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/>%  借款期限：<input type="text" name="time_limit_day"  size="10"  value="<? echo isset($_REQUEST['time_limit_day'])?$_REQUEST['time_limit_day']:""; ?>" />天 还款方式：<select name="type"><option value="month" >到期全额还款</option></select>  <input type="submit" class="btn-action"  value="开始计算" /> <input type="hidden" value="1" name="times"/> <input type="hidden" value="1" name="isday"/></form>
+	</div>
+	</div>
+	<?
+	}else{
+		?>
+	<div class="content">
+		<br />
+		<div class="alert"><font color="#FF0000"></font> 
+		</div><br />
+		<div class="well">
+			月标：<form action="" method="get">借款金额：<input type="text" name="account" size="10"  value="<? echo isset($_REQUEST['account'])?$_REQUEST['account']:""; ?>" value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/>%  借款期限：<input type="text" name="times"  size="10"  value="<? echo isset($_REQUEST['times'])?$_REQUEST['times']:""; ?>" />个月 还款方式：<select name="type"><option value="month" <? if ($type==1) echo selected;?>>按月还款</option><option value="3" <? if ($type==3) echo selected;?> >每月还息到期还本
+</option><option value="2" <? if ($type==2) echo selected;?> >到期全额还款</option></select>  <input type="submit" class="btn-action"  value="开始计算" /></form>
+		</div>
+	</div>
+	<?
+	}
+	?>
+	
+	
+	
+	
+	
+	<?
+	
+	}else{
+		?>
+	
+	<div class="m_l_bor" style="padding:10px;">
+		<div class="alert"><font color="#FF0000"></font> 
+		</div><br />
+		<div class="well">
+		<div style="margin-top:10px">月标：
+			<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10"  value="<? echo isset($_REQUEST['account'])?$_REQUEST['account']:""; ?>" value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/> %  借款期限：<input type="text" name="times"  size="10"  value="<? echo isset($_REQUEST['times'])?$_REQUEST['times']:""; ?>" />个月 还款方式：<select name="type"><option value="month" <? if ($type==1) echo selected;?> >按月还款</option><option value="3" <? if ($type==2) echo selected;?> >每月还息到期还本</option><option value="2" <? if ($type==3) echo selected;?> >到期全额还款</option></select> <input type="submit" class="btn-action"  value="开始计算" /></form>
+		</div>
+        <div style="margin-top:10px">天标：
+			<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10"  value="<? echo isset($_REQUEST['account'])?$_REQUEST['account']:""; ?>" value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/> %  借款期限：<input type="text" name="time_limit_day"  size="10"  value="<? echo isset($_REQUEST['time_limit_day'])?$_REQUEST['time_limit_day']:""; ?>" />天 还款方式：<select name="type"><option value="month" >到期全额还款</option></select>  <input type="submit" class="btn-action"  value="开始计算" /> <input type="hidden" value="1" name="times"/> <input type="hidden" value="1" name="isday"/></form>
+		</div>
+		
+		</div>
+</div>
+	
+	<?
+	
+	
+	}
+	?>
+	
+	
+	
+	
+	
+</div>
+<?
+require_once(ROOT_PATH."modules/borrow/borrow.class.php");
+$data['account'] = $account;
+$data['year_apr'] = $lilv;
+$data['month_times'] = $times;
+$data['borrow_time'] = time();
+$data['isday'] = $isday;
+$data['time_limit_day']=$time_limit_day;
+if( $type == 'month'){
+$list = borrowClass::EqualMonth($data);
+$data['type'] = "all";
+$result = borrowClass::EqualMonth($data);
+
+}
+elseif($type == '3'){
+$list = borrowClass::EqualEndMonth($data);
+$data['type'] = "all";
+$result = borrowClass::EqualEndMonth($data);
+
+}else{
+$list = borrowClass::EqualEnd($data);
+$data['type'] = "all";
+$result = borrowClass::EqualEnd($data);
+$result['month_apr'] = round($result['month_apr']*100,2);
+}
+
+
+
+if ($result!=""){
+?>
+{/literal}
+
+{literal}
+<?
+if($isday=='1'){
+?>
+<div class="wrap950 list_1">
+	<ul  id="tab" class="list-tab clearfix">
+		<li class="active"><a href="#jkxq" data-toggle="tab">贷款概述</a></li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="list-tab-con tab-pane fade in active" id="jkxq">
+			 到期将偿还：<? echo $result['monthly_repayment'];?>元 &nbsp; &nbsp; 还款本息总额：<? echo $result['repayment_account'];?>元
+		</div>
+	</div>
+</div>
+
+
+<?
+
+}else{
+
+?>
+
+<div class="wrap950 list_1">
+	<ul  id="tab" class="list-tab clearfix">
+		<li class="active"><a href="#jkxq" data-toggle="tab">贷款概述</a></li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="list-tab-con tab-pane fade in active" id="jkxq">
+		每个月将偿还：<? echo $result['monthly_repayment'];?>元 &nbsp; &nbsp; 月利率：<? echo $result['month_apr'] ?>% &nbsp; &nbsp; 还款本息总额：<? echo $result['repayment_account'];?>元
+	</div>
+	</div>
+</div>
+
+<?
+
+}
+
+
+?>
+
+{/literal}
+
+	{literal}
+	<?
+	if($isday=='1'){
+	
+	?>
+	
+	
+	
+	
+	<?
+	}else{
+	
+	?>
+	
+	<div class="wrap950 list_1">
+	<ul  id="tab" class="list-tab clearfix">
+		<li class="active"><a href="#hksj" data-toggle="tab">还款计划时间表</a></li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="list-tab-con tab-pane fade in active" id="hksj">
+
+			<table class="table table-striped  table-condensed">
+				<tr>
+					<td><strong>期数</strong></td>
+					<td><strong>月还款本息</strong></td>
+					<td><strong>月还款本金</strong></td>
+					<td><strong>利息</strong></td>
+					<td><strong>余额</strong></td>
+				</tr>
+				<? foreach ($list as $key => $value){?>
+				<tr>
+					<td><? echo $key+1;?></td>
+					<td><? echo $value['repayment_account'];?></td>
+					<td><? echo $value['capital'];?></td>
+					<td><? echo $value['interest'];?></td>
+					<td><? echo $value['totalRepaymentMoney'];?></td>
+				</tr>
+				<? }?>
+			</table>
+		</div>
+	</div>
+</div>
+	<?
+	
+	}
+	
+	
+	
+	?>
+
+<? }?>
+
+</div>
+{/literal}
+{include file="footer.html"}

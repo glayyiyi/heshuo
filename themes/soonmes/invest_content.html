@@ -1,0 +1,776 @@
+{include file="header.html"}
+{article module="borrow" function="GetInvest" article_id="0"}
+{if $var.borrow.id<1}
+{message content="未找到相应的借款标!" mode=1}
+{else}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" />
+
+<div id="main" class="clearfix">
+	{if $magic.request.detail=="true"}
+	   <div class="pop-tb clearfix">
+	<div class="pop-tb-head clearfix">
+		<h2>{$var.borrow.name}</h2>
+		<a class="close" data-dismiss="modal">x</a>
+	</div>
+		<div class="pop-tb-con clearfix">
+			<div class="pop-tb-l">
+				<ul>
+					<li>借款人：{$var.user.username}</li>
+					<li>借款金额：￥<strong>{$var.borrow.account}</strong></li>
+					<li>借款年利率: {$var.borrow.apr} %</li>
+					<li>已经完成：{$var.borrow.scale|default:0} %</li>
+					<li>还需借款: ￥{$var.borrow.other}</li>
+					<li>借款期限: {if $var.borrow.isday==1 } 
+							{$var.borrow.time_limit_day}天
+							{else}
+							{$var.borrow.time_limit}个月 
+							{/if}
+					</li>
+					<li>还款方式: {if $var.borrow.isday==1 && $var.borrow.is_lz==0} 
+							到期全额还款
+							{else}
+							{$var.borrow.style|linkage:"borrow_style"}
+							{/if}
+					</li>
+				</ul>
+			</div>
+			<div class="pop-tb-r">
+			<form action="/index.php?user&q=code/borrow/tender" name="form1" onsubmit="return check_form({$var.borrow.lowest_account|default:0},{$var.borrow.most_account|default:0},{$var.user_account.use_money|default:0})" method="post" >
+				<ul>
+					<li>您的可用余额： {$var.user_account.use_money|default:0} 元 <a href="/index.php?user&q=code/account/recharge_new">我要充值</a></li>
+					<li>最多投标总额：{if $var.borrow.most_account<=0}不限制{else}{$var.borrow.most_account}元{/if}</li>
+					{if $var.borrow.is_kuai == 1}<li><font color="red">您当前最多可投快速标资金为:{$var.borrow.kuai_usemoney}元</font><a href="/index.php?user&q=code/account/recharge_new">马上进行线下充值</a></li>{/if}
+					<li>当前年利率: {$var.borrow.apr} %</li>
+					<li>投标金额：<input tabindex="1" type="text" id="money" name="money" size="11" 
+					{if $var.borrow.is_kuai == 1}
+					onkeyup="value=value.replace(/[^0-9.]/g,'')">元 <input type="button" onclick="inputAll({$var.borrow.lowest_account|default:0},{$var.borrow.most_account|default:0},{$var.borrow.kuai_usemoney|default:0});" 
+					{else}
+					onkeyup="value=value.replace(/[^0-9.]/g,'')">元 <input type="button" onclick="inputAll({$var.borrow.lowest_account|default:0},{$var.borrow.most_account|default:0},{$var.user_account.use_money|default:0});" 
+					{/if}
+					value="自动填入全部金额"></li>
+
+					<li>支付密码：{if $_G.user_result.paypassword==""}<a href="/index.php?user&q=code/user/paypwd" target="_blank"><font color="red">请先设一个支付交易密码</font></a>{else}<input type="password" name="paypassword" size="11" tabindex="2" />{/if}</li>
+					{if $var.borrow.pwd != ""}<li>定向标密码：<input type="text" name="dxbPWD" id="dxbPWD" size="11" tabindex="3" /></li>{/if}
+					{if $var.borrow.is_mb==1}
+					<li>验证码：<input type="text" id="yzmcode" name="yzmcode" tabindex="4" size="10" style="margin-right:5px;" /> <img src="/plugins/index.php?q=imgcode&t=' + Math.random();" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer;" />
+					</li>
+					{/if}
+				</ul>
+				<p class="mar20"><input type="submit" class="btn-action" value="确认付款"><p>
+				<p class="text-red"><input type="hidden" name="id" value="{$_G.article_id}" />注意:点击确认表示您将投标金额并同意支付,同一用户对同一个标限投5次</p>
+			</form>
+			</div>
+		</div>
+		</div>
+	{else}
+	<div class="box-detail clearfix">
+		<div class="box-info clearfix">
+			<div class="box-info-user">
+				<img class="user-photo" src="{$var.user.user_id|avatar:'middle'}" />
+				<p>用户名: {$var.user.username} </p>
+				<p> 积分等级： <img class="rank" src="{$_G.system.con_credit_picurl}{$var.credit_pic|default:credit_s11.gif}" title="{$var.user.credit_jifen|default:0}分"  /> </p>
+				<p>籍贯:{$var.user.area|area:"p,c"}</p>
+				 <p>
+				<div class="info_a">
+				 <div class="credit_pic_card_{$var.user.real_status|default:0}" title="{if $var.user.real_status==1}实名已认证{else}未实名认证{/if}"></div>
+					<div class="credit_pic_phone_{if $var.user.phone_status>=1}1{else}0{/if}" title="{if $var.user.phone_status==1}手机已认证{else}手机未认证{/if}"></div>
+                    <div class="credit_pic_email_{$var.user.email_status|default:0}" title="{if $var.user.email_status==1}邮箱已认证{else}邮箱未认证{/if}"></div>
+					<div
+					class="credit_pic_video_{$var.user.video_status|default:0}" title="{if $var.user.video_status==1}视频已认证{else}视频未认证{/if}"></div>
+					<div style="magin-left:5px;" class="credit_pic_vip_{if $var.user_cache.vip_status==1}1{else}0{/if}" title="{if $var.user_cache.vip_status==1}VIP{else}普通会员{/if}"></div>
+					<div class="credit_pic_scene_{if $var.user.scene_status==1}1{else}0{/if}" title="{if $var.user.scene_status==1}已通过现场认证{else}未通过现场认证{/if}"></div> 
+			</div>
+			</p>
+ 
+				<p><a href="/index.php?user&q=code/message/sent&receive={$var.user.username}">站内信</a></p>
+				{if $_G.user_id!="" && $_G.user_result.real_status==1}
+				<p><a href="/index.php?user&q=code/user/addfriend&username={$var.user.username}" title="加为好友" class="thickbox">加为好友</a></p>
+				<!-- <p><a href="javascript:void(0)" onclick='tipsWindown("加为好友","url:get?/index.php?user&q=code/user/addfriend&username={$var.user.username}",400,230,"true","","true","text");'>加为好友</a></p> -->
+				{else}
+				<p><a href="javascript:alert('请先登陆及实名认证才能加好友')" title="加为好友">加为好友</a></p>
+				{/if}
+				<p><a href="/index.php?user&amp;q=code/user/blackfriend&amp;username={$var.user.username}" title="加为黑名单" style="color:#666666">设为黑名单</a></p>
+				<p><a href="/zaixian/index.html">举报此人</a></p>
+			</div>
+
+			<div class="box-info-detail">
+				<h2><span style="float:left;margin-right:5px;">{$var.borrow.name}</span> 
+						{if $var.borrow.is_vouch==1}<a href="/question/a144.html" target="_blank"><img src="{$tpldir}/images/danbao.gif" border="0" alt="点击查看详情" /></a>&nbsp;{/if}
+						{if $var.borrow.is_mb==1}<a href="/question/a145.html" target="_blank"><img src="{$tpldir}/images/miao.jpg"  border="0"  alt="点击查看详情" /></a>&nbsp;{/if}
+						{if $var.borrow.is_fast==1}<a href="/question/a146.html" target="_blank"><img src="{$tpldir}/images/fast.gif" border="0"  alt="点击查看详情"  /></a>&nbsp;{/if}
+						{if $var.borrow.danbao==1} <img src="{$tpldir}/images/dan.gif" />{/if}
+						{if $var.borrow.is_kuai==1} <img src="{$tpldir}/images/kuai.gif" />{/if}
+						{if $var.borrow.is_lz==1} <img src="{$tpldir}/images/lz.gif" />{/if}
+						{if $var.borrow.is_jin==1}<a href="/question/a184.html" target="_blank"><img src="{$tpldir}/images/jin.gif"   border="0"  alt="点击查看详情" /></a>&nbsp;{/if}
+						{if $var.borrow.biao_type=="xin"}
+						<a href="/question/a143.html" target="_blank"><img src="{$tpldir}/images/xin.jpg"   border="0"  alt="点击查看详情" /></a>&nbsp;{/if}
+                        {if $var.borrow.isday==1}<a href="#" target="_blank"><img src="{$tpldir}/images/day.jpg"   border="0"  alt="点击查看详情" /></a>&nbsp;{/if}
+						{if $var.borrow.flag==1} <img src="{$tpldir}/images/tuijian.gif" align="absmiddle"  border="0"/>&nbsp;{/if}
+						{if $var.borrow.award==1 || $var.borrow.award==2 }<img src="{$tpldir}/images/jiangli.gif"  border="0" />&nbsp;{/if}
+						{if $var.borrow.pwd != ""}<img src="{$tpldir}/images/lock.gif"  border="0" />&nbsp;{/if}
+                </h2>
+				<ul class="clearfix">
+					<li>借款金额：￥<strong>{$var.borrow.account}元</strong></li>
+					 
+					<li>年利率：<strong>{$var.borrow.apr}%</strong> (月利率：{$var.borrow.apr/12|round:"2"}%)</li>
+					<li>还款方式： {if $var.borrow.isday==1 &&$var.borrow.is_lz==0} 
+							到期全额还款
+							{elseif $var.borrow.is_mb==1}
+							系统自动还款
+							{elseif $var.borrow.is_lz==1}
+							到期自动回购
+							{else}
+							{$var.borrow.style|linkage:"borrow_style"}
+							{/if}
+					</li>
+					<li>投标奖励：
+						{if $var.borrow.award==0}
+							无
+						{elseif  $var.borrow.award==1}
+							金额({$var.borrow.part_account|round:"2"}元)
+						{elseif  $var.borrow.award==2}
+							{$var.borrow.funds}%
+						{/if}
+					</li>
+					<li>
+					{if $var.borrow.is_lz==1}
+					流转周期：
+					{else}
+					借款期限：
+					{/if}
+							{if $var.borrow.isday==1 } 
+								{$var.borrow.time_limit_day}天
+							{else}
+								{$var.borrow.time_limit}个月
+							{/if}
+					</li>	
+					
+				</ul>
+				<div class="box-info-detail-ac" style="text-align:center;">
+					<!--<a class="btn-action" data-toggle="modal" href="#myModal">立即投标</a>-->
+					<!--<a id="invest_dialog" class="btn-action" href="#">立即投标</a>-->
+					{if $var.borrow.is_vouch==1 && $var.borrow.vouch_account!=$var.borrow.account} 
+					<a id="invest_dialog" class="btn-action" href="#">立即投标</a>
+			{else}
+				{if $var.borrow.status==3}
+					{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount  }
+					<a class="btn-action" href="#">已还款</a>
+					{else}
+					<a class="btn-action" href="#">还款中</a>
+					{/if}
+				{elseif $var.borrow.status==5}
+				<a class="btn-action" href="#">用户取消</a>
+				{elseif $var.borrow.status==0}
+				<a class="btn-action" href="#">等待初审</a>
+				{elseif $var.borrow.status==4}
+				<a class="btn-action" href="#">复审失败</a>
+				{elseif $var.borrow.status==2}
+				<a class="btn-action" href="#">等待复审</a>
+				{elseif $var.borrow.account>$var.borrow.account_yes}
+				
+				{if $_G.user_id>0}
+					{if $var.borrow.is_lz}
+					<a id="invest_dialog" class="btn-action" href="#">马上认购</a>
+					{else}
+					<a id="invest_dialog" class="btn-action" href="#">立即投标</a>
+					{/if}
+				 
+				{else}
+					<a  class="btn-action" href="/index.action?user&q=going/login">请先登录</a>
+				{/if} 
+				
+				{else}
+				{if $var.borrow.is_lz}
+					<a class="btn-action" href="#">已认购完</a>
+				{else}
+					<a class="btn-action" href="#">等待复审</a>
+				{/if}
+				
+				{/if}
+				{if $var.borrow.is_vouch==1}
+					<a class="btn-action" href="#">担保完成</a>
+				{/if}
+			{/if}
+					<p>投标100元,年利率{$var.borrow.apr} %，期限{if $var.borrow.isday==1 } 
+                {$var.borrow.time_limit_day}天
+                {else}
+                {$var.borrow.time_limit}个月
+                {/if},预计利息收益￥{$var.borrow.interest|round:"2"}元</p>
+				</div>
+				<ul class="clearfix">
+					<li><span class="floatl">已经完成：</span>
+					<div class="rate_bg floatl" style="margin-top:10px;">
+							<div class="rate_tiao" style="width:{$var.borrow.scale|default:0}%"></div>
+						</div>
+                    <div class="floatl">{$var.borrow.scale}%</div></li>
+					<li>{if $var.borrow.status==3}
+                          {if $var.borrow.is_mb==1}
+                          <a href="/protocol_miao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_fast==1}
+                          <a href="/protocol_fast/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_jin==1}
+                          <a href="/protocol_jin/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_vouch==1}
+                          <a href="/protocol_danbao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_vouch != 1 && $var.borrow.is_mb!=1 && $var.borrow.is_fast!=1 && $var.borrow.is_jin!=1 }
+                          <a href="/protocol_xin/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                      {else}
+					{if $var.borrow.is_lz==1}
+					还剩：{$var.borrow.other/100}份 (每份100元)
+					{else}
+					还差：￥{$var.borrow.other}
+					{/if}
+					{/if}</li>
+					<li>最小投标额：￥{$var.borrow.lowest_account}元</li>
+					<li>最大投标额：{if $var.borrow.most_account==0}不限{else}￥{$var.borrow.most_account}元{/if}</li>
+					<li>总投标数：{$var.borrow.tender_times}次</li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="box box-kefu">
+			<div class="box-title">本标系统信息</div>
+			
+			<div class="box-con">
+			<p>借款编号: #{$var.borrow.id}</p>
+			 <p>交易类型：在线交易 </p>
+					{if $var.borrow.status != 3}
+					
+					<p>发标时间：{$var.borrow.addtime|date_format:"Y-m-d H:i:s"}</p>
+                        {if $var.borrow.scale!=100 && $var.borrow.is_lz==1}
+                         
+							<p >剩余时间：<span id="endtime">{$var.borrow.lave_time}</span> </p>
+                        {else}
+                        	<p >剩余时间：<span id="endtime">{$var.borrow.lave_time}</span> </p>
+                        {/if}
+					{else}
+					
+					<p>审核时间：{$var.borrow.verify_time|date_format:"Y-m-d H:i:s"}</p>
+					<p >剩余时间：已结束 </p>
+					{/if}
+			</div>
+		</div>
+		<div class="box box-kefu">
+			<div class="box-title">专属客服</div>
+			<div class="box-con">
+				{article module="borrow" function="Getkf" var="kfUser"}
+				<img class="user-photo" src="{$kfUser.kefu_userid|avatar:'middle'}" />
+				{if $kfUser.username != ""}
+				<p>姓名: {$kfUser.username}</p>
+				<p>电话：{$kfUser.phone}</p>
+				<p>QQ: <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$kfUser.qq}&site=qq&menu=yes">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:{$kfUser.qq}:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></p>
+				{/if}
+				
+				<p>总机：{$_G.system.con_tel}</p>
+				<p>{if $kfUser.username== ""}
+                    您好，您还没有申请您的专属客服，赶快来<a href="/vip/index.html" style="color:red">申请</a>吧！
+                    {else}
+                    您好，有任何疑问可随时跟您的客服<font color="red">{$kfUser.username}</font>联系哦！
+                    {/if}</p>
+                {/article}
+			</div>
+		</div>
+	</div>
+	
+	<ul  id="tab" class="list-tab clearfix">
+		<li class="active"><a href="#jkxq" data-toggle="tab">借款详情</a></li>
+		<li><a href="#tbinfo" data-toggle="tab">投标记录</a></li>
+		<li><a href="#zhxq" data-toggle="tab">账户详情</a></li>
+		<li><a href="#hkxy" data-toggle="tab">还款信用</a></li>
+		<li><a href="#grxx" data-toggle="tab">个人资料</a></li>
+		<li><a href="#tbjl" data-toggle="tab">投标奖励</a></li>
+		<li><a href="#zlsh" data-toggle="tab">资料审核</a></li>
+		<li><a href="#hkjl" data-toggle="tab">待还款记录</a></li>
+		
+	</ul>
+<div id="myTabContent" class="tab-content">
+	<!--借款详情-->
+	<div class="list-tab-con tab-pane fade in active" id="jkxq">
+
+			<div>{ $var.borrow.content}</div>
+
+	</div>
+	
+	<!--投标记录-->
+	<div class="list-tab-con tab-pane fade" id="tbinfo">
+		<table  border="0"  cellspacing="0"  width="100%" class="table table-striped  table-condensed">
+			<tr align="center">
+			  <td ><strong>序号</strong> </td>
+			  <td ><strong>投标人/关系</strong> </td>
+			  <td ><strong>当前年利率</strong></td>
+			  <td ><strong>投标金额</strong></td>
+			  <td ><strong>有效金额</strong></td>
+			  <td ><strong>投标时间</strong></td>
+			  <td ><strong>状态 </strong></td>
+			</tr>
+			{loop module="borrow" function="GetTenderList" limit="all" var="vat" borrow_id="$var.borrow.id" }
+			<tr {if $_G.user_result.username==$vat.username} bgcolor ="#ECF0F0"  {/if}>
+			   <td align="center" >{$vat.i}</td>
+               <td align="center" ><a href="/u/{$vat.user_id}" target="_blank">{$vat.username}</a></td>
+			  <td align="center" >{$var.borrow.apr}%</td>
+			  <td align="center" >{$vat.money}元</td>
+			  <td align="center" >{$vat.tender_account|default:0}元</td>
+			  <td align="center">{$vat.addtime|date_format:"Y-m-d H:i:s"}</td>
+			  <td align="center">{if $vat.tender_account==$vat.money}全部通过{else}部分通过{/if}</td>
+			</tr>
+			{/loop}
+		</table>
+	</div>
+	
+	<!--账户详情-->
+	<div class="list-tab-con tab-pane fade" id="zhxq">
+		<ul class="clearfix">
+		{article module="borrow" function="GetUserLog" user_id="$var.user.user_id" var="acc"}
+			<li>账户总额： {if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$var.account.total}{/if}</li>
+			<li>待还总额：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.wait_payment|default:0}{/if}  </li>
+			<li>负债情况：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else} {if $acc.borrow_num<$acc.success_account}借出大于借入{else}借出小于借入{/if}{/if}</li>
+			<li>借款总额：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.borrow_num|default:0}{/if}</li>
+			<li>已还总额： {if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.borrow_num1|default:0}{/if}</li>
+			<li>网站垫付未还：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.borrow_num2|default:0}{/if}</li>
+			<li>借出总额：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.success_account|default:0}{/if}</li>
+			<li>已收总额：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.collection_yes|default:0}{/if}</li>
+			<li>待收总额：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.collection_wait|default:0}{/if}</li>
+			<li>借款信用额度： {if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.credit}{/if}</li>
+			<li>可用信用额度： {if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.credit_use}{/if}</li>
+			<li></li>
+			<li>借款担保总额：  {if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.borrow_vouch}{/if}</li>
+			<li>可用借款担保额度： {if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.borrow_vouch_use}{/if}</li>
+			<li></li>
+			<li>投资担保总额：{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.tender_vouch}{/if}</li>
+			<li>可用投资担保额度： {if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount}未公开{else}￥{$acc.tender_vouch_use}{/if}</li>
+			<li></li>
+			{/article}
+		</ul>
+		<p class="text-red">注：公开的账户资金详情在标的借款全部还清后将自动不再公开显示.</p>
+	</div>
+	
+	<!--还款信用-->
+	<div class="list-tab-con tab-pane fade" id="hkxy">
+		<ul class="clearfix">
+			<li>借款 {$var.borrow_all.success|default:0} 次成功</li>
+			<li>{$var.borrow_all.false|default:0} 次流标</li>
+			<li>{$var.borrow_all.wait|default:0} 笔待还款</li>
+			<li>{$var.borrow_all.pay_success|default:0} 笔已成功还款 </li>
+			<li>{$var.borrow_all.pay_advance|default:0} 笔提前还款</li>
+			<li>{$var.borrow_all.pay_expiredyes|default:0} 笔迟还款</li>
+			<li>{$var.borrow_all.pay_expired30in|default:0} 笔30天之内的逾期还款</li>
+			<li>{$var.borrow_all.pay_expired30|default:0} 笔超过30天的逾期还款</li>
+			<li>{$var.borrow_all.pay_expiredno|default:0} 笔逾期未还款</li>
+		</ul>
+	</div>
+	
+	
+	<!--个人资料-->
+	<div class="list-tab-con tab-pane fade" id="grxx">
+		<ul class="clearfix">
+			<li>性 别：{if $var.user.sex==1}男{else}女{/if}</li>
+			<li>年 龄：{$var.user.birthday|age_format}岁</li>
+			<li>婚姻状况：{ $var.userinfo.marry|linkage}</li>
+			<li>文化程度：{ $var.userinfo.education|linkage}</li>
+			<li>每月收入： { $var.userinfo.income|linkage}元</li>
+			<li>社 保：{ $var.userinfo.shebao|linkage}  </li>
+			<li>住房条件：{ $var.userinfo.housing|linkage}</li>
+			<li>是否购车：{ $var.userinfo.car|linkage}</li>
+			<li>是否逾期：{ $var.userinfo.late|linkage}</li>
+		</ul>
+	</div>
+
+	<!--投标奖励-->
+	<div class="list-tab-con tab-pane fade" id="tbjl">
+		<ul class="clearfix">
+		{if $var.borrow.award==0}
+			<li><font color="#FF0000" size="3">没有奖励</font></li>
+		{elseif  $var.borrow.award==1}
+			<li>奖励方式：按金额奖励</li>
+			<li>奖励金额：{$var.borrow.part_account}元</li>
+			<li>奖励条件：{if $var.borrow.is_false==1}投标失败也奖励{else}投标且成功复审通过后才有奖励{/if}</li>
+		{elseif  $var.borrow.award==2}
+			<li>奖励方式：按比例奖励</li>
+			<li>奖励比例：{$var.borrow.funds}%</li>
+			<li>奖励条件：{if $var.borrow.is_false==1}投标失败也奖励{else}投标且成功复审通过后才有奖励{/if}</li>
+		{/if}
+		</ul>	
+	</div>
+	
+	<!--资料审核-->
+	<div class="list-tab-con tab-pane fade" id="zlsh">
+	
+		<table  border="0"  cellspacing="0"  width="100%" class="table table-striped  table-condensed">
+			<tr  >
+			  <td ><strong>资料类型</strong> </td>
+			  <td ><strong>积分</strong></td>
+			 
+			  <td ><strong>审核时间</strong></td>
+			  <td ><strong>审核说明</strong></td>
+			</tr>
+			{loop module="attestation" function="GetList" var="arr_var" limit="all" status="1"  user_id="$var.user.user_id" status=1}
+			{if $arr_var.jifen>0}
+			<tr  > 
+			  <td >{$arr_var.type_name}</td>
+			  <td  >{$arr_var.jifen} 分</td>
+			  
+			  <td >{$arr_var.verify_time|date_format}</td>
+			  <td >{$arr_var.verify_remark|default:-}</td>
+			</tr>
+			{/if}
+			{/loop}
+		</table>
+	</div>
+	
+	<!--待还款记录-->
+	<div class="list-tab-con tab-pane fade" id="hkjl">
+	<div class="alert">
+	  <span>待还款记录(只显示最近待还款的10条记录) >> <a href="/u/{$var.user.user_id}/borrowlist" >更多的还款明细账单</a></span>
+	</div>
+	
+	<table  border="0"  cellspacing="0"  width="100%"  class="table table-striped  table-condensed">
+			<tr  >
+			  <td ><strong>借款标题</strong> </td>
+			  <td ><strong>期数</strong></td>
+			  <td ><strong>还款本息</strong></td>
+			  <td ><strong>实际到期日期</strong></td>
+			</tr>
+			{loop module="borrow" function ="GetRepaymentList" user_id="$var.user.user_id" status="0,2"  limit="10" var="vat" order="repayment_time"}
+			<tr  >
+			  <td ><a href="/invest/a{$vat.borrow_id}.html" target="_blank">{$vat.borrow_name}</a></td> 
+			  <td >{$vat.order+1}/{$vat.time_limit}</td>
+			  <td >￥{$vat.repayment_account}</td>
+			  <td >{$vat.repayment_time|date_format:"Y-m-d"}</td>
+			</tr>
+			{/loop}
+		</table>
+	</div>
+	</div> <!-- id="myTabContent" -->
+	<div class="box-detail clearfix" style="margin-top:10px;width:980px">
+	<!--评论开始-->
+		<script src="/index.php?comment&type=list&code={$_G.site_result.code}&id={$_G.article_id}&page=1&epage=10"></script>
+			<div class="content_title ">
+				<span class="floatr">总评论数：<font color="#FF0000"><script>document.write(result['total'])</script></font> 个 <a href="/index.php?comment&type=lists&code=borrow&id={$_G.article_id}&page=1" target="_blank">查看所有评论</a></span><img src="{$tempdir}/images/pinglun.gif" align="absmiddle"/>&nbsp; 评论
+			</div>
+			<div class="article_content " align="left">
+				<ul class="pinglun_co" >
+				{literal}
+				<script>
+					var list = result['list'];
+					var display = "";
+					for (i=0;i<list.length;i++){
+						display += '<li><div class="pinglun_co_left"><div class="pinglun_co_pic"><img src="'+list[i]['head']+'" width="73" height="73" /></div><a href="/u/'+list[i]['user_id']+'" target=_blank>'+list[i]['username']+'</a></div><div class="floatr"><div class="pinglun_co_content">'+list[i]['comment']+'<br><font style=" font-size:12px; float:right">'+list[i]['time']+'</font></div>	</div></li>';
+					}
+					document.write(display);
+				</script>
+				{/literal}
+				</ul>
+				<div class="comment_page"></div>
+				<div class="content_pinglun" align="left" style="width:95%">
+                                    {if $_G.user_id !="" && $_G.user_result.real_status==1}
+                        <script type="text/javascript" src="/themes/face/jquery.qqFace.js"></script>  
+                     
+                        <link href="/themes/face/qqFace.css" rel="stylesheet" type="text/css" />
+                        {literal}  
+                        <style type="text/css">
+						.tools{
+							width:510px;
+							display:inline-block;
+							background:#ebeff8;
+							border:1px #d4d7e6 solid;
+							padding:5px;
+						}
+						.faceBtn{
+							color:#656565;
+							font-size:12px;
+							width:80px;
+							height:25px;
+							line-height:25px;
+							padding-left:25px;
+							background:url(/themes/face/face.gif) 4px 4px no-repeat;
+							cursor:pointer;
+						}
+						</style>
+                        
+                        
+						<script type="text/javascript">
+						//实例化表情插件
+						jQuery(function(){
+							jQuery('#face1').qqFace({
+								id : 'facebox1', //表情盒子的ID
+								assign:'comment_content', //给那个控件赋值
+								path:'/themes/face/face/'	//表情存放的路径
+							});
+						 
+						});
+
+
+						</script>
+						{/literal}   
+						<div><strong>评论一下</strong></div>
+						<div class="tools" style="width:904px;">
+							<div id="face1" class="faceBtn">添加表情</div>
+							<div><textarea  rows="6" id="comment_content" name="comment" style="width:890px;height:50px;"></textarea></div>
+						</div>
+						<div><span id="subInfo">验证码：<input type="text" id="valicode" name="valicode" size="11" maxlength="4"><img style="cursor:pointer; margin-left:3px;" onclick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" alt="点击刷新" src="/plugins/index.php?q=imgcode"></img></span>
+						<span class="floatr"><input type="image" id="pinglun" onclick="pinglun('{$_G.site_result.code}','{$_G.article_id}')" src="{$tempdir}/images/pinglun_content.gif" /></span></div>
+				    {else}
+                        请先<a href="/index.php?user&q=going/login">登录</a>，并通过<a href="/index.php?user&q=code/user/realname">实名认证</a>才能发表评论!
+                     {/if}
+				</div>
+			</div>
+			{literal}<script type="text/javascript">
+			function nl2br(value) 
+			{ 
+			  return value.replace("\n","<br />"); 
+			}
+			function pinglun(code,id) {
+					var comment =nl2br(jQuery("#comment_content").val());
+					var valicode = jQuery("#valicode").val();
+					if(valicode.length!=4){
+						jQuery.jBox.tip("验证码输入错误!", 'warning');
+						return;
+					}
+					if (comment==""){
+						 
+						jQuery.jBox.tip("评论不能为空!", 'warning');
+					}else{
+						jQuery.jBox.tip("正在提交..", 'loading');
+						
+
+							jQuery.ajax({  
+								type: "get",
+								url: "/index.php",
+								data:"comment&type=add&code="+code+"&id="+id+"&comment="+comment+"&valicode="+valicode,  
+								cache: false,
+								success: function(msg){
+	
+									  jQuery.jBox.tip(msg,'success');
+									  //window.setTimeout(function () {  document.location.reload(); }, 1000);
+
+								}
+								});
+					}
+				};
+			function comment_close() {
+				jQuery("#windownbg").remove();
+				jQuery("#windown-box").fadeOut("slow",function(){jQuery(this).remove();});
+			};
+			 	
+		 </script>
+			
+			{/literal}
+			<!--评论结束-->
+	</div>
+</div>
+
+<!--main end-->
+		
+<div id="modal_dialog" style="display:none" title="{$var.borrow.name}">
+   <div class="pop-tb clearfix">
+
+	<div class="pop-tb-con clearfix">
+		<div class="pop-tb-l">
+			<ul>
+				<li>借款人：{$var.user.username}</li>
+				<li>借款金额：￥{$var.borrow.account}</li>
+				<li>借款年利率: {$var.borrow.apr} %</li>
+				<li>已经完成：{$var.borrow.scale|default:0} %</li>
+				<li>还需借款: ￥{$var.borrow.other}</li>
+				<li>借款期限: {if $var.borrow.isday==1 } 
+						{$var.borrow.time_limit_day}天
+						{else}
+						{$var.borrow.time_limit}个月 
+						{/if}
+				</li>
+				<li>还款方式: 
+						{if $var.borrow.isday==1  &&$var.borrow.is_lz==0} 
+							到期全额还款
+							{elseif $var.borrow.is_mb==1}
+							系统自动还款
+							{elseif $var.borrow.is_lz==1}
+							到期自动回购
+							{else}
+							{$var.borrow.style|linkage:"borrow_style"}
+							{/if}
+				</li>
+			</ul>
+		</div>
+		<div class="pop-tb-r">
+		<form action="/index.php?user&q=code/borrow/tender" name="form1" onsubmit="return check_form({$var.borrow.lowest_account|default:0},{$var.borrow.most_account|default:0},{$var.user_account.use_money|default:0})" method="post" >
+			<ul>
+				<li>您的可用余额： {$var.user_account.use_money|default:0} 元 <a href="/index.php?user&q=code/account/recharge_new">我要充值</a></li>
+				<li>最多投标总额：{if $var.borrow.most_account<=0}不限制{else}{$var.borrow.most_account}元{/if}</li>
+				
+				{if $var.borrow.is_lz==1}
+					<li>最小流转单位：100 元
+					<li>已认购:{$var.borrow.account_yes/100} 份&nbsp;&nbsp;
+					还剩:<b class="max">{$var.borrow.other/100}</b>份</li>
+					<li id="flow_num">购买份数：
+						<input class="less" value="-" type="button" onclick="less()">
+						<input type="text"  class="nums" id="flow_count" name="flow_count" value="1" size="5">
+						<input class="add" value="+" type="button" onclick="add()">
+					</li>
+					<input type="hidden" id="is_lz" name="is_lz" size="11" value="1">
+				{else}
+					{if $var.borrow.is_kuai == 1}<li><font color="red">您当前最多可投快速标资金为:{$var.borrow.kuai_usemoney}元</font><a href="/index.php?user&q=code/account/recharge_new">马上进行线下充值</a></li>{/if}
+					<li>当前年利率: {$var.borrow.apr} %</li>
+					<li>投标金额：<input tabindex="1" type="text" id="money" name="money" size="11" 
+					{if $var.borrow.is_kuai == 1}
+					onkeyup="value=value.replace(/[^0-9.]/g,'')">元 <input type="button" onclick="inputAll({$var.borrow.lowest_account|default:0},{$var.borrow.most_account|default:0},{$var.borrow.kuai_usemoney|default:0});" 
+					{else}
+					onkeyup="value=value.replace(/[^0-9.]/g,'')">元 <input type="button" onclick="inputAll({$var.borrow.lowest_account|default:0},{$var.borrow.most_account|default:0},{$var.user_account.use_money|default:0});" 
+					{/if}
+					value="自动填入全部金额"></li>
+				{/if}
+				<li>支付密码：{if $_G.user_result.paypassword==""}<a href="/index.php?user&q=code/user/paypwd" target="_blank"><font color="red">请先设一个支付交易密码</font></a>{else}<input type="password" name="paypassword" id="paypassword" size="11" tabindex="2" />{/if}
+				{if $var.borrow.pwd != ""}定向标密码：<input type="text" name="dxbPWD" id="dxbPWD" size="11" tabindex="3" />{/if}
+				</li>
+				<li>&nbsp;&nbsp;验证码：<input type="text" id="yzmcode" name="yzmcode" tabindex="4" size="10" style="margin-right:5px;" maxlength="4" /> <img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer;" />
+				</li>
+			</ul>
+			<p class="mar20"><input type="submit" class="btn-action" value="确认付款" id="qrfk"><p>
+			<p class="text-red"><input type="hidden" name="id" value="{$_G.article_id}" />注意:点击确认表示您并同意支付本投标金额！</p>
+		</form>
+		</div>
+	</div>
+	</div><!-- pop tb-->
+</div><!-- modal -->
+{/if}
+<script src="{$tempdir}/media/js/modal.js"></script>
+<script src="{$tempdir}/media/js/tab.js"></script>
+<script src="{$tempdir}/media/js/transition.js"></script>
+<script type="text/javascript">
+
+{literal}
+jQuery(function(){
+	/*jQuery('#invest_dialog').click(function(){
+		jQuery('#modal_dialog').dialog('destroy');
+		jQuery('#modal_dialog').dialog({ modal: true ,height: 370,width:715 });
+	});*/
+	jQuery( "#modal_dialog" ).dialog({ autoOpen: false , modal: true ,height: 410,width:760 });
+        jQuery('#invest_dialog').click(function(){
+                jQuery( "#modal_dialog" ).dialog( "open" );
+        });
+
+
+});
+{/literal}
+var islz={$var.borrow.is_lz};
+{literal}
+function check_form(lowest,most,use_money){
+		 var frm = document.forms['form1'];
+		 var paypassword = jQuery('#paypassword').val();
+		 {/literal}
+		 {if $var.borrow.is_lz==1}
+			 
+			var account = jQuery('#flow_count').val()*100;
+		{else}
+			var account = jQuery('#money').val();
+		{/if}
+		{literal}
+		 var valicode = frm.elements['yzmcode'].value;
+		 if (account==""){
+			jQuery.jBox.tip("投标金额不能为空!", 'warning');
+			return false;
+		 }else if (paypassword==""){
+			jQuery.jBox.tip("支付密码不能为空!", 'warning');
+			return false;
+		 }else if (account>use_money ){
+ 			jQuery.jBox.tip("您的可用余额小于您的投标额，要投标请先充值!", 'warning');
+			return false;
+		}else if (account>most && most>0){
+			jQuery.jBox.tip("投标金额不能大于最大限额"+most+"元", 'warning');
+			return false;
+		 }else if(account<lowest && lowest>0){
+			 jQuery.jBox.tip("投标金额不能低于最小限额"+lowest+"元", 'warning');
+			return false;
+		 }
+		 if (valicode.length!=4){
+			 jQuery.jBox.tip("验证码输入有误!", 'warning');
+			return false;
+		 }
+		if(confirm('确定要投标'+account+'元，确定了将不能取消')){
+				//禁用提交按钮 add by weego 20120818
+				  decument.getElementById("qrfk").disabled=true;
+				  jQuery.jBox.tip("正在提交..", 'loading');
+				 //end by weego
+			return true;
+		}else{
+			return false;
+		}
+		 
+	}
+        
+        function inputAll(lowest,most,use_money){
+       
+            if(most==0){
+               
+                jQuery("#money").val(use_money);
+            }else if(use_money>most){
+                jQuery("#money").val(most);
+            }else{
+                jQuery("#money").val(use_money);
+            }
+            
+        }
+		
+var CID = "endtime";
+if(window.CID != null){
+    var iTime = jQuery('#endtime').html();
+    var Account;
+    RemainTime();
+}
+function RemainTime(){
+var iDay,iHour,iMinute,iSecond;
+var sDay="",sTime="";
+    if (iTime >= 0){
+        iDay = parseInt(iTime/24/3600);
+        iHour = parseInt((iTime/3600)%24);
+        iMinute = parseInt((iTime/60)%60);
+        iSecond = parseInt(iTime%60);
+	   if (iDay > 0){ 
+		sDay = iDay + "天"; 
+	   }
+	   sTime =sDay + iHour + "小时" + iMinute + "分钟" + iSecond + "秒";
+	  
+			if(iTime==0){
+			   clearTimeout(Account);
+			   sTime="<span style='color:green'>时间到了！</span>";
+			}else{
+			   Account = setTimeout("RemainTime()",1000);
+			}
+			iTime=iTime-1;
+    }else if(islz==1){
+		 sTime="<span style='color:green'>已停止流转</span>";
+	}else{
+        sTime="<span style='color:red'>此标已过期！</span>";
+		jQuery('#invest_dialog').html("已经过期");
+		jQuery('#invest_dialog').attr("disabled",true); 
+    } 
+	jQuery('#endtime').html(sTime);
+
+}
+	   function add(){//增加
+	      var num=jQuery("#flow_count").val();
+		  var maxNum = parseInt(jQuery(".max").text());
+		  num=parseInt(num)+1;
+		  if(num>maxNum){
+			   num=maxNum;//获取当前的对象的 最大分数  判断是否大于，大于剩下的分数 就不在增加
+           }
+			jQuery("#flow_count").val(num);
+		 }
+	   function less(){ //减少
+		   var num=jQuery("#flow_count").val();
+		   num=parseInt(num)-1;
+		   if(num<1){
+			  num=1;    //获取当前的对象的最小值  判断是否小于0，小于0 就不在减少
+			}
+           jQuery("#flow_count").val(num);
+		   }
+{/literal}
+	
+</script>
+{/if}
+{include file="footer.html"}

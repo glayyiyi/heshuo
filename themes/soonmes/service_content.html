@@ -1,0 +1,40 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" /> 
+<div class="wrp-main">
+<div id="main" class="clearfix">
+	<div class="banner mt10" style="height:216px;"><img src="{$tempdir}/media/bg/jkbz-banner.jpg" alt=""></div>
+<div class="cor_divtop">
+<div id="left" class="left">
+<div class="NavLinkHeader"><img src="{$tempdir}/media/bg/zxfw-tit.png" alt=""></div>
+<div class="NavLinkContent">
+    {loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1}
+        <div id="item5" class="page" onClick="showsubmenu(1, 12)">
+            <span class="txtspan">
+                {if $var.nid == $_G.site_result.nid}
+                    <a href="/{$var.nid}/index.html" style="color:red;">{$var.name}</a>
+                {else}
+                    <a href="/{$var.nid}/index.html">{$var.name}</a>
+                {/if}
+            </span>
+        </div>
+        <div style="display: none" id="open_item5"></div>
+    {/loop}
+</div>
+
+<div class="zxfw-left-bot"></div>
+<a href="/bjbz/index.html"><img src="{$tempdir}/media/bg/zxfw-adimg1.png" alt="" class="mt10" style="margin-left:17px;"></a>
+</div>
+<div id="right" class="right">
+
+<div  class="zxfw_name">{$_G.site_result.name}</div>
+
+<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">
+			
+			 {$_G.site_result.content}
+			</div></div></div></div></div>
+
+</div>
+<div class="wrp-contanier-bot"></div>
+{include file="footer.html"}

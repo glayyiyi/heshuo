@@ -1,0 +1,51 @@
+ {include file="header.html"}
+{if $_G.user_id==""}
+	{rewrite url='/index.action?user&q@@going/login'}
+{/if}
+
+{article module="borrow" function="CheckBorrowTender" id="$magic.request.borrow_id" user_id="$_G.user_id" var="check"}
+    {if $check.checkStatus < 1 && $_G.user_id!=1}
+    {message content="对不起，您不是该借款标的投资人，无权查看借款协议书，谢谢!" mode=1}
+    {/if}
+{/article}
+
+{article module="borrow" function="GetOne" id="$magic.request.borrow_id"}
+{if $var.status!=3}
+{message content="您的操作有误!"}
+{else}
+<div id="main" class="clearfix">
+	<div class="protocol">
+		<div class="title">借款协议书</div>
+		<div class="but">借款协议号：{$var.addtime}{$var.number_id} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借款人： {$var.username}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出借人：详见本协议第一条 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签订日期：{$var.repayment_time|date_format:"Y-m-d"}</div>
+		<div class="xieyi">借款人通过{$_G.system.con_webname}网站(以下简称“本网站”)的居间,就有关借款事项与各出借人达成如下协议：</div>
+		<div><b>第一条：借款详情如下表所示： </b></div>
+		<div>
+			<table class="gvList" cellspacing="0" rules="all" border="1" id="ctl00_ContentPlaceHolder1_gvLoans" style="width:100%;border-collapse:collapse;">
+				<tr height="30">
+					<th align="center" scope="col">出借人(id)</th>
+					<th align="center" scope="col">借款金额</th>
+					<th align="center" scope="col">借款期限</th>
+					<th align="center" scope="col">年利率</th>
+					<th align="center" scope="col">借款开始日</th>
+					<th align="center" scope="col">借款到期日</th>
+					<th align="center" scope="col">截止还款日</th>
+					<th align="center" scope="col">还款本息</th>
+				</tr>
+				{loop module="borrow" var="bor" function="GetTenderList" borrow_id="request" limit="all"}
+				<tr height="30">
+					<td>{$bor.username}</td><td>{$bor.tender_account}元</td><td>{$var.time_limit|linkage:"borrow_time_limit"}</td><td>{$var.apr}%</td><td>{$var.success_time|date_format:"Y-m-d"}</td><td>{$var.end_time|date_format:"Y-m-d"}</td><td>{$var.each_time}</td><td>
+		                       {$bor.equal.monthly_repayment|round:2} 元
+		                    </td>
+				</tr>
+				{/loop}
+		  </table>
+		</div>
+		<div class="content">
+			{$_G.site_result.content}
+			<div style="text-align:center"><input type="button" value="下载协议书" onclick="location.href=location.href+'&type=pdf'" /></div>
+		</div>
+	</div>
+</div>
+{/if}
+{/article}
+{include file="footer.html"}

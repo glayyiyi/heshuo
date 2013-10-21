@@ -1,0 +1,114 @@
+{include file="header.html"}
+{if $_G.user_id<1}
+{rewrite url='/index.action?user&q@@going/login'}
+{/if}
+<div id="main" class="clearfix">
+<div class="wrap950 list_1">
+<div style="margin-top: 5px;border-bottom:2px solid #c51e0b;" class="box_name">
+<a href="#" class="btn-action" style="margin-top:8px;text-decoration:none;color:#fff;">您的vip信息</a>
+</div>
+<div class="content">
+	{if $_G.user_result.vip_status==0 || $_G.user_result.vip_status==3}
+	<form name="form1" action="/index.php?user&q=code/user/applyvip" method="post" {literal}onkeydown="if(event.keyCode==13){return false;}"{/literal}>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#666666">
+			<tr>
+				<td colspan="6" bgcolor="#FFFFFF">
+				{loop module="user" function="GetList" limit="all" type_id="3"}
+				<div style="width:260px; float:left; margin:0 10px 0 10px "><br>
+					<div class="floatl" style="width:120px">
+					<input type="radio" name="kefu_userid" value="{$var.user_id}" />
+					<img src="{$var.user_id|avatar:'big'}" style="width:100px;height:100px;float:right;"/>	
+					</div>
+					<div style="margin-left:10px;">
+					<ul class="kefu_li" style="float:left;padding: 0px 0px 0px 10px;">
+						<li style="padding-bottom:5px;">{$var.username}</li>
+						<li style="padding-bottom:5px;">姓名：{$var.realname}</li>
+						<li style="padding-bottom:5px;">电话:{$var.phone}</li>
+						<li style="padding-bottom:5px;"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$var.qq}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{$var.qq}:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
+					</ul>
+					</div>
+				</div>
+				{/loop}</td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#FFFFFF" height="30"><strong>您的状态</strong></td><td colspan="4" bgcolor="#FFFFFF">{if $_G.user_result.vip_status==0}普通会员{else}<font color="#FF0000">VIP会员,有效时间：</font>{/if}</td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#FFFFFF" height="30"><strong>用户名</strong></td>
+				<td colspan="4" bgcolor="#FFFFFF">
+				{$_G.user_result.username}</td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#FFFFFF" height="30"><strong>姓 名</strong></td>
+				<td colspan="4" bgcolor="#FFFFFF">{$_G.user_result.realname}</td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#FFFFFF" height="30"><strong>邮 箱</strong></td>
+				<td colspan="4" bgcolor="#FFFFFF">{$_G.user_result.email}</td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#FFFFFF"><strong>温馨提示</strong></td>
+				<td colspan="4" bgcolor="#FFFFFF"><font color="red">申请VIP会员将扣除VIP管理费用:{$_G.system.con_vip_money}元,您的当前可用余额{$_G.user_result.use_money}元,{if $_G.user_result.use_money<$_G.system.con_vip_money}不够扣除VIP费用，请先<a href="/index.php?user&q=code/account/recharge_new"><font color="#FF0000">[账号充值]</font></a>{/if}</font><br><font color="red">本网站非VIP会员期间投标不享有本网站的垫付保障权益!</font></td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#FFFFFF" height="30"><strong>备注</strong></td>
+				<td colspan="4" bgcolor="#FFFFFF"><textarea rows="5" cols="100" name="vip_remark"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" bgcolor="#FFFFFF" height="30"><strong>验证码</strong></td>
+				<td colspan="4" bgcolor="#FFFFFF"><input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"  style="float:left;"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer;float:left;" /></td>
+			</tr>
+			<tr>
+				<td colspan="6" bgcolor="#FFFFFF">
+				<div align="center">
+				{if $_G.user_result.use_money<$_G.system.con_vip_money}
+				<font color="red">您的当前可用余额不足VIP申请费用{$_G.system.con_vip_money}元，请充值后，再重新申请，谢谢.</font>
+				{else}
+				<input type="button" value="我要申请" name="tijiao" onclick="check_form()" />
+				{literal}
+				<script type="text/javascript">
+				function check_form(){
+					var form = document.forms['form1'];
+					var vip_remark = form.elements['vip_remark'].value;
+					var valicode = form.elements['valicode'].value;
+					var kefu_userid = $('input:radio[name="kefu_userid"]:checked').val();
+					if(kefu_userid == undefined){
+						jQuery.jBox.info("请选择你的专属客服",'提示');
+						return;
+					}
+					if(vip_remark.length==0){
+						jQuery.jBox.info("备注不能为空",'提示');
+						return;
+					}
+					if(valicode.length!=4){
+						jQuery.jBox.info("验证码有误",'提示');
+						return;
+					}
+					jQuery.jBox.tip('提交中...','loading');
+					form.elements['tijiao'].disabled=true;
+					form.submit();
+				}
+				</script>
+				{/literal}
+				{/if}
+				</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+{else}
+	<ul class="ul_li_1 mt10">
+		<li class="mt10">您的状态是：{if $_G.user_result.vip_status==0}普通会员{elseif $_G.user_result.vip_status==2}VIP申请中{elseif $_G.user_result.vip_status=="1"}<font color="#FF0000">VIP会员</font>{/if}</li>
+		{if $_G.user_result.isvip==1}<li>有效时间：{$_G.user_result.vip_time|date_format} 到 {$_G.user_result.vip_time+60*60*24*365|date_format}</li>{/if}
+		<li class="mt10">用户名：{$_G.user_result.username}</li>
+		<li class="mt10">姓 名 ：{$_G.user_result.realname}</li>
+		<li class="mt10">邮 箱 ：{$_G.user_result.email}</li>
+		<li class="mt10">客 服 ：{$_G.user_result.kefu_realname|default:无}({$_G.user_result.kefu_username|default:无})
+		<li class="mt10">备 注 ：{$_G.user_result.vip_remark}</li>
+	</ul>
+{/if}
+</div>
+<div class="foot"></div>
+</div>
+</div>
+{include file="footer.html"}

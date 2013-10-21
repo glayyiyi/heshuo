@@ -1,0 +1,26 @@
+'http://jquery.com/demo/thickbox/
+
+' ---------------------------------
+' 调用方法
+' ---------------------------------
+<script type="text/javascript" src="/js/jquery/dialog1/api.js"></script>
+
+按钮型  <input alt="Login.Asp?height=300&width=500" class="thickbox" type="button" value="Show" />
+连接型  <a href="Login.Asp?height=300&width=500" class="thickbox">Scrolling content</a>
+        <a href="Login.Asp?uid=<%=uid%>&keepThis=true&TB_iframe=true&height=400&width=670" class="thickbox">同校的同班同学</a>
+
+
+
+
+' ---------------------------------
+' 多个图片调用
+'关键参数:gallery-plants和Plant 1
+' ---------------------------------
+<a href="images/plant1.jpg" title="add a caption to title attribute / or leave blank" class="thickbox" rel="gallery-plants"><img src="images/plant1_t.jpg" alt="Plant 1" /></a>  
+<a href="images/plant2.jpg" title="add a caption to title attribute / or leave blank" class="thickbox" rel="gallery-plants"><img src="images/plant2_t.jpg" alt="Plant 2" /></a>  
+<a href="images/plant3.jpg" title="add a caption to title attribute / or leave blank" class="thickbox" rel="gallery-plants"><img src="images/plant3_t.jpg" alt="Plant 3" /></a> 
+<a href="images/plant4.jpg" title="add a caption to title attribute / or leave blank" class="thickbox" rel="gallery-plants"><img src="images/plant4_t.jpg" alt="Plant 4" /></a>
+
+
+
+

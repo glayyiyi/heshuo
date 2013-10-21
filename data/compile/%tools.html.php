@@ -1,0 +1,76 @@
+<? $this->magic_include(array('file' => "header.html", 'vars' => array()));?>
+<link href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/css/modal.css" rel="stylesheet" type="text/css" />
+<div id="main" class="clearfix">
+
+ <style type="text/css">
+ .title img{margin-top:0px}
+ </style>
+
+
+<ul  id="tab" class="list-tab clearfix">
+	<li class="active"><a href="#lxjs" data-toggle="tab">利息计算</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+<div class="list-tab-con tab-pane fade in active" id="lxjs">
+
+
+	<div class="m_l_bor" style="padding:10px;">
+			<div class="alert alert-info"> </div> <br />
+			<div style="margin-top:3px"><strong>月标：</strong>
+				<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10"  value="<? echo isset($_REQUEST['account'])?$_REQUEST['account']:""; ?>" value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/> %  借款期限：<input type="text" name="times"  size="10"  value="<? echo isset($_REQUEST['times'])?$_REQUEST['times']:""; ?>" />个月 还款方式：<select name="type"><option value="month" >按月还款</option><option value="3" >每月还息到期还本
+</option><option value="2" >到期全额还款</option></select> &nbsp; <input type="submit" class="btn-action" value="开始计算" /></form>
+			</div>
+					<div style="margin-top:3px"><strong>天标：</strong>
+				<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10"  value="<? echo isset($_REQUEST['account'])?$_REQUEST['account']:""; ?>" value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/> %  借款期限：<input type="text" name="time_limit_day"  size="10"  value="<? echo isset($_REQUEST['time_limit_day'])?$_REQUEST['time_limit_day']:""; ?>" />天 还款方式：<select name="type"><option value="month" >到期全额还款</option></select>  <input type="submit" class="btn-action" value="开始计算" /> <input type="hidden" value="1" name="times"/> <input type="hidden" value="1" name="isday"/></form>
+			</div>
+			
+	</div>
+</div>
+
+
+<div class="list-tab-con tab-pane fade" id="sjcx">
+
+
+<div class="m_l_bor" style="padding:10px;">
+		<div class="alert alert-info"> <a class="close" data-dismiss="alert">x</a>在下面输入框中输入您要查询的手机号码,点击查询按钮即可查询该手机号所在地区。</div> <br />
+		<div style="margin-top:3px">
+			<form action="/phone/index.html" method="get" onsubmit="return chk()">	手机号码：<input type="text" name="phone"  id="phone" size="20" value="<? echo $_REQUEST['phone'];?>" />   <input type="submit" class="btn-action" value="查 询" /></form>
+		</div>
+	</div>
+<script> 
+function chk()
+{
+var tel = document.all("phone").value;
+ 
+if(/^13\d{9}$/g.test(tel)|| (/^18\d{9}$/g.test(tel)) || (/^15\d{9}$/g.test(tel)))
+        {;
+		      window.open('http://www.baidu.com/s?wd='+tel+'&rsv_bp=0&rsv_spt=3&n=2&inputT=453','_blank');
+			  return false;
+         }
+else
+        {
+           alert("手机号错误");
+		   return false;
+         }
+}
+</script>
+		</div>
+
+<div class="list-tab-con tab-pane fade" id="dzcx">
+
+
+<div class="m_l_bor" style="padding:10px;">
+		<div class="alert alert-info"> <a class="close" data-dismiss="alert">x</a>在下面输入框中输入您要查询的IP地址,点击查询按钮即可查询该IP所在地区。</div> <br />
+		<div style="margin-top:3px">
+			<form action="/ip/index.html" method="get">IP地址：<input type="text" name="ip" size="20" {literal}value="<?echo $_ip;?>" />   <input type="submit" class="btn-action" value="查 询" /></form>
+		</div>
+</div>
+</div>
+</div><!--tab-->
+</div><!--main-->
+
+<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/modal.js"></script>
+<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/tab.js"></script>
+<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/alert.js"></script>
+<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/transition.js"></script>
+<? $this->magic_include(array('file' => "footer.html", 'vars' => array()));?>

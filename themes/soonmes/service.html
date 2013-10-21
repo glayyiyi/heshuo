@@ -1,0 +1,74 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" /> 
+<div id="main" class="clearfix">
+<div class="cor_divtop">
+<div id="left" class="left">
+<div class="NavLinkHeader"><span>咨询服务中心</span></div>
+<div class="NavLinkContent">
+		{loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1}
+		<div id="item5" class="page" onClick="showsubmenu(1, 12)"><span class="txtspan"><a href="/{$var.nid}/index.html">{$var.name}</a></span></div>
+		<div style="display: none" id="open_item5"></div>
+		{/loop}
+</div>
+</div>
+<div class="site_id" style="display: none">{$_G.site_result.nid}</div>
+	<script>
+	{literal}
+		function showSecond(){
+			var $ = jQuery;
+			var siteId = $(".site_id").text();
+			var oBox = $(".NavLinkContent");
+			var oA = $("a" ,oBox);
+			var Rel = "";
+			oA.each(function(){
+				var index = oA.index(this);
+				Rel = $(oA[index]).attr("rel");
+				console.log(Rel,siteId)
+				if(Rel == siteId){
+					$(oA[index]).addClass("hover");
+				}
+				
+			})
+		}
+		showSecond();
+		{/literal}
+	</script>
+<div id="right" class="right">
+<div>
+<div id="MainBanner">
+<div style="border-bottom:2px solid #c51e0b;" class="box_name">
+				<a href="#" class="btn-action" style="margin-top:8px;text-decoration:none;color:#fff;"  >{$_G.site_result.name} </a>
+		</div>
+</div>
+<div style="clear: both"></div>
+<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">
+			
+			 <!--$_G.site_result.content}-->
+
+            {list module="article" function="GetList" var="loop" e"page"="20"  site_id="0"  keywords="request" status=1 }
+
+			<!--列表开始-->
+			<div class="content_list">
+				<ul class="list_li_1">
+					{foreach from="$loop.list" item="var"}
+					<li>
+					<a href="a{$var.id}.html" style="color:#000000; text-decoration:none;">{$var.name}</a></li>
+					{/foreach}
+				</ul>
+			</div>
+			<!--兼职列表结束-->
+			<!--分页开始-->
+				<div>
+					<table align="center" class="list_table_page">
+						<tr align="center">
+							<td height="25px" ><div align="center">{$loop.show"page"}</div></td>
+						</tr>
+					</table>
+				</div>
+				<!--分页结束-->
+
+                        {/list}			
+</div></div></div></div></div></div></div>
+{include file="footer.html"}

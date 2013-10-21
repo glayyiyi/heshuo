@@ -1,0 +1,199 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" />
+<link href="{$tempdir}/media/css/tipswindown.css" rel="stylesheet" type="text/css" />
+{article module="borrow" function="GetU" article_id="0"}
+<div id="main" class="clearfix">
+<ul id="tab" class="list-tab clearfix">
+      <li class="active"><a href="#grxx" data-toggle="tab">个人信息</a></li>
+      <li><a href="#jklb" data-toggle="tab">借款列表</a></li>
+      <li><a href="#tzjl" data-toggle="tab">投资记录</a></li>
+</ul>
+{if $var.user.username!=""}
+<div id="myTabContent" class="tab-content">
+	<!--个人信息-->
+	<div class="list-tab-con tab-pane fade in active" id="grxx">
+	<div class="box-detail-u clearfix">
+		<div class="box-info-u clearfix">
+			<div class="box-info-user">
+				<img class="user-photo" src="{$var.user.user_id|avatar:'middle'}" />
+				<p>用户名: <a href="/u/{$var.user.user_id}">{$var.user.username}</a></p>
+				<p><span class="pullleft">信用积分：</span><img class="rank" src="{if $var.user.credit_pic!=''}{$_G.system.con_credit_picurl}{$var.user.credit_pic}{/if}" title="{$var.user.credit_jifen}"  /> {$var.user.credit_jifen|default:0}分</p>
+				<p>籍贯:{$var.user.area|area:"p,c"}</p>
+				<p>注册时间: {$var.user.addtime|date_format:"Y-m-d"}</p>
+				<div class="info_a">
+				<ul>
+					<li><div class="credit_pic_card_{$var.user.real_status|default:0}" title="{if $var.user.real_status==1}实名已认证{else}未实名认证{/if}"></div>
+					<div class="credit_pic_phone_{if $var.user.phone_status>=1}1{else}0{/if}" title="{if $var.user.phone_status==1}手机已认证{else}手机未认证{/if}"></div>
+                    <div class="credit_pic_email_{$var.user.email_status|default:0}" title="{if $var.user.email_status==1}邮箱已认证{else}邮箱未认证{/if}"></div>
+					<br/><div
+					class="credit_pic_video_{$var.user.video_status|default:0}" title="{if $var.user.video_status==1}视频已认证{else}视频未认证{/if}"></div>
+					<div style="magin-left:5px;" class="credit_pic_vip_{if $var.user_cache.vip_status==1}1{else}0{/if}" title="{if $var.user_cache.vip_status==1}VIP{else}普通会员{/if}"></div>
+					<div class="credit_pic_scene_{if $var.user.scene_status==1}1{else}0{/if}" title="{if $var.user.scene_status==1}已通过现场认证{else}未通过现场认证{/if}"></div> </li>
+				</ul>
+			</div>
+		<br/>
+				<p><a href="/index.php?user&q=code/message/sent&receive={$var.user.username}">站内信</a></p>
+				{if $_G.user_id!="" && $_G.user_result.real_status==1}
+				<!-- <p><a href="javascript:void(0)" onclick='tipsWindown("加为好友","url:get?/index.php?user&q=code/user/addfriend&username={$var.user.username}",400,230,"true","","true","text");'>加为好友</a></p> -->
+				<p><a href="/index.php?user&q=code/user/addfriend&username={$var.user.username}" title="加为好友" class="thickbox">加为好友</a></p>
+				{else}
+				<p><a href="javascript:alert('请先登陆及实名认证才能加好友')" title="加为好友">加为好友</a></p>
+				{/if}
+				<p><a href="javascript:void(0)" onclick="if(confirm('确定添加为黑名单吗？'))location.href='/index.php?user&amp;q=code/user/blackfriend&amp;username={$var.user.username}';" style="color:#666666">设为黑名单</a></p>
+				<p><a href="/zaixian/index.html">举报此人</a></p>
+			</div>
+			<div class="box-info-detail-u">
+            	<br>
+                <div class="alert"><span>个人资料</span></div>
+                <ul class="clearfix">
+                    <li>性 别：{if $var.user.sex==1}男{else}女{/if}</li>
+                    <li>年 龄：{$var.user.birthday|age_format}岁</li>
+                    <li>婚姻状况：{ $var.userinfo.marry|linkage}</li>
+                    <li>文化程度：{ $var.userinfo.education|linkage}</li>
+                    <li>每月收入： { $var.userinfo.income|linkage}元</li>
+                    <li> 社 保：{ $var.userinfo.shebao|linkage}  </li>
+                    <li>住房条件：{ $var.userinfo.housing|linkage}</li>
+                    <li>是否购车：{ $var.userinfo.car|linkage}</li>
+                    <li>是否逾期：{ $var.userinfo.late|linkage}</li>
+                </ul>
+                <div class="alert"><span>还款信用</span></div>
+                <ul class="clearfix">
+                    <li>借款 {$var.borrow_all.success|default:0} 次成功</li>
+                    <li>{$var.borrow_all.false|default:0} 次流标</li>
+                    <li>{$var.borrow_all.wait|default:0} 笔待还款</li>
+                    <li>{$var.borrow_all.pay_success|default:0} 笔已成功还款 </li>
+                    <li>{$var.borrow_all.pay_advance|default:0} 笔提前还款</li>
+                    <li>{$var.borrow_all.pay_expiredyes|default:0} 笔迟还款</li>
+                    <li>{$var.borrow_all.pay_expired30in|default:0} 笔30天之内的逾期还款</li>
+                    <li>{$var.borrow_all.pay_expired30|default:0} 笔超过30天的逾期还款</li>
+                    <li>{$var.borrow_all.pay_expiredno|default:0} 笔逾期未还款</li>
+                </ul>
+                <div class="alert"><span>资料审核</span></div>
+                <table  border="0"  cellspacing="0"  width="100%" class="tab1">
+                    <tr>
+                      <td><strong>资料类型</strong> </td>
+                      <td><strong>积分</strong></td>
+                      <td><strong>上传时间</strong></td>
+                      <td><strong>审核时间</strong></td>
+                      <td><strong>审核说明</strong></td>
+                    </tr>
+                    {loop module="attestation" function="GetList" var="arr_var" limit="all" status="1"  user_id="$var.user.user_id" status=1}
+                    {if $arr_var.jifen>0}
+                    <tr  > 
+                      <td >{$arr_var.type_name}</td>
+                      <td  >{$arr_var.jifen} 分</td>
+                      <td >{$arr_var.addtime|date_format}</td>
+                      <td >{$arr_var.verify_time|date_format}</td>
+                      <td >{$arr_var.verify_remark|default:-}</td>
+                    </tr>
+                    {/if}
+                    {/loop}
+                </table>
+                
+			</div>
+
+		</div>
+        
+	</div>
+    </div>
+    
+	<!--借款列表-->
+	<div class="list-tab-con tab-pane fade" id="jklb">
+    
+     
+	<div class="box-detail-u clearfix">
+		<div class="box-info-u clearfix">
+			<div class="box-info-user">
+				<img class="user-photo" src="{$var.user.user_id|avatar:'middle'}" />
+				<p>用户名: <a href="/u/{$var.user.user_id}">{$var.user.username}</a></p>
+				<p><span class="pullleft">信用积分：</span><img class="rank" src="{if $var.user.credit_pic!=''}{$_G.system.con_credit_picurl}{ $var.user.credit_pic}{/if}" title="{$var.user.credit_jifen}"  /> {$var.user.credit_jifen|default:0}分</p>
+				<p>籍贯:{$var.user.area|area:"p,c"}</p>
+				<p>注册时间: {$var.user.addtime|date_format:"Y-m-d"}</p>
+				<div class="info_a">
+				<ul>
+					<li><div class="credit_pic_card_{$var.user.real_status|default:0}" title="{if $var.user.real_status==1}实名已认证{else}未实名认证{/if}"></div>
+					<div class="credit_pic_phone_{if $var.user.phone_status>=1}1{else}0{/if}" title="{if $var.user.phone_status==1}手机已认证{else}手机未认证{/if}"></div>
+                    <div class="credit_pic_email_{$var.user.email_status|default:0}" title="{if $var.user.email_status==1}邮箱已认证{else}邮箱未认证{/if}"></div>
+					<br/><div
+					class="credit_pic_video_{$var.user.video_status|default:0}" title="{if $var.user.video_status==1}视频已认证{else}视频未认证{/if}"></div>
+					<div style="magin-left:5px;" class="credit_pic_vip_{if $var.user_cache.vip_status==1}1{else}0{/if}" title="{if $var.user_cache.vip_status==1}VIP{else}普通会员{/if}"></div>
+					<div class="credit_pic_scene_{if $var.user.scene_status==1}1{else}0{/if}" title="{if $var.user.scene_status==1}已通过现场认证{else}未通过现场认证{/if}"></div> </li>
+				</ul>
+			</div>
+		<br/>
+				<p><a href="/index.php?user&q=code/message/sent&receive={$var.user.username}">站内信</a></p>
+				<p><a href="javascript:void(0)" onclick='tipsWindown("加为好友","url:get?/index.php?user&q=code/user/addfriend&username={$var.user.username}",400,230,"true","","true","text");'>加为好友</a></p>
+				<p><a href="javascript:void(0)" onclick="if(confirm('确定添加为黑名单吗？'))location.href='/index.php?user&amp;q=code/user/blackfriend&amp;username={$var.user.username}';" style="color:#666666">设为黑名单</a></p>
+				<p><a href="/zaixian/index.html">举报此人</a></p>
+			</div>
+			<div class="box-info-detail-u">
+            	<br>
+                <div class="alert"><span>借款记录</span></div>
+                 {list module="borrow" function="GetList" var="loop" status="3"  site_id="0"  user_id="$GU_uid" epage="50"  }
+                 {foreach from="$loop.list" item="varB" }
+                  <p style="padding-left:20px;"><a href="/invest/a{$varB.id}.html">&nbsp;&nbsp;{$varB.name}</a>
+                   [{if $varB.status==1}招标中{elseif $varB.status==2}借款失败{elseif $varB.status==3}借款成功{else}申请中{/if}]</p>
+                  {/foreach}
+                  {/list}
+			</div>
+		</div>   
+	</div>
+	</div>
+	<!--投资记录-->
+	<div class="list-tab-con tab-pane fade" id="tzjl">
+	<div class="box-detail-u clearfix">
+		<div class="box-info-u clearfix">
+			<div class="box-info-user">
+				<img class="user-photo" src="{$var.user.user_id|avatar:'middle'}" />
+				<p>用户名: <a href="/u/{$var.user.user_id}">{$var.user.username}</a></p>
+				<p><span class="pullleft">信用积分：</span><img class="rank" src="{if $var.user.credit_pic!=''}{$_G.system.con_credit_picurl}{ $var.user.credit_pic}{/if}" title="{$var.user.credit_jifen}"  /> {$var.user.credit_jifen|default:0}分</p>
+				<p>籍贯:{$var.user.area|area:"p,c"}</p>
+				<p>注册时间: {$var.user.addtime|date_format:"Y-m-d"}</p>
+				<div class="info_a">
+				<ul>
+					<li><div class="credit_pic_card_{$var.user.real_status|default:0}" title="{if $var.user.real_status==1}实名已认证{else}未实名认证{/if}"></div>
+					<div class="credit_pic_phone_{if $var.user.phone_status>=1}1{else}0{/if}" title="{if $var.user.phone_status==1}手机已认证{else}手机未认证{/if}"></div>
+                    <div class="credit_pic_email_{$var.user.email_status|default:0}" title="{if $var.user.email_status==1}邮箱已认证{else}邮箱未认证{/if}"></div>
+					<br/><div
+					class="credit_pic_video_{$var.user.video_status|default:0}" title="{if $var.user.video_status==1}视频已认证{else}视频未认证{/if}"></div>
+					<div style="magin-left:5px;" class="credit_pic_vip_{if $var.user_cache.vip_status==1}1{else}0{/if}" title="{if $var.user_cache.vip_status==1}VIP{else}普通会员{/if}"></div>
+					<div class="credit_pic_scene_{if $var.user.scene_status==1}1{else}0{/if}" title="{if $var.user.scene_status==1}已通过现场认证{else}未通过现场认证{/if}"></div> </li>
+				</ul>
+			</div>
+		<br/>
+				<p><a href="/index.php?user&q=code/message/sent&receive={$var.user.username}">站内信</a></p>
+				<p><a href="javascript:void(0)" onclick='tipsWindown("加为好友","url:get?/index.php?user&q=code/user/addfriend&username={$var.user.username}",400,230,"true","","true","text");'>加为好友</a></p>
+				<p><a href="javascript:void(0)" onclick="if(confirm('确定添加为黑名单吗？'))location.href='/index.php?user&amp;q=code/user/blackfriend&amp;username={$var.user.username}';" style="color:#666666">设为黑名单</a></p>
+				<p><a href="/zaixian/index.html">举报此人</a></p>
+			</div>
+			<div class="box-info-detail-u">
+            	<br>
+                <div class="alert"><span>投资记录</span></div>
+                 {loop module="borrow" function="GetTenderList" var="_var" limit='0,30' user_id="$GU_uid"}
+                  <p>
+                   &nbsp;&nbsp;{$_var.addtime|date_format:"Y-m-d"} 投标【<a href="/invest/a{$_var.borrow_id}.html" title="{$_var.borrow_name}" target="_blank">{$_var.borrow_name|truncate:10}</a>】 金额( {$_var.tender_account}元) {if $_var.status==1}成功{else}失败{/if}
+                   </p>
+                  {/loop}
+<!-- <div class="page" >{$loop.showpage}</div> -->
+			</div>
+
+		</div>   
+	</div>
+	</div>
+{else}
+<div style="text-align:center;margin-top:5px">未找到相关用户<br/><a href="/index.php">返回首页</a></div>
+{/if}
+    
+</div>  
+
+</div>		
+				
+				
+
+{/article}
+
+<script src="{$tempdir}/media/js/modal.js"></script>
+<script src="{$tempdir}/media/js/tab.js"></script>
+<script src="{$tempdir}/media/js/transition.js"></script>	
+<script src="{$tempdir}/media/js/tipswindown.js"></script>
+{include file="footer.html"}

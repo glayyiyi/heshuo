@@ -1,0 +1,63 @@
+{include file="header.html"}
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> 
+<link href="{$tempdir}/media/css/about.css" rel="stylesheet" type="text/css" /> 
+<div id="main" class="clearfix">
+<div class="cor_divtop">
+<div id="left" class="left">
+<div class="NavLinkHeader"><span>咨询服务中心</span></div>
+<div class="NavLinkContent">
+		{loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1 }
+		<div id="item1" class="page" onClick="showsubmenu( 1, 10)"><span class="txtspan"><a href="/{$var.nid}/index.html" rel="{$var.nid}" >{$var.name}</a></span></div>
+		{/loop}
+
+</div>
+</div>
+<div class="site_id" style="display: none">{$_G.site_result.nid}</div>
+	<script>
+	{literal}
+		function showSecond(){
+			var $ = jQuery;
+			var siteId = $(".site_id").text();
+			var oBox = $(".NavLinkContent");
+			var oA = $("a" ,oBox);
+			var Rel = "";
+			oA.each(function(){
+				var index = oA.index(this);
+				Rel = $(oA[index]).attr("rel");
+				console.log(Rel,siteId)
+				if(Rel == siteId){
+					$(oA[index]).addClass("hover");
+				}
+				
+			})
+		}
+		showSecond();
+		{/literal}
+	</script>
+<div id="right" class="right">
+<div>
+<div id="MainBanner">
+<div style="border-bottom:2px solid #c51e0b;" class="box_name">
+				<a href="#" class="btn-action" style="margin-top:8px;text-decoration:none;color:#fff;"  >{$_G.site_result.name} </a>
+		</div>
+</div>
+<div style="clear: both"></div>
+<div id="myTabContent" class="content">
+			<div class="info" id="lxjs">
+				<!--内容开始-->
+				<div class="content_ro2">
+				<table width="90%"><tr>
+				  <td>{$_G.article.content}</td>
+				</tr></table>
+
+				{if $_G.article.files!=""}
+				<div style="float:right">
+				<a href="{$_G.article.files}" target="_blank"><font color="#FF0000">下载文件</font></a>
+				</div>
+				{/if}
+				</div>
+				<!--内容结束-->			
+			
+</div></div></div></div></div></div>
+</div>
+{include file="footer.html"}
