@@ -98,7 +98,7 @@ body{ font-size: 12px; font-family: "ËÎÌו";}
 
 /* container
 ---------------------------------------------- */
-#main{width:980px;margin:10px auto 20px;}
+#main{width:1000px;margin:10px auto 20px;}
 #container{width:700px;float: left;}  
 .slidebox{ width:980px; margin: 10px auto 0; height: 312px; background:url(../bg/slidebg.png) no-repeat;}
 .slide{ width:980px; height:300px; overflow:hidden;}

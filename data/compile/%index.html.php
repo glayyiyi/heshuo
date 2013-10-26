@@ -1,42 +1,122 @@
 <? $this->magic_include(array('file' => "header.html", 'vars' => array()));?>
-<link href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/css/modal.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/jquery.flashSlider-1.0.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+			<!-- 主要内容 -->
+			<div id="main" class="clearfix">
+				<!-- 广告模块 -->
+				<div class="bannerBar m_b_15">
+					<p class="pic"><img src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/banner_01.jpg" /></p>
+					<!-- 浮动层 -->
+					<div class="pop_searchBar">
+						<div class="hd">
+							<ul class="tab_search">
+								<li><a class="hover" href="#">我要投资<s class="ico_tip"></s></a></li>
+								<li><a href="#">我要融资<s class="ico_tip"></s></a></li>
+							</ul>
+						</div>
+						<div class="bg">
+							<p class="item">
+								<label class="tit">金额</label>
+								<span class="c"><input class="input_picbg_01" type="text" name="textfield" id="textfield" /></span>
+							</p>
+							<p class="item">
+								<label class="tit">年化收益率</label>
+								<span class="c"><input class="input_picbg_01" type="text" name="textfield" id="textfield" /></span>
+							</p>
+							<p class="item">
+								<label class="tit">期限</label>
+								<span class="c"><input class="input_picbg_01" type="text" name="textfield" id="textfield" /></span>
+							</p>
+							<p class="item">
+								<label class="tit"></label>
+								<span class="c tc"><a class="btn btn_green_01 m_t_10" href="我要投资－查询.html">搜 索</a></span>
+							</p>
+						</div>
+					</div>
+					<!-- end 浮动层 -->
+				</div>
+				<!-- end 广告模块 -->
 
-<div class="container">
-    <div class="slidebox">
-        <div class="slide">
-            <ul>
-            	<?  if(!isset($this->magic_vars['_G']['scrollpic']) || $this->magic_vars['_G']['scrollpic']=='') $this->magic_vars['_G']['scrollpic'] = array();  $_from = $this->magic_vars['_G']['scrollpic']; 
- if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); } 
-if (count($_from)>0):
-;    foreach ($_from as $this->magic_vars['key'] =>  $this->magic_vars['item']):
-?>
-            	<? if (!isset($this->magic_vars['item']['type_id'])) $this->magic_vars['item']['type_id']=''; ;if (  $this->magic_vars['item']['type_id']==1): ?>
-            	<li><a href="<? if (!isset($this->magic_vars['item']['url'])) $this->magic_vars['item']['url'] = ''; echo $this->magic_vars['item']['url']; ?>"><img src="<? if (!isset($this->magic_vars['item']['pic'])) $this->magic_vars['item']['pic'] = ''; echo $this->magic_vars['item']['pic']; ?>" alt=""><div class="slide-txt"><? if (!isset($this->magic_vars['item']['summary'])) $this->magic_vars['item']['summary'] = ''; echo $this->magic_vars['item']['summary']; ?></div></a></li>
-            	<? endif; ?>
-            	<? endforeach; endif; unset($_from); ?>
-            </ul>
-        </div>
-    </div>
-    <script>
-	
-        jQuery(document).ready(function() {
-            jQuery('.slide').flashSlider();
-        });
-	
-    </script>
-    <div class="contentbox clearfix">
-        <div class="left">
-            <div class="zbtitle">
-                正在招标的项目
-            </div><!--正在招标的标题-->
-            <div class="listmain">
-        	<? $this->magic_vars['query_type']='GetList';$data = array('var'=>'var','limit'=>'10','order'=>'biaoindex');$default = '';  include_once(ROOT_PATH.'modules/borrow/borrow.class.php');$this->magic_vars['magic_result'] = borrowClass::GetList($data);if(!isset($this->magic_vars['magic_result'])) $this->magic_vars['magic_result']= array(); $_from = $this->magic_vars['magic_result']; if (!is_array($_from) && !is_object($_from)) {$_from =array(); } if (count($_from)>0):
+         
+         
+      
+            
+
+         
+         
+         
+         
+         
+				<!-- 热门投资 -->
+				<div class="module_01 m_b_17">
+					<div class="hd m_b_15">
+						<h3 class="fl">热门投资</h3>
+						<span class="fr more"><a href="#">MORE</a></span>
+					</div>
+					<div class="bg posit_rel">
+						<!-- 左右 -->
+						<div class="global_module prolist">
+							<div  class="prolist_content">
+				                <ul>
+				                    <li>
+				                        <b class="pic"><a href="#"><img src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/pic_01.jpg" alt="" /></a></b>
+				                        <div class="itemInfo">
+				                        	<h4>金丰1310期  </h4>
+				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
+				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        </div>
+				                    </li>
+				                    <li>
+				                        <b class="pic"><a href="#"><img src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/pic_01.jpg" alt="" /></a></b>
+				                        <div class="itemInfo">
+				                        	<h4>金丰1310期  </h4>
+				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
+				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        </div>
+				                    </li>
+				                    <li>
+				                        <b class="pic"><a href="#"><img src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/pic_01.jpg" alt="" /></a></b>
+				                        <div class="itemInfo">
+				                        	<h4>金丰1310期  </h4>
+				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
+				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        </div>
+				                    </li>
+				                    <li>
+				                        <b class="pic"><a href="#"><img src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/pic_01.jpg" alt="" /></a></b>
+				                        <div class="itemInfo">
+				                        	<h4>金丰1310期</h4>
+				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
+				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        </div>
+				                    </li>
+				                </ul>
+				            </div>
+						</div>
+						<!-- 左右按钮 -->
+			            <p class="module_left"><img class="goLeft" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/btn_left.png" alt="" /></p>
+			            <p class="module_right"><img class="goRight" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/btn_right.png" alt="" /></p>
+
+			            <!-- 修饰背景 -->
+			            <div class="module_01tip"></div>
+
+					</div>
+				</div>
+				<!-- end 热门投资 -->
+				<!-- 2列 -->
+				<div class="grid_c2 clearfix m_b_10">
+					<div class="fl clum_l">
+						<!-- 热门贷款 -->
+						<div class="module_02">
+							<div class="hd">
+							<h3>热门贷款</h3>
+							</div>
+							
+							<? $this->magic_vars['query_type']='GetList';$data = array('var'=>'var','limit'=>'10','order'=>'biaoindex');$default = '';  include_once(ROOT_PATH.'modules/borrow/borrow.class.php');$this->magic_vars['magic_result'] = borrowClass::GetList($data);if(!isset($this->magic_vars['magic_result'])) $this->magic_vars['magic_result']= array(); $_from = $this->magic_vars['magic_result']; if (!is_array($_from) && !is_object($_from)) {$_from =array(); } if (count($_from)>0):
 ;    foreach ($_from as $this->magic_vars['key'] => $this->magic_vars['var']):
 ?>
-				<div class="list-div">
+				<div class="bg">
                     <a href="invest/a<? if (!isset($this->magic_vars['var']['id'])) $this->magic_vars['var']['id'] = ''; echo $this->magic_vars['var']['id']; ?>.html"><img src="<? if (!isset($this->magic_vars['var']['user_id'])) $this->magic_vars['var']['user_id'] = '';$_tmp = $this->magic_vars['var']['user_id'];$_tmp = $this->magic_modifier("avatar",$_tmp,"middle");echo $_tmp;unset($_tmp); ?>" class="productimg"></a>
-                    <ul class="list-ul">
+                    <ul class="hot_list">
                         <li class="titleli">
                            <span>
                                 <a href="invest/a<? if (!isset($this->magic_vars['var']['id'])) $this->magic_vars['var']['id'] = ''; echo $this->magic_vars['var']['id']; ?>.html"><? if (!isset($this->magic_vars['var']['name'])) $this->magic_vars['var']['name'] = '';$_tmp = $this->magic_vars['var']['name'];$_tmp = $this->magic_modifier("truncate",$_tmp,"25:...");echo $_tmp;unset($_tmp); ?>&nbsp;&nbsp;</a>
@@ -100,59 +180,55 @@ if (count($_from)>0):
 					</div>
 				</div>
 			<? endforeach;else:echo $default; endif; unset($_from);unset($_magic_vars); ?>
-            </div><!--标列表-->
-        </div>
-        <div class="right">
-            <? if (!isset($this->magic_vars['_G']['user_id'])) $this->magic_vars['_G']['user_id']=''; ;if (  $this->magic_vars['_G']['user_id']==""): ?>
-				<div class="rightbox loginbox">
-                	<div class="title">
-                    	<span class="float_left">用户登录</span>
-                	</div>
-                <form action="/index.php?user&q=going/login" method="post" id="login_sub">
-                    <ul class="articleul loginul">
-                        <li><label for="">帐号：</label><input id="username" name="username" type="text" size="22" maxlength="60" value="" class="txt"></li>
-                        <li><label for="">密码：<input id="password" name="password" type="password" size="22" maxlength="60" value="" class="txt"></li>
-                        <li class="checkboxs">
-                        <table><tr><td>记住我</td><td><input type="checkbox" name="remember" value="1" style="width:15px;border:0" /></td><td><select name="save_time"><option value="3600">一个小时</option><option value="18000">五个小时</option><option value="86400">一天</option><option value="604800">一周</option><option value="2592000">一个月</option><option value="31104000">永远</option></select></td></tr></table>
-                            <!-- <input type="checkbox">记住用户名 <a class="text-link" href="?user&q=going/getpwd" target=_blank>忘记密码？</a> -->
-                        </li>
-                        <li>
-                            <a href="#" class="denglu" id="login_btn">登  录</a>
-                            <a href="?user&q=going/reg" class="zhuce" target=_blank>立即注册</a>
-                        </li>
-                    </ul>
-           	    </form>
-		        </div>
-			<? else: ?>
-			<div class="rightbox loginbox">
-				<div class="title">
-                    <span class="float_left">用户登录</span>
+							
+						</div>
+						<!-- end 热门贷款 -->
+					</div>
+					<div class="fr clum_r">
+                    	<!-- 理财顾问推介 -->
+						<div class="module_03">
+							<div class="hd">
+								<h3><s class="icon_tj"></s>理财顾问推介</h3>
+							</div>
+							<div class="bg">
+								<ul class="list_lc">
+									<? $this->magic_vars['query_type']='GetList';$data = array('limit'=>'20','type_id'=>'3');$default = '';  include_once(ROOT_PATH.'core/user.class.php');$this->magic_vars['magic_result'] = userClass::GetList($data);if(!isset($this->magic_vars['magic_result'])) $this->magic_vars['magic_result']= array(); $_from = $this->magic_vars['magic_result']; if (!is_array($_from) && !is_object($_from)) {$_from =array(); } if (count($_from)>0):
+;    foreach ($_from as $this->magic_vars['key'] => $this->magic_vars['var']):
+?>
+						
+						<li>
+						<div class="clearfix posit_rel">
+											<div class="info">
+											<h4 class="name m_b_10"><? if (!isset($this->magic_vars['var']['username'])) $this->magic_vars['var']['username'] = ''; echo $this->magic_vars['var']['username']; ?></h4>
+								<p class="item">姓名：<? if (!isset($this->magic_vars['var']['realname'])) $this->magic_vars['var']['realname'] = ''; echo $this->magic_vars['var']['realname']; ?></p>
+								<p class="item">电话:<? if (!isset($this->magic_vars['var']['phone'])) $this->magic_vars['var']['phone'] = ''; echo $this->magic_vars['var']['phone']; ?></p>
+								<p class="item m_b_6"><label>服务星级：</label><span class="star"><s class="star_01"></s><s class="star_01"></s><s class="star_01"></s><s class="star_01"></s><s class="star_01"></s></span></p>
+                                 <p class="zx m_b_10"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<? if (!isset($this->magic_vars['var']['qq'])) $this->magic_vars['var']['qq'] = ''; echo $this->magic_vars['var']['qq']; ?>&site=qq&menu=yes">
+                                                    <img border="0" src="http://wpa.qq.com/pa?p=2:<? if (!isset($this->magic_vars['var']['qq'])) $this->magic_vars['var']['qq'] = ''; echo $this->magic_vars['var']['qq']; ?>:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                                    </p>
+                  				
+								<!-- <p class="item"><? if (!isset($this->magic_vars['var']['content'])) $this->magic_vars['var']['content'] = ''; echo $this->magic_vars['var']['content']; ?></p> -->
+								</div>
+						<b class="photo"><img src="<? if (!isset($this->magic_vars['var']['user_id'])) $this->magic_vars['var']['user_id'] = '';$_tmp = $this->magic_vars['var']['user_id'];$_tmp = $this->magic_modifier("avatar",$_tmp,"");echo $_tmp;unset($_tmp); ?>" width="100" height="99" /></b>
+							
+							
+						</div>
+						
+							
+					</li>
+					<? endforeach;else:echo $default; endif; unset($_from);unset($_magic_vars); ?>
+								</ul>
+							</div>
+						</div>
+						<!-- end 理财顾问推介 -->
+                    	<!-- 公 告 -->
+   
+             <div class="module_04 m_b_10">
+                <div class="hd">
+                    <span class="float_left"><h3><s class="icon_gg"></s>公 告</h3></span><a href="/gonggao/index.html" class="float_right">[更多]</a>
                 </div>
-				<ul class="articleul loginul">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-				<td width="100"><img src="<? if (!isset($this->magic_vars['_G']['user_id'])) $this->magic_vars['_G']['user_id'] = '';$_tmp = $this->magic_vars['_G']['user_id'];$_tmp = $this->magic_modifier("avatar",$_tmp,"middle");echo $_tmp;unset($_tmp); ?>" height="98" width="98" style="padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; border-top-color: #999; border-right-color: #999; border-bottom-color: #999; border-left-color: #999; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: dashed; border-right-style: dashed; border-bottom-style: dashed; border-left-style: dashed;" class="pic"/></td>
-                    <td style="padding-left:10px;"><strong><font color="#FF0000"><? if (!isset($this->magic_vars['_G']['user_result']['username'])) $this->magic_vars['_G']['user_result']['username'] = ''; echo $this->magic_vars['_G']['user_result']['username']; ?></font></strong>
-					<br/><br/>
-					<a href="/index.php?user&q=code/user/credit"><? if (!isset($this->magic_vars['_G']['user_cache']['credit'])) $this->magic_vars['_G']['user_cache']['credit'] = '';$_tmp = $this->magic_vars['_G']['user_cache']['credit'];$_tmp = $this->magic_modifier("credit",$_tmp,"");echo $_tmp;unset($_tmp); ?></a><br/>
-					<br/><a href="/index.php?user"><font color="#427E1D">[我的账号]</font></a>
-					
-					<a href="/index.php?user&q=going/logout"><font color="#FF0000">[退出]</font></a></td>
-                  </tr>
-                </table>
-			    <li style="text-align:center;list-style:none;margin:10px auto;">
-	                 <a href="/index.php?user&q=code/account/recharge_new" 
-					 class="btn-action">充值</a>&nbsp;&nbsp;&nbsp;
-                     <a href="/index.php?user&q=code/account/cash_new" class="btn-action">提现</a>
-			    </li>
-			</ul>
-			</div>
-		<? endif; ?>
-            <div class="rightbox">
-                <div class="title">
-                    <span class="float_left">网站公告</span><a href="/gonggao/index.html" class="float_right">[更多]</a>
-                </div>
-                <ul class="articleul">
+                <div class="bg">
+                <ul class="noteList">
                     <? $this->magic_vars['varlgnore'] = array();$this->magic_vars['varsite_id'] = array(22); if(!isset($this->magic_vars['_G']['site_list'])) $this->magic_vars['_G']['site_list']= array(); $_from = $this->magic_vars['_G']['site_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from,'array'); } if (count($_from)):
  $i=0;    foreach ($_from as $this->magic_vars['key'] => $this->magic_vars['var']):
  if ($this->magic_vars['var']['pid']!=''  && in_array($this->magic_vars['var']['site_id'],$this->magic_vars['varsite_id']) ): $this->magic_vars['key'] =$i?>
@@ -163,13 +239,15 @@ if (count($_from)>0):
                     <? endforeach;else:echo $default; endif; unset($_from);unset($_magic_vars); ?>
                     <? $i++;endif;endforeach; endif;  unset($_from);unset($_magic_vars);unset($this->magic_vars['lgnore']); ?>	
                 </ul>
-            </div>
-            <div class="rightbox">
-                <div class="title">
-                    <span class="float_left">成功贷款</span><a href="/invest/index.html?type=success" class="float_right">[更多]</a>
                 </div>
-                <div class="sucbox" id="success_borrow">
-                    <ul class="articleul">
+            </div>
+              <!-- end 公 告 -->
+            <div class="module_04 m_b_10">
+                <div class="hd">
+                    <span class="float_left"><h3>成功贷款</h3></span><a href="/invest/index.html?type=success" class="float_right">[更多]</a>
+                </div>
+                <div class="bg" id="success_borrow">
+                    <ul class="notelist">
                         <? $this->magic_vars['query_type']='GetList';$data = array('type'=>'fast','var'=>'var','limit'=>'6','status'=>'3','order'=>'account_down','recMonth'=>'1');$default = '';  include_once(ROOT_PATH.'modules/borrow/borrow.class.php');$this->magic_vars['magic_result'] = borrowClass::GetList($data);if(!isset($this->magic_vars['magic_result'])) $this->magic_vars['magic_result']= array(); $_from = $this->magic_vars['magic_result']; if (!is_array($_from) && !is_object($_from)) {$_from =array(); } if (count($_from)>0):
 ;    foreach ($_from as $this->magic_vars['key'] => $this->magic_vars['var']):
 ?>
@@ -185,11 +263,13 @@ if (count($_from)>0):
                     </ul>
                 </div>
             </div>
-            <div class="rightbox" style="margin-bottom: 0;">
-                <div class="title">
-                    <span class="float_left">常见问题</span><a href="/newsdongtai/index.html" class="float_right">[更多]</a>
+            <div class="module_04 m_b_10" style="margin-bottom: 0;">
+                <div class="hd">
+                   <span class="float_left"><h3> 常见问题</h3></span>
+                    <a href="/newsdongtai/index.html" class="float_right">[更多]</a>
                 </div>
-                <ul class="articleul">
+                <div class="bg">
+                <ul class="nodelist">
                     <? $this->magic_vars['varlgnore'] = array();$this->magic_vars['varsite_id'] = array(11); if(!isset($this->magic_vars['_G']['site_list'])) $this->magic_vars['_G']['site_list']= array(); $_from = $this->magic_vars['_G']['site_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from,'array'); } if (count($_from)):
  $i=0;    foreach ($_from as $this->magic_vars['key'] => $this->magic_vars['var']):
  if ($this->magic_vars['var']['pid']!=''  && in_array($this->magic_vars['var']['site_id'],$this->magic_vars['varsite_id']) ): $this->magic_vars['key'] =$i?>
@@ -200,12 +280,28 @@ if (count($_from)>0):
                     <? endforeach;else:echo $default; endif; unset($_from);unset($_magic_vars); ?>
                     <? $i++;endif;endforeach; endif;  unset($_from);unset($_magic_vars);unset($this->magic_vars['lgnore']); ?>	
                 </ul>
+                </div>
             </div>
-
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
+                       
+                       
+                        <!-- 官方微信  -->
+                        <div class="weibo">
+                        	<div class="hd">官方微信</div>
+                            <div class="bg clearfix">
+                            	<p class="txt fl m_r_20">微信扫描二维码，获得每日精选资讯</p>
+                                <p class="pic fl"><img src="" width="100" height="100" alt="二维码"></p>
+                            </div>
+                        </div>
+                        <!-- end 官方微信  -->
+                    </div>
+				</div>
+				<!-- end 2列 -->
+			
+			<!-- end 主要内容 -->		
+			</div>
+			
+		
+		<script type="text/javascript">
 
 jQuery(function(){
 	jQuery("[rel='tooltip']").tooltip();
@@ -221,5 +317,3 @@ jQuery(function(){
 
 <!--main end-->
 <? $this->magic_include(array('file' => "footer.html", 'vars' => array()));?>
-
-

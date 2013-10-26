@@ -214,15 +214,18 @@ function checkPassword( password ){
 }
 //验证密码
 function checkConformPassword( conform_password ){
+	
 	var reg_btn = document.getElementById("reg_btn");
 	var submit_disabled = false;
     password = document.getElementById('password').value;
+    
     if ( conform_password.length < 6 ){
         document.getElementById('conform_password_notice').innerHTML = password_msg_shorter;
         submit_disabled =  true;
         pwdFlag2=false;
     }
 	else   if ( conform_password != password ){
+		
         document.getElementById('conform_password_notice').innerHTML = password_msg_confirm_invalid;
 		submit_disabled =  true;
         pwdFlag2=false;

@@ -1,15 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-<title><? if (!isset($this->magic_vars['_G']['article']['name'])) $this->magic_vars['_G']['article']['name']=''; ;if (  $this->magic_vars['_G']['article']['name']!=""): ?><? if (!isset($this->magic_vars['_G']['article']['name'])) $this->magic_vars['_G']['article']['name'] = ''; echo $this->magic_vars['_G']['article']['name']; ?> - <? endif; ?><? if (!isset($this->magic_vars['_G']['site_result']['name'])) $this->magic_vars['_G']['site_result']['name']=''; ;if (  $this->magic_vars['_G']['site_result']['name']): ?> <? if (!isset($this->magic_vars['_G']['site_result']['name'])) $this->magic_vars['_G']['site_result']['name'] = ''; echo $this->magic_vars['_G']['site_result']['name']; ?> -  <? endif; ?><? if (!isset($this->magic_vars['_G']['system']['con_webname'])) $this->magic_vars['_G']['system']['con_webname'] = ''; echo $this->magic_vars['_G']['system']['con_webname']; ?>
--民间借贷信息平台-p2p网贷|网络借贷|P2P网上借贷|借贷平台|投资理财|人人贷|信用贷款|小额贷款|抵押
-</title>
-<meta name="description" content="<? if (!isset($this->magic_vars['_G']['system']['con_description'])) $this->magic_vars['_G']['system']['con_description'] = ''; echo $this->magic_vars['_G']['system']['con_description']; ?>" />
+<!DOCTYPE html>
+<html>
+		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<title>中硕信投</title>
+		<meta name="description" content="<? if (!isset($this->magic_vars['_G']['system']['con_description'])) $this->magic_vars['_G']['system']['con_description'] = ''; echo $this->magic_vars['_G']['system']['con_description']; ?>" />
 <meta name="keywords" content="<? if (!isset($this->magic_vars['_G']['system']['con_keywords'])) $this->magic_vars['_G']['system']['con_keywords'] = ''; echo $this->magic_vars['_G']['system']['con_keywords']; ?>" />
 <link href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/css/jquery-ui.css" type="text/css" media="all" />
-<script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/jquery.js"></script>
+<!-- <script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/script/jquery-1.7.2.min.js" type="text/javascript"></script> -->
+ <script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/jquery.js"></script> 
 <script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/jquery-ui.js"></script>
 <script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/thickbox/thickbox.js"></script>
 <link rel="stylesheet" href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/thickbox/thickbox.css" type="text/css" media="screen" />
@@ -20,16 +21,34 @@
 <script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/blockUI.js"></script>
 <script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/index.js"></script>
 
-<!--jbox-->
-<meta property="qc:admins" content="773325432571652767456375" />
+		<!--[if IE 6]>
+		<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/script/iepng.js" type="text/javascript"></script>
+		<![endif]-->
+		<link href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/style/basic.css" rel="stylesheet" type="text/css" />
+		<link href="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/style/index.css" rel="stylesheet" type="text/css" />
 
-</head>
+		
+		<script src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/script/imgSlide.js" type="text/javascript"></script>
 
-<body>
-<div class="headbg">
-    <div class="head clearfix">
-        <div class="float_left">
-           <? if (!isset($this->magic_vars['_G']['user_id'])) $this->magic_vars['_G']['user_id']=''; ;if (  $this->magic_vars['_G']['user_id']>0): ?>
+	</head>
+	<body>
+		<!-- 标记(logo)区域 -->
+		<div class="branding">
+			<div class="head">
+            	<div class="logo fl"></div>
+                <div class="nav fl">
+                	<ul class="navList">
+                    	<li><a class="" href="/">首页</a></li>
+                        <li><a href="/invest/index.html?order=account_up">我要投资</a>
+                        	<p class="subMenu hide"><a href="#">理财</a> <a href="#">储蓄</a> <a href="#">基金</a> <a href="#">保险</a></p>
+                        </li>
+                        <li><a href="/index.action?user">我的账户</a></li>
+                        <li><a href="/linekefu/index.html">咨询服务</a></li>
+                        <li><a href="/aboutus/index.html">关于我们</a></li>
+                    </ul>                
+                </div>
+                <div class="info fr">
+                  <p class="name"><label class="fl"> <? if (!isset($this->magic_vars['_G']['user_id'])) $this->magic_vars['_G']['user_id']=''; ;if (  $this->magic_vars['_G']['user_id']>0): ?>
 				  欢迎你，<a href="/?user"><? if (!isset($this->magic_vars['_G']['user_result']['username'])) $this->magic_vars['_G']['user_result']['username'] = ''; echo $this->magic_vars['_G']['user_result']['username']; ?></a> 
 				  <a href="/?user&q=going/logout">[退出]</a>
 				 <? else: ?>
@@ -45,104 +64,64 @@
 				 <? endif; ?>
 				
 				<? endif; ?>
-        </div>
-        <div class="float_right">
-            <div class="quick-link-wrap"><a href="/invest/index.html?order=account_up">我要投资</a> | <a href="/borrow/index.html">我要借款</a> | <a href="/index.action?user&q=code/account/recharge_new">我要充值</a> | <a href="/index.action?user&q=code/account/cash_new">我要提现</a> | <a href="/aboutus/index.html"> 咨询服务</a></div>
-        </div>
-    </div>
-    <div class="logo clearfix">
-        <div class="logoimg">
-            <a href="/"><img src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/logo.png" alt=""></a>
-        </div>
-        <div class="telimg">
-            <img src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/images/telimg.png" alt="服务电话">
-        </div>
-    </div>
-    <div class="navbg">
-        <div class="nav">
-            <ul class="navul clearfix">
-                <li <? if (!isset($this->magic_vars['_G']['site_result']['nid'])) $this->magic_vars['_G']['site_result']['nid']='';if (!isset($this->magic_vars['_G']['site_presult']['nid'])) $this->magic_vars['_G']['site_presult']['nid']=''; ;if (  $this->magic_vars['_G']['site_result']['nid']=="" ||  $this->magic_vars['_G']['site_presult']['nid']=="index"): ?> class="hover2" <? endif; ?> >
-                    <a href="/">首页</a>
-                </li>
-                <li <? if (!isset($this->magic_vars['_G']['site_presult']['nid'])) $this->magic_vars['_G']['site_presult']['nid']='';if (!isset($this->magic_vars['_G']['site_result']['nid'])) $this->magic_vars['_G']['site_result']['nid']=''; ;if (  $this->magic_vars['_G']['site_presult']['nid']=="invest" ||  $this->magic_vars['_G']['site_result']['nid']=="invest"): ?> class="hover2"  <? else: ?>  class=""  <? endif; ?>>
-                    <a href="/invest/index.html?order=account_up" >我要投资</a>
-                </li>
-                <li <? if (!isset($this->magic_vars['_G']['site_presult']['nid'])) $this->magic_vars['_G']['site_presult']['nid']='';if (!isset($this->magic_vars['_G']['site_result']['nid'])) $this->magic_vars['_G']['site_result']['nid']=''; ;if (  $this->magic_vars['_G']['site_presult']['nid']=="borrow"  ||  $this->magic_vars['_G']['site_result']['nid']=="borrow"): ?> class="hover2"  <? else: ?> class=""  <? endif; ?>>
-                    <a href="/borrow/index.html">我要贷款</a>
-                </li>
-                <li <? if (!isset($this->magic_vars['_G']['site_presult']['nid'])) $this->magic_vars['_G']['site_presult']['nid']='';if (!isset($this->magic_vars['_G']['site_result']['nid'])) $this->magic_vars['_G']['site_result']['nid']=''; ;if (  $this->magic_vars['_G']['site_presult']['nid']=="user"  ||  $this->magic_vars['_G']['site_result']['nid']=="user"): ?> class="hover2"  <? else: ?>  class=""  <? endif; ?>>
-                    <a href="/index.action?user">账户中心</a>
-                </li>
-                <li <? if (!isset($this->magic_vars['_G']['site_presult']['nid'])) $this->magic_vars['_G']['site_presult']['nid']='';if (!isset($this->magic_vars['_G']['site_presult']['nid'])) $this->magic_vars['_G']['site_presult']['nid']='';if (!isset($this->magic_vars['_G']['site_result']['nid'])) $this->magic_vars['_G']['site_result']['nid']='';if (!isset($this->magic_vars['_G']['site_result']['nid'])) $this->magic_vars['_G']['site_result']['nid']=''; ;if (  $this->magic_vars['_G']['site_presult']['nid']=="help"  ||  $this->magic_vars['_G']['site_presult']['nid']=="kefu"  ||  $this->magic_vars['_G']['site_result']['nid']=="help" ||  $this->magic_vars['_G']['site_result']['nid']=="aboutus"): ?> class="hover2"  <? else: ?>  class=""  <? endif; ?>>
-                    <a href="/aboutus/index.html">资讯服务</a>
-                </li>
-                <li>
-                    <a href="#">论坛</a>
-                </li>
-            </ul>
-            <div class="navlist">
-                <? $this->magic_vars['query_type']='GetSiteList';$data = array('var'=>'var','epage'=>'20','pid'=>'1','keywords'=>isset($_REQUEST['keywords'])?$_REQUEST['keywords']:'','status'=>'1');$default = '';  include_once(ROOT_PATH.'modules/article/article.class.php');$this->magic_vars['magic_result'] = articleClass::GetSiteList($data);if(!isset($this->magic_vars['magic_result'])) $this->magic_vars['magic_result']= array(); $_from = $this->magic_vars['magic_result']; if (!is_array($_from) && !is_object($_from)) {$_from =array(); } if (count($_from)>0):
-;    foreach ($_from as $this->magic_vars['key'] => $this->magic_vars['var']):
-?>
-                    <? if (!isset($this->magic_vars['key'])) $this->magic_vars['key']=''; ;if (  $this->magic_vars['key'] != 0): ?>
-                        | <a class="submenu" href="/<? if (!isset($this->magic_vars['var']['nid'])) $this->magic_vars['var']['nid'] = ''; echo $this->magic_vars['var']['nid']; ?>/index.html" ><? if (!isset($this->magic_vars['var']['name'])) $this->magic_vars['var']['name'] = ''; echo $this->magic_vars['var']['name']; ?></a>  
-                    <? else: ?>
-                        <a class="submenu" href="/<? if (!isset($this->magic_vars['var']['nid'])) $this->magic_vars['var']['nid'] = ''; echo $this->magic_vars['var']['nid']; ?>/index.html" ><? if (!isset($this->magic_vars['var']['name'])) $this->magic_vars['var']['name'] = ''; echo $this->magic_vars['var']['name']; ?></a>
-                    <? endif; ?>
-                <? endforeach;else:echo $default; endif; unset($_from);unset($_magic_vars); ?>
-
+				</label> <a class="fr" href="#">加入收藏</a></p>
+              </div>
             </div>
-            <div class="navlist hide">
-                  <a class="submenu" href="/rhtz/index.html">如何投资</a> |
-                  <a class="submenu" href="/invest/index.html" >招标中的借款标</a> |
-                  <a class="submenu" href="/invest/index.html?type=reviews" >复审中的借款标</a> |
-                  <a class="submenu" href="/invest/index.html?type=success" >完成的借款标</a> |
-                  <a class="submenu" href="/invest/index.html?type=late" >逾期的借款标</a>  
-            </div>
-            <div class="navlist hide">
-                  <a class="submenu" href="/borrow/index.html" >如何贷款</a> | 
-                  <? if (!isset($this->magic_vars['_G']['biao_type']['xin']['available'])) $this->magic_vars['_G']['biao_type']['xin']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['xin']['available']==1): ?>
-                  <a class="submenu" href="/publish/index.html?biao_type=xin" >发布信用标</a> | 
-                  <? endif; ?>
-                  <? if (!isset($this->magic_vars['_G']['biao_type']['jin']['available'])) $this->magic_vars['_G']['biao_type']['jin']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['jin']['available']==1): ?>
-                  <a class="submenu" href="/publish/index.html?biao_type=jin" >发布净值标</a> | 
-                  <? endif; ?>
-                  <? if (!isset($this->magic_vars['_G']['biao_type']['fast']['available'])) $this->magic_vars['_G']['biao_type']['fast']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['fast']['available']==1): ?>
-                  <a class="submenu" href="/publish/index.html?biao_type=fast" >发布抵押标</a> | 
-                  <? endif; ?>
-                  <? if (!isset($this->magic_vars['_G']['biao_type']['miao']['available'])) $this->magic_vars['_G']['biao_type']['miao']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['miao']['available']==1): ?>
-                  <a class="submenu" href="/publish/index.html?biao_type=miao" >发布秒还标</a> | 
-                  <? endif; ?>
-                  <? if (!isset($this->magic_vars['_G']['biao_type']['lz']['available'])) $this->magic_vars['_G']['biao_type']['lz']['available']=''; ;if (  $this->magic_vars['_G']['biao_type']['lz']['available']==1): ?>
-                  <a class="submenu" href="/publish/index.html?biao_type=lz" >发布流转标</a> 
-                  <? endif; ?>
-            </div>
-            <div class="navlist hide">
-                  <a class="submenu" href="/index.action?user" >我的账号</a> |
-                  <a class="submenu" href="/index.action?user&q=code/user/reginvite" >邀请好友</a> |
-                  <a class="submenu" href="/vip/index.html" >vip申请</a> |
-                  <a class="submenu" href="/index.action?user&q=code/account/recharge_new" >账户充值</a> |
-                  <a class="submenu" href="/index.action?user&q=code/account/cash_new" >账户提现</a> |
-                  <a class="submenu" href="/index.action?user&q=code/borrow/repaymentplan" >我要还款</a>  
-            </div>
-            <div class="navlist hide">
-                <? $this->magic_vars['query_type']='GetSiteList';$data = array('var'=>'var','epage'=>'20','pid'=>'21','keywords'=>isset($_REQUEST['keywords'])?$_REQUEST['keywords']:'','status'=>'1');$default = '';  include_once(ROOT_PATH.'modules/article/article.class.php');$this->magic_vars['magic_result'] = articleClass::GetSiteList($data);if(!isset($this->magic_vars['magic_result'])) $this->magic_vars['magic_result']= array(); $_from = $this->magic_vars['magic_result']; if (!is_array($_from) && !is_object($_from)) {$_from =array(); } if (count($_from)>0):
-;    foreach ($_from as $this->magic_vars['key'] => $this->magic_vars['var']):
-?>
-                <? if (!isset($this->magic_vars['key'])) $this->magic_vars['key']=''; ;if (  $this->magic_vars['key'] != 0): ?>
-                    | <a class="submenu" href="/<? if (!isset($this->magic_vars['var']['nid'])) $this->magic_vars['var']['nid'] = ''; echo $this->magic_vars['var']['nid']; ?>/index.html" ><? if (!isset($this->magic_vars['var']['name'])) $this->magic_vars['var']['name'] = ''; echo $this->magic_vars['var']['name']; ?></a>  
-                <? else: ?>
-                    <a class="submenu" href="/<? if (!isset($this->magic_vars['var']['nid'])) $this->magic_vars['var']['nid'] = ''; echo $this->magic_vars['var']['nid']; ?>/index.html" ><? if (!isset($this->magic_vars['var']['name'])) $this->magic_vars['var']['name'] = ''; echo $this->magic_vars['var']['name']; ?></a>
-                <? endif; ?>
-                <? endforeach;else:echo $default; endif; unset($_from);unset($_magic_vars); ?>
-            </div>
-            <div class="navlist hide">
-                　
-            </div>
-        </div>
-    </div>
-</div>
-
+		</div>
+		<!-- end 标记(logo)区域 -->
+		<div class="container">
+			<!-- 二级导航 -->
+			<div class="subNavBg m_b_6 clearfix">
+				<div class="fl loginBar">
+					<a class="longin_apply" href="/linekefu/index.html">理财顾问</a>
+					<!-- <a class="longin_apply" href="首页-理财顾问申请入住.html">申请入驻</a> -->
+					<? if (!isset($this->magic_vars['_G']['user_id'])) $this->magic_vars['_G']['user_id']=''; ;if (  $this->magic_vars['_G']['user_id']==""): ?>
+					<span class="popdiv">
+					<a class="longin_enter" href="/index.action?user&q=going/login">登录</a>
+						<!-- 弹出层 -->
+						<div class="popEnter hide">
+						
+                		<form action="/index.php?user&q=going/login" method="post" id="login_sub">
+							<div class="login">
+								<label class="name">用户名</label>
+								<span class="input_name">
+									<!-- <input type="text" name="textfield" id="textfield" /> -->
+									 <input name="username" type="text" maxlength="60" value="" >
+								</span>
+								<label class="pass">密码</label>
+								<span class="input_pass">
+									<!-- <input type="password" name="textfield" id="textfield" /> -->
+									<input name="password" type="password" maxlength="60" value="" >
+								</span>
+								<a id="login_btn" class="btn btn_login" >登 录</a> 
+								<!-- <input class="btn btn_login" type="submit" value="登录"> -->
+								<a href="/index.action?user&q=going/getreg" class="btn btn_login" target=_blank>立即注册</a>
+								
+                   
+                      
+                      
+                        
+                        <!-- <table><tr><td>记住我</td><td><input type="checkbox" name="remember" value="1" style="width:15px;border:0" /></td><td><select name="save_time"><option value="3600">一个小时</option><option value="18000">五个小时</option><option value="86400">一天</option><option value="604800">一周</option><option value="2592000">一个月</option><option value="31104000">永远</option></select></td></tr></table> -->
+                            <!-- <input type="checkbox">记住用户名 <a class="text-link" href="?user&q=going/getpwd" target=_blank>忘记密码？</a> -->
+                       
+                       
+                            <!-- <a href="#" class="denglu" id="login_btn">登  录</a> -->
+                           <!--  <a href="?user&q=going/reg" class="zhuce" target=_blank>立即注册</a> -->
+                        
+                   
+           	    </form>
+		      
+			
+		<? endif; ?>
+							</div>
+							</span>
+						</div>
+						<!-- end 弹出层 -->
+					
+				</div>
+			</div>
+			<!-- end 二级导航 -->
+			
 <script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/head_nav.js"></script>
 <script type="text/javascript" src="<? if (!isset($this->magic_vars['tempdir'])) $this->magic_vars['tempdir'] = ''; echo $this->magic_vars['tempdir']; ?>/media/js/base.js"></script>
 
