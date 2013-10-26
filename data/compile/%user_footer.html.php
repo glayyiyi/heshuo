@@ -1,1 +1,0 @@
-<? $this->magic_include(array('file' => "footer.html", 'vars' => array('template_dir' => 'themes/soonmes')));?>
