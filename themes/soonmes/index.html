@@ -6,46 +6,65 @@
 				<div class="bannerBar m_b_15">
 					<p class="pic"><img src="{$tempdir}/images/banner_01.jpg" /></p>
 					<!-- 浮动层 -->
+					
 					<div class="pop_searchBar">
 						<div class="hd">
 							<ul class="tab_search">
-								<li><a class="hover" href="#">我要投资<s class="ico_tip"></s></a></li>
-								<li><a href="#">我要融资<s class="ico_tip"></s></a></li>
+								<li><a class="hover" >我要投资<s class="ico_tip"></s></a></li>
+								<li><a class="hover" ><s class="ico_tip"></s></a></li> 
 							</ul>
 						</div>
+						<form action="/invest/index.html" method="get">
 						<div class="bg">
-							<p class="item">
-								<label class="tit">金额</label>
-								<span class="c"><input class="input_picbg_01" type="text" name="textfield" id="textfield" /></span>
-							</p>
-							<p class="item">
-								<label class="tit">年化收益率</label>
-								<span class="c"><input class="input_picbg_01" type="text" name="textfield" id="textfield" /></span>
-							</p>
-							<p class="item">
-								<label class="tit">期限</label>
-								<span class="c"><input class="input_picbg_01" type="text" name="textfield" id="textfield" /></span>
-							</p>
-							<p class="item">
+			<!-- <p class="item">
+				<label class="tit">借款目的</label>
+				<span class="c">
+				{linkages name="use" nid="borrow_use" value="$magic.request.use" default="没有限制"}
+				</span>
+				</p>   -->
+				
+			<p class="item">
+				<label class="tit">期限</label>
+				<span class="c">
+				{linkages name="limittime" nid="borrow_time_limit" type="value" value="$magic.request.limittime" default="没有限制"}  
+				</span>
+				</p>
+				<p class="item">
+				<label class="tit">标种</label>
+				<span class="c">
+				
+				<select  name="biaoType" id="biaoType">
+					<option value=""> 所有</option>
+					<option value="fast" {if $magic.request.biaoType=='fast'}selected{/if} >抵押标</option>
+					<option value="jin" {if $magic.request.biaoType=='jin'}selected{/if} >净值标</option>
+					<option value="miao" {if $magic.request.biaoType=='miao'}selected{/if} >秒还标</option>
+					<option value="xin" {if $magic.request.biaoType=='xin'}selected{/if} >信用标</option>
+					<option value="lz" {if $magic.request.biaoType=='lz'}selected{/if} >流转标</option>
+				</select>
+				</span>
+				</p>
+				<p class="item">
+				<label class="tit">关键字</label>
+				<span class="c">
+				<input type="text" class="input_picbg_01" name="keywords" size="20" value="{$magic.request.keywords|urldecode}" />
+				</span>
+				</p>
+				<p class="item">
 								<label class="tit"></label>
-								<span class="c tc"><a class="btn btn_green_01 m_t_10" href="我要投资－查询.html">搜 索</a></span>
-							</p>
-						</div>
+								<span class="c tc"> 
+				<input type="submit" class="btn btn_green_01 m_t_10" id="search_btn" value="搜索" /> 
+				</span>
+				</p>
+			   	<p><input type="hidden" name="type" value="{$magic.request.type}" /></p>
+			</ul>
+		</div>
+
+						</form>
 					</div>
+					
 					<!-- end 浮动层 -->
 				</div>
 				<!-- end 广告模块 -->
-
-         
-         
-      
-            
-
-         
-         
-         
-         
-         
 				<!-- 热门投资 -->
 				<div class="module_01 m_b_17">
 					<div class="hd m_b_15">
@@ -60,33 +79,33 @@
 				                    <li>
 				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
 				                        <div class="itemInfo">
-				                        	<h4>金丰1310期  </h4>
-				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
-				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        	<h4>天使1期  </h4>
+				                        	<p class="m_b_5">天使一期，10000起。</p>
+				                        	<p><a href="/invest/a1.html" class="ico_sprite btn btn_view_01">查 看</a></p>
 				                        </div>
 				                    </li>
 				                    <li>
 				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
 				                        <div class="itemInfo">
-				                        	<h4>金丰1310期  </h4>
-				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
-				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        	<h4>天使1期  </h4>
+				                        	<p class="m_b_5">天使一期，10000起。</p>
+				                        	<p><a href="/invest/a1.html" class="ico_sprite btn btn_view_01">查 看</a></p>
 				                        </div>
 				                    </li>
 				                    <li>
 				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
 				                        <div class="itemInfo">
-				                        	<h4>金丰1310期  </h4>
-				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
-				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        	<h4>创业1期  </h4>
+				                        	<p class="m_b_5">创业一期，1000起。</p>
+				                        	<p><a href="/invest/a2.html" class="ico_sprite btn btn_view_01">查 看</a></p>
 				                        </div>
 				                    </li>
-				                    <li>
+				                   <li>
 				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
 				                        <div class="itemInfo">
-				                        	<h4>金丰1310期</h4>
-				                        	<p class="m_b_5">中铁TOT，50万起，央企 信托公司背景。</p>
-				                        	<p><a href="#" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        	<h4>创业1期  </h4>
+				                        	<p class="m_b_5">创业一期，1000起。</p>
+				                        	<p><a href="/invest/a2.html" class="ico_sprite btn btn_view_01">查 看</a></p>
 				                        </div>
 				                    </li>
 				                </ul>
@@ -287,7 +306,7 @@
 			</div>
 			
 		
-		<script type="text/javascript">
+<script type="text/javascript">
 {literal}
 jQuery(function(){
 	jQuery("[rel='tooltip']").tooltip();
