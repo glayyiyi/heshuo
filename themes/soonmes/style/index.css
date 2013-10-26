@@ -426,7 +426,7 @@ body { font-family:Microsoft YaHei, SimSun, SimHei, Verdana, Arial, Helvetica, s
 	-webkit-border-radius:7px;/*仅Safari,Chrome支持，实现圆角效果*/
 	-khtml-border-radius:7px;/*仅Safari,Chrome支持，实现圆角效果*/
 	border-radius:7px;/*仅Opera，Safari,Chrome支持，实现圆角效果*/
-	padding:20px;
+	padding:5px;
 }
 
 .hot_list li {

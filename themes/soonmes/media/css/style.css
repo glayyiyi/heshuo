@@ -117,7 +117,7 @@ body{ font-size: 12px; font-family: "宋体";}
 .contentbox .right{ width:231px; float: right;}
 .contentbox .left .zbtitle{ height: 34px; line-height: 34px; background: url(../bg/left-title.png) no-repeat;}/*正在招标的标题*/
 .listmain{ width:739px; border: 1px solid #cdcdcd; border-top: none;}
-.list-div{border-bottom: 1px solid #dddcdc; width:709px; height: 71px; padding: 15px 15px 13px; position: relative; background: url(../bg/list-divbg.png) no-repeat;}
+.list-div{border-bottom: 1px dashed #B0B0B0; width:630px; height: 71px; padding: 15px 10px 13px; position: relative; }
 .list-div .productimg{ padding: 4px; border: 1px solid #d5d5d5; float: left; width:64px; height: 64px;}
 .list-div .list-ul{ float: left; margin-left:17px; width:530px;*display: inline;}
 .list-div .list-ul li{ float: left;width:173px; line-height: 23px;}
@@ -125,7 +125,7 @@ body{ font-size: 12px; font-family: "宋体";}
 .list-div li.titleli span a{font-size: 14px; color: #484747; font-weight: bold;  }
 .list-div .list-ul li .jindu{ width:73px; height: 9px; padding: 1px; border: 1px  solid #ccc; position: relative; top:5px;}
 .list-div .jindu .tiaotiao{ height: 9px; background:#e90a0a;}
-.list-div .list-btnbox{ width:133px; position: absolute;right:15px;top:48px;}
+.list-div .list-btnbox{ position: absolute;right:15px;top:48px;}
 .list-div .list-btn{ width:133px; height: 34px; line-height: 34px; font-size: 14px; text-indent:44px; background: url(../bg/listbtnbg.png) no-repeat; display: block; color: #fff;}
 .list-div .txt{ color:#fb6901; line-height:28px;padding-left: 6px;}
 .investlist .listmain{ width:978px; border: 1px solid #cdcdcd; border-top: none; color: #484747;}

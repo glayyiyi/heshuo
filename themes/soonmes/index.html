@@ -110,11 +110,11 @@
 							<div class="hd">
 							<h3>热门贷款</h3>
 							</div>
-							
+				<div class="bg">			
 							{loop module="borrow" function="GetList" var="var" limit="10"  order="biaoindex"}
-				<div class="bg">
+				<div class="list-div">
                     <a href="invest/a{$var.id}.html"><img src="{$var.user_id|avatar:'middle'}" class="productimg"></a>
-                    <ul class="hot_list">
+                    <ul class="list-ul">
                         <li class="titleli">
                            <span>
                                 <a href="invest/a{$var.id}.html">{$var.name|truncate:25:"..."}&nbsp;&nbsp;</a>
@@ -178,7 +178,7 @@
 					</div>
 				</div>
 			{/loop}
-							
+					</div>
 						</div>
 						<!-- end 热门贷款 -->
 					</div>
@@ -194,7 +194,7 @@
 						
 						<li>
 						<div class="clearfix posit_rel">
-											<div class="info">
+							<div class="info">
 											<h4 class="name m_b_10">{$var.username}</h4>
 								<p class="item">姓名：{$var.realname}</p>
 								<p class="item">电话:{$var.phone}</p>
