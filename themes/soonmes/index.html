@@ -76,38 +76,19 @@
 						<div class="global_module prolist">
 							<div  class="prolist_content">
 				                <ul>
+				                {loop module="borrow" function="GetList" var="var" limit="10"  order="biaoindex"}
 				                    <li>
-				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
+				                     <b class="pic"> <a href="invest/a{$var.id}.html"><img src="{$var.user_id|avatar:'middle'}" ></a></b>
+				                        
 				                        <div class="itemInfo">
-				                        	<h4>天使1期  </h4>
-				                        	<p class="m_b_5">天使一期，10000起。</p>
-				                        	<p><a href="/invest/a1.html" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        <a href="invest/a{$var.id}.html"><h4>{$var.name|truncate:25:"..."}&nbsp;&nbsp;</h4></a>
+				                        <p class="m_b_5">借款金额：￥{$var.account_format}元</p>
+                        				<p class="m_b_5">年利率：<strong>{$var.apr}</strong>%</p>
+				                        
+				                        	<p><a href="invest/a{$var.id}.html" class="ico_sprite btn btn_view_01">查 看</a></p>
 				                        </div>
 				                    </li>
-				                    <li>
-				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
-				                        <div class="itemInfo">
-				                        	<h4>天使1期  </h4>
-				                        	<p class="m_b_5">天使一期，10000起。</p>
-				                        	<p><a href="/invest/a1.html" class="ico_sprite btn btn_view_01">查 看</a></p>
-				                        </div>
-				                    </li>
-				                    <li>
-				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
-				                        <div class="itemInfo">
-				                        	<h4>创业1期  </h4>
-				                        	<p class="m_b_5">创业一期，1000起。</p>
-				                        	<p><a href="/invest/a2.html" class="ico_sprite btn btn_view_01">查 看</a></p>
-				                        </div>
-				                    </li>
-				                   <li>
-				                        <b class="pic"><a href="#"><img src="{$tempdir}/images/pic_01.jpg" alt="" /></a></b>
-				                        <div class="itemInfo">
-				                        	<h4>创业1期  </h4>
-				                        	<p class="m_b_5">创业一期，1000起。</p>
-				                        	<p><a href="/invest/a2.html" class="ico_sprite btn btn_view_01">查 看</a></p>
-				                        </div>
-				                    </li>
+				                 {/loop}
 				                </ul>
 				            </div>
 						</div>
