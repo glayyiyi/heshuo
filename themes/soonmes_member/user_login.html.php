@@ -34,8 +34,8 @@
                         <div class="loginModule">
                         	<div class="pass_login_div">
 			
-							  <p class="item nameBg"><input id="username" name="username" maxlength="64" tabindex="1" type="text" class="input_name" value="请输入用户名"></p>
-                              <p class="item passBg"><input type="password"  name="password" id="password" maxlength="16" tabindex="2" class="input_pass" value="请输入密码"></p>
+							  <p class="item nameBg"><input id="username" name="username" maxlength="64" tabindex="1" type="text" class="input_name" value=""></p>
+                              <p class="item passBg"><input type="password"  name="password" id="password" maxlength="16" tabindex="2" class="input_pass" value=""></p>
                               <p class="item"><table><tr><td>记住我</td><td><input type="checkbox" name="remember" value="1" style="width:15px;border:0" /></td><td><select name="save_time"><option value="3600">一个小时</option><option value="18000">五个小时</option><option value="86400">一天</option><option value="604800">一周</option><option value="2592000">一个月</option><option value="31104000">永远</option></select></td></tr></table></p>
                 			  
                 			  <br>
