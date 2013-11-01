@@ -73,7 +73,7 @@ a:focus {
 .h30{ height: 30px;}
 .float_left{ float: left;}
 .float_right{ float: right;}
-body{ font-size:12px; background: url(../bg/bodybg.png) repeat;}
+/* body{ font-size:12px; background: url(../bg/bodybg.png) repeat;} */
 .hide{ display: none;}
 .show{ display: block;}
 body{ font-size: 12px; font-family: "ËÎÌו";}
@@ -340,9 +340,9 @@ DIV.jogger SPAN.disabled {DISPLAY: none}
 
 /* wytz-detail
 ---------------------------------------------- */
-.box-detail{width:950px;margin-bottom: 20px;}
+.box-detail{/* width:950px; */margin-bottom: 20px;}
 .box-detail-u{width:930px;margin-bottom: 20px;}
-.box-info{float: left;width:738px;border: 1px solid #d5d5d5;background-color: #fff;}
+.box-info{float: left;width:790px;border: 1px solid #d5d5d5;background-color: #fff;}
 .box-info-u{float: left;width:930px;border: 1px solid #d5d5d5;background-color: #fff;}
 .box-info h2{font-size:16px;line-height:44px;color: #C30;}
 .box-info-user{background-color: #fdffe5;border: 1px solid #d5d5d5;border-width:0 1px 0 0;width:125px;line-height:30px;float: left;padding:15px;}
@@ -528,8 +528,8 @@ a.pop-tb-btn:hover{background:url(../bg/btn-big.png) no-repeat 0 -37px;}
 .fn-clear{zoom:1;}
 .ui-grid-24{width:950px;}
 .ui-grid-right{margin-right:0;}
-.help-tab1{border:1px solid #d9d9d9}
-.help-tab1 .help-item{border-right:1px solid #e9e9e9;float:left;height:260px;cursor:pointer;width:188px}
+/* .help-tab1{border:1px solid #d9d9d9} */
+.help-tab1 .help-item{border-right:1px solid #e9e9e9;float:left;/* height:260px; */cursor:pointer;width:189px}
 .help-tab1 .last-item{border-right:0;width:200px;cursor:auto}
 .help-tab1 .last-item a{color:#666}
 .help-tab1 .current{background-color:#f1f1f1}

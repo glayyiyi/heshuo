@@ -6,8 +6,46 @@
 <link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" />
 
 <div id="main" class="clearfix">
+
+<div class="bannerBar m_b_15">
+					<p class="pic"><img src="{$tempdir}/images/banner_03.jpg"></p>
+					<!-- 浮动层 -->
+	 				<div class="pop_club">
+						<div class="hd"></div>
+                <div class="bg">
+                	君赋堂由合硕成投发起和建立的非盈利性会员组织，邀请平台投资者为会员，是为投资者之间进行沟通而搭建的线下私密交际平台。
+                </div>
+                <div class="ft"><a href="#"><img width="110" height="53" src="{$tempdir}/images/btn_jr.png"></a></div>
+					  </div>
+            <div class="pop_link">
+            	<a href="#">贵宾风采</a> | <a href="#">专属服务</a>
+            </div>
+					<!-- end 浮动层 -->
+				</div>
+<div class="step_tz m_b_10">
+        	  <div class="step_n num_01 hover">
+            	<em class="n">1</em>
+                <label class="txt">选择项目</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_02">
+            	<em class="n">2</em>
+                <label class="txt">确认付款（在线充值）</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_03">
+            	<em class="n">3</em>
+                <label class="txt">投资完成</label>
+            </div>
+        </div>
+	<div class="module_05 m_b_20">
+		<div class="hd">
+			<h3 class="fl tit">项目详情：{$var.borrow.name}</h3>
+			<span class="fr num">项目编号：{$var.borrow.id}</span> 
+		</div>
+	<div class="bg clearfix">
 	{if $magic.request.detail=="true"}
-	   <div class="pop-tb clearfix">
+	<div class="pop-tb clearfix">
 	<div class="pop-tb-head clearfix">
 		<h2>{$var.borrow.name}</h2>
 		<a class="close" data-dismiss="modal">x</a>
@@ -277,6 +315,8 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
 	
 	<ul  id="tab" class="list-tab clearfix">
 		<li class="active"><a href="#jkxq" data-toggle="tab">借款详情</a></li>
@@ -447,7 +487,7 @@
 		</table>
 	</div>
 	</div> <!-- id="myTabContent" -->
-	<div class="box-detail clearfix" style="margin-top:10px;width:980px">
+	<div class="box-detail clearfix" style="margin-top:10px;width:1000px">
 	<!--评论开始-->
 		<script src="/index.php?comment&type=list&code={$_G.site_result.code}&id={$_G.article_id}&page=1&epage=10"></script>
 			<div class="content_title ">

@@ -51,16 +51,18 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 <div id="main" class="clearfix investlist">
 <form action="" method="get">
 	<div class="box">
+	<p class="pic">
+<img src="{$tempdir}/images/banner_03.jpg">
+</p>
 		<div class="box-title">搜索条件</div>
 		<div class="box-con">
 			<ul class="select-A clearfix">
 				<li>借款目的：
 				{linkages name="use" nid="borrow_use" value="$magic.request.use" default="没有限制"}  
 				</li>
-				<!--<li>期限：
+				<li>期限：
 				{linkages name="limittime" nid="borrow_time_limit" type="value" value="$magic.request.limittime" default="没有限制"}  
 				</li>
-				-->
 				<li>标种：
 				<select name="biaoType" id="biaoType">
 					<option value=""> 所有</option>
