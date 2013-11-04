@@ -68,7 +68,7 @@ jQuery(function(){
 }
 </style>
 {/literal}
-<!-- <link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" /> -->
+<link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" />
 <form action="" method="post" name="formUser"
 	onSubmit="return userReg();" id="reg_sub">
 	<div id="main" class="clearfix">
@@ -172,7 +172,7 @@ jQuery(function(){
 							<input type="checkbox" id="dianji" checked="checked"></>我已阅读并且同意助贷网-个人信用贷款 小额贷款 投资理财 企业融资 的 <a href="/data/reg.doc">使用协议</a>
 						</p>
 						<p style="padding-left: 110px;">
-							<input type="submit" id="reg_btn" class="btn btn_login"
+							<input type="submit" id="reg_btn" class="btnnew btn_login"
 								value="注 册" />
 						</p>
 					</div>
@@ -187,7 +187,7 @@ jQuery(function(){
 						<p style="padding-left: 25px;">
 							<label class="f_14 m_r_10">已有账号？</label> <a
 								href="/index.action?user&q=action/login"
-								class="ico_sprite btn btn_view_02">直接登录</a>
+								class="ico_sprite btnnew btn_view_02">直接登录</a>
 						</p>
 					</div>
 

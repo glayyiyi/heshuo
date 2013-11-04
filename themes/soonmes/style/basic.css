@@ -40,7 +40,7 @@ a, img { outline: none; /* for Forefox */}
 
 
 /** 按钮 ***/
-.btn {
+.btnnew {
         display: inline-block;
         width: 100px;
         height: 39px;

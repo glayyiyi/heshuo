@@ -40,7 +40,7 @@
                 			  
                 			  <br>
                 			  <p class="item tc">
-                                	<input type="submit" class="btn btn_login m_r_25" value="µÇ Â¼"</>
+                                	<input type="submit" class="btnnew btn_login m_r_25" value="µÇ Â¼"</>
                                 	
 									<a href="/index.php?user&q=going/getreg" class="link">×¢ ²á</a>			 
 							  </p>
