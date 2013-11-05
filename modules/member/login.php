@@ -50,6 +50,14 @@ if (isset($_POST['password'])) {
 						return ;
 					}
 				}
+				//By Glay
+// 				if (isset($_POST['valicode']) && $_POST['valicode'] =="" ){
+				
+// 					$msg = array("验证码不能为空","","?user&q=going/login");
+// 				}elseif (!isset($_POST['valicode']) || (isset($_POST['valicode']) && strtolower($_POST['valicode'])!=$_SESSION['valicode'])) {
+// 					$msg = array("验证码输入错误", "", "?user&q=going/login");
+				
+// 				}
 				if (is_array($result)) {
 					if($_G['open_connet']['type']=='qq'){
 						$update_set="connect_openid='".$_G['open_connet']['openid']."',";

@@ -100,7 +100,7 @@ body { font-family:Microsoft YaHei, SimSun, SimHei, Verdana, Arial, Helvetica, s
 	display:block;	
 }
 .navList li a {
-	padding:0 10px;
+	padding:0 16px;
 	color:#f8b1b1;
 	text-decoration:none;
 	height:73px;

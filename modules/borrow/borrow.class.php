@@ -593,10 +593,11 @@ class borrowClass extends amountClass{
 		$id = $data['id'];
 		$sql = "select * from {borrow} where status<2 and user_id='{$user_id}' and biao_type!='lz'";
 		$result = $mysql->db_fetch_array($sql);
-		if ($result != false){
-			echo "<script>alert('您已经有一个借款标，请处理好借款标再进行借款!');location.href='/index.php?user&q=code/borrow/publish';</script>";
-			exit;
-		}
+		//By Glay
+// 		if ($result != false){
+// 			echo "<script>alert('您已经有一个借款标，请处理好借款标再进行借款!');location.href='/index.php?user&q=code/borrow/publish';</script>";
+// 			exit;
+// 		}
 		if ($id=="") {
 			$sql = "select value from {credit} where user_id='{$user_id}'";
 			$result = $mysql->db_fetch_array($sql);
