@@ -1,70 +1,109 @@
 {include file="header.html"}
 <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-			<!-- 主要内容 -->
-			<div id="main" class="clearfix">
-				<!-- 广告模块 -->
-				<div class="bannerBar m_b_15">
-					<p class="pic"><img src="{$tempdir}/images/banner_01.jpg" /></p>
-					<!-- 浮动层 -->
+<!-- 主要内容 -->
+<div id="main" class="clearfix">
+	<!-- 广告模块 -->
+	<div class="bannerBar m_b_15">
+		<p class="pic">
+			<img src="{$tempdir}/images/banner_01.jpg" />
+		</p>
+		<!-- 浮动层 -->
+
+		<div class="pop_searchBar">
+			<div class="hd">
+				<ul class="tab_search">
+					<li><a class="hover">我要投资<s class="ico_tip"></s></a></li>
+					<li><a class="hover"><s class="ico_tip"></s></a></li>
+				</ul>
+			</div>
+			<form action="/invest/index.html" method="get">
+				<div class="bg">
+				
+					<!-- <p class="m_b_5">借款金额：￥{$var.account_format}元</p>
+                    <p class="m_b_5">年利率：<strong>{$var.apr}</strong>%</p> -->
+                    <p class="item">
+						<label class="tit">金额</label> <span class="c"> <input
+							type="text" class="input_picbg_01" name="account2" size="20"
+							value="{$magic.request.account2}" />
+						</span>
+					</p>
 					
-					<div class="pop_searchBar">
-						<div class="hd">
-							<ul class="tab_search">
-								<li><a class="hover" >我要投资<s class="ico_tip"></s></a></li>
-								<li><a class="hover" ><s class="ico_tip"></s></a></li> 
-							</ul>
-						</div>
-						<form action="/invest/index.html" method="get">
-						<div class="bg">
-			<p class="item">
-				<label class="tit">借款目的</label>
-				<span class="c">
-				{linkages name="use" nid="borrow_use" value="$magic.request.use" default="没有限制"}
-				</span>
-				</p> 
-				
-			<p class="item">
-				<label class="tit">期限</label>
-				<span class="c">
-				{linkages name="limittime" nid="borrow_time_limit" type="value" value="$magic.request.limittime" default="没有限制"}  
-				</span>
-				</p>
-				<p class="item">
-				<label class="tit">标种</label>
-				<span class="c">
-				
-				<select  name="biaoType" id="biaoType">
-					<option value=""> 所有</option>
-					<option value="fast" {if $magic.request.biaoType=='fast'}selected{/if} >抵押标</option>
-					<option value="jin" {if $magic.request.biaoType=='jin'}selected{/if} >净值标</option>
-					<option value="miao" {if $magic.request.biaoType=='miao'}selected{/if} >秒还标</option>
-					<option value="xin" {if $magic.request.biaoType=='xin'}selected{/if} >信用标</option>
-					<option value="lz" {if $magic.request.biaoType=='lz'}selected{/if} >流转标</option>
-				</select>
-				</span>
-				</p>
-				<p class="item">
-				<label class="tit">关键字</label>
-				<span class="c">
-				<input type="text" class="input_picbg_01" name="keywords" size="20" value="{$magic.request.keywords|urldecode}" />
-				</span>
-				</p>
-				<p class="item">
-								<label class="tit"></label>
-								<span class="c tc"> 
-				<input type="submit" class="btnnew btn_green_01 m_t_10" id="search_btn" value="搜索" /> 
-				</span>
-				</p>
-			   	<p><input type="hidden" name="type" value="{$magic.request.type}" /></p>
-			</ul>
+					<p class="item">
+						<label class="tit">年化收益率</label> <span class="c">  <select
+							name="q_apr" id="q_apr" >
+								<option value="">没有限制</option>
+								<option value="5" {if $magic.request.q_apr=='5'}selected{/if} >5%</option>
+								<option value="6" {if $magic.request.q_apr=='6'}selected{/if} >6%</option>
+								<option value="7" {if $magic.request.q_apr=='7'}selected{/if} >7%</option>
+								<option value="8" {if $magic.request.q_apr=='8'}selected{/if} >8%</option>
+								<option value="9" {if $magic.request.q_apr=='9'}selected{/if} >9%</option>
+								<option value="10" {if $magic.request.q_apr=='10'}selected{/if} >10%</option>
+								<option value="11" {if $magic.request.q_apr=='11'}selected{/if} >11%</option>
+								<option value="12" {if $magic.request.q_apr=='12'}selected{/if} >12%</option>
+								<option value="13" {if $magic.request.q_apr=='13'}selected{/if} >13%</option>
+								<option value="14" {if $magic.request.q_apr=='14'}selected{/if} >14%</option>
+								<option value="15" {if $magic.request.q_apr=='15'}selected{/if} >15%</option>
+								<option value="16" {if $magic.request.q_apr=='16'}selected{/if} >16%</option>
+								<option value="17" {if $magic.request.q_apr=='17'}selected{/if} >17%</option>
+								<option value="18" {if $magic.request.q_apr=='18'}selected{/if} >18%</option>
+								<option value="19" {if $magic.request.q_apr=='19'}selected{/if} >19%</option>
+								<option value="20" {if $magic.request.q_apr=='20'}selected{/if} >20%</option>
+								<option value="21" {if $magic.request.q_apr=='21'}selected{/if} >21%</option>
+						</select>
+						</span>
+					</p>
+					
+                    <p class="item">
+						<label class="tit">期限</label> <span class="c"> {linkages
+							name="limittime" nid="borrow_time_limit" type="value"
+							value="$magic.request.limittime" default="没有限制"} </span>
+					</p>
+                    
+			<!-- 		<p class="item">
+						<label class="tit">借款目的</label> <span class="c"> {linkages
+							name="use" nid="borrow_use" value="$magic.request.use"
+							default="没有限制"} </span>
+					</p>
+
+
+					<p class="item">
+						<label class="tit">标种</label> <span class="c"> <select
+							name="biaoType" id="biaoType">
+								<option value="">所有</option>
+								<option value="fast" {if $magic.request.biaoType=='fast'}selected{/if} >抵押标</option>
+								<option value="jin" {if $magic.request.biaoType=='jin'}selected{/if} >净值标</option>
+								<option value="miao" {if $magic.request.biaoType=='miao'}selected{/if} >秒还标</option>
+								<option value="xin" {if $magic.request.biaoType=='xin'}selected{/if} >信用标</option>
+								<option value="lz" {if $magic.request.biaoType=='lz'}selected{/if} >流转标</option>
+						</select>
+						</span>
+					</p>
+
+					<p class="item">
+						<label class="tit">关键字</label> <span class="c"> <input
+							type="text" class="input_picbg_01" name="keywords" size="20"
+							value="{$magic.request.keywords|urldecode}" />
+						</span>
+					</p> -->
+
+					<p class="item">
+						<label class="tit"></label> <span class="c tc"> <input
+							type="submit" class="btnnew btn_green_01 m_t_10" id="search_btn"
+							value="搜索" />
+						</span>
+					</p>
+					<p>
+						<input type="hidden" name="type" value="{$magic.request.type}" />
+					</p>
+					</ul>
+				</div>
+
+			</form>
 		</div>
 
-						</form>
-					</div>
-					
-					<!-- end 浮动层 -->
-				</div>
-				<!-- end 广告模块 -->
+		<!-- end 浮动层 -->
+	</div>
+	<!-- end 广告模块 -->
 				<!-- 热门投资 -->
 				<div class="module_01 m_b_17">
 					<div class="hd m_b_15">
@@ -85,7 +124,7 @@
 				                        <p class="m_b_5">借款金额：￥{$var.account_format}元</p>
                         				<p class="m_b_5">年利率：<strong>{$var.apr}</strong>%</p>
 				                        
-				                        	<p><a href="invest/a{$var.id}.html" class="ico_sprite btn btn_view_01">查 看</a></p>
+				                        	<p><a href="invest/a{$var.id}.html" class="ico_sprite btnnew btn_view_01">查 看</a></p>
 				                        </div>
 				                    </li>
 				                 {/loop}
@@ -178,69 +217,82 @@
 					</div>
 				</div>
 			{/loop}
-					</div>
-						</div>
-						<!-- end 热门贷款 -->
-					</div>
-					<div class="fr clum_r">
-                    	<!-- 理财顾问推介 -->
-						<div class="module_03">
-							<div class="hd">
-								<h3><s class="icon_tj"></s>理财顾问推介</h3>
-							</div>
-							<div class="bg">
-								<ul class="list_lc">
-									{loop module="user" function="GetList" limit="20" type_id=3}
-						
+		</div>
+	 </div>
+	<!-- end 热门贷款 -->
+   </div>
+		<div class="fr clum_r">
+			<!-- 理财顾问推介 -->
+			<div class="module_03">
+				<div class="hd">
+					<h3>
+						<s class="icon_tj"></s>理财顾问推介
+					</h3>
+				</div>
+				<div class="bg">
+					<ul class="list_lc">
+						{loop module="user" function="GetList" limit="20" type_id=3}
+
 						<li>
-						<div class="clearfix posit_rel">
-							<div class="info">
-											<h4 class="name m_b_10">{$var.username}</h4>
-								<p class="item">姓名：{$var.realname}</p>
-								<p class="item">电话:{$var.phone}</p>
-								<p class="item m_b_6"><label>服务星级：</label><span class="star"><s class="star_01"></s><s class="star_01"></s><s class="star_01"></s><s class="star_01"></s><s class="star_01"></s></span></p>
-                                 <p class="zx m_b_10"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$var.qq}&site=qq&menu=yes">
-                                                    <img border="0" src="http://wpa.qq.com/pa?p=2:{$var.qq}:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-                                                    </p>
-                  				
-								<!-- <p class="item">{$var.content}</p> -->
+							<div class="clearfix posit_rel">
+								<div class="info">
+									<h4 class="name m_b_10">{$var.username}</h4>
+									<p class="item">姓名：{$var.realname}</p>
+									<p class="item">电话:{$var.phone}</p>
+									<!-- <p class="item m_b_6">
+										<label>服务星级：</label><span class="star"><s
+											class="star_01"></s><s class="star_01"></s><s class="star_01"></s><s
+											class="star_01"></s><s class="star_01"></s></span>
+									</p> -->
+									<p class="zx m_b_10">
+										<a target="_blank"
+											href="http://wpa.qq.com/msgrd?v=3&uin={$var.qq}&site=qq&menu=yes">
+											<img border="0" src="http://wpa.qq.com/pa?p=2:{$var.qq}:41"
+											alt="点击这里给我发消息" title="点击这里给我发消息" />
+										</a>
+									</p>
+
+									<!-- <p class="item">{$var.content}</p> -->
 								</div>
-						<b class="photo"><img src="{$var.user_id|avatar}" width="100" height="99" /></b>
-							
-							
-						</div>
-						
-							
-					</li>
-					{/loop}
-								</ul>
+								<b class="photo"><img src="{$var.user_id|avatar}"
+									width="100" height="99" /></b>
+
+
 							</div>
-						</div>
-						<!-- end 理财顾问推介 -->
-                    	<!-- 公 告 -->
-   
-             <div class="module_04 m_b_10">
-                <div class="hd">
-                    <span class="float_left"><h3><s class="icon_gg"></s>公 告</h3></span><a href="/gonggao/index.html" class="float_right">[更多]</a>
-                </div>
-                <div class="bg">
-                <ul class="noteList">
-                    {site site_id="22" }
-                    {loop module="article" function="GetList" limit="6"  site_var="var" var="item" status=1}
-                        <li class="clearfix"><a href="{$item.site_nid}/a{$item.id}.html"><span  class="float_left">{$item.name|truncate:10}</span><span class="float_right">12.15</span></a></li>
-                    {/loop}
-                    {/site}	
-                </ul>
-                </div>
-            </div>
-              <!-- end 公 告 -->
-            <div class="module_04 m_b_10">
+
+
+						</li> {/loop}
+					</ul>
+				</div>
+			</div>
+			<!-- end 理财顾问推介 -->
+			<!-- 公 告 -->
+
+			<div class="module_04 m_b_10">
+				<div class="hd">
+					<span class="float_left"><h3>
+							<s class="icon_gg"></s>公 告
+						</h3></span><a href="/gonggao/index.html" class="float_right">[更多]</a>
+				</div>
+				<div class="bg">
+					<ul class="noteList">
+						{site site_id="22" } {loop module="article" function="GetList"
+						limit="6" site_var="var" var="item" status=1}
+						<li class="clearfix"><a
+							href="{$item.site_nid}/a{$item.id}.html"><span
+								class="float_left">{$item.name|truncate:10}</span><span
+								class="float_right">{$item.addtime|date_format:"Y-m-d"}</span></a></li> {/loop} {/site}
+					</ul>
+				</div>
+			</div>
+			<!-- end 公 告 -->
+			<!-- <div class="module_04 m_b_10">
                 <div class="hd">
                     <span class="float_left"><h3>成功贷款</h3></span><a href="/invest/index.html?type=success" class="float_right">[更多]</a>
                 </div>
                 <div class="bg" id="success_borrow">
                     <ul class="notelist">
-                        {loop module="borrow" function="GetList" type="fast" var="var" limit="6" status="3" order="account_down" recMonth="1"}
+                        {loop module="borrow" function="GetList" type="success" var="var" limit="6" status="3" order="account_down" recMonth="1"}
                         <li class="clearfix">
                             <img src="{$var.user_id|avatar}" alt="" class="sucimg">
                             <dl>
@@ -252,35 +304,36 @@
                         {/loop}
                     </ul>
                 </div>
-            </div>
-            <div class="module_04 m_b_10" style="margin-bottom: 0;">
-                <div class="hd">
-                   <span class="float_left"><h3> 常见问题</h3></span>
-                    <a href="/newsdongtai/index.html" class="float_right">[更多]</a>
-                </div>
-                <div class="bg">
-                <ul class="nodelist">
-                    {site site_id="11" }
-                    {loop module="article" function="GetList" limit="7"  site_var="var" var="item" status=1}
-                        <li><a href="{$item.site_nid}/a{$item.id}.html">{$item.name|truncate:18}</a></li>
-                    {/loop}
-                    {/site}	
-                </ul>
-                </div>
-            </div>
-                       
-                       
-                        <!-- 官方微信  -->
-                        <div class="weibo">
-                        	<div class="hd">官方微信</div>
-                            <div class="bg clearfix">
-                            	<p class="txt fl m_r_20">微信扫描二维码，获得每日精选资讯</p>
-                                <p class="pic fl"><img src="" width="100" height="100" alt="二维码"></p>
-                            </div>
-                        </div>
-                        <!-- end 官方微信  -->
-                    </div>
+            </div> -->
+			<div class="module_04 m_b_10" style="margin-bottom: 0;">
+				<div class="hd">
+					<span class="float_left"><h3>常见问题</h3></span> <a
+						href="/newsdongtai/index.html" class="float_right">[更多]</a>
 				</div>
+				<div class="bg">
+					<ul class="nodelist">
+						{site site_id="11" } {loop module="article" function="GetList"
+						limit="7" site_var="var" var="item" status=1}
+						<li><a href="{$item.site_nid}/a{$item.id}.html">{$item.name|truncate:18}</a></li>
+						{/loop} {/site}
+					</ul>
+				</div>
+			</div>
+
+
+			<!-- 官方微信  -->
+			<div class="weibo">
+				<div class="hd">官方微信</div>
+				<div class="bg clearfix">
+					<p class="txt fl m_r_20">微信扫描二维码，获得每日精选资讯</p>
+					<p class="pic fl">
+						<img src="" width="100" height="100" alt="二维码">
+					</p>
+				</div>
+			</div>
+			<!-- end 官方微信  -->
+		</div>
+	</div>
 				<!-- end 2列 -->
 			
 			<!-- end 主要内容 -->		

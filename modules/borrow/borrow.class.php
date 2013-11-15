@@ -149,6 +149,14 @@ class borrowClass extends amountClass{
 			$data['style'] = intval($data['style']);// Add by Liuyaoyao 2012-04-24
 			$_sql .= " and p1.style in ({$data['style']})";
 		}
+		
+		//By Glay 增加年收益率查询
+		if (isset($data['q_apr']) && $data['q_apr']!=""){
+			$data['q_apr'] = intval($data['q_apr']);// Add by Liuyaoyao 2012-04-24
+			$_sql .= " and p1.apr = {$data['q_apr']}";
+		}
+		
+		
 		//add by weego for 我要投资搜索关键词 20120527
 		$data['keywords']=urldecode($data['keywords']);
 		$data['keywords']=safegl($data['keywords']);

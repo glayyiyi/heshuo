@@ -95,8 +95,12 @@ if (isset($_POST['email'])) {
 		//add by weego for 登录cookies验证 20120610			
 		setcookie('login_uid',$data['user_id'], $ctime);
  
-		$_SESSION['reg_step'] = "reg_email";
-		echo "<script>alert('注册成功');location.href='index.php?user&q=going/reg_email';</script>";
+		 //By Glay $_SESSION['reg_step'] = "reg_email";
+		//echo "<script>alert('注册成功');location.href='index.php?user&q=going/reg_email';</script>";
+		echo "<script>alert('注册成功');location.href='index.php?user';</script>";
+		//http://dev.heshuo.com/index.php?user&q=going/reg_email&jump=true
+		//http://dev.heshuo.com/index.php?user&q=going/reg_avatar&jump=true
+		
 	} else {
 		header('location:index.php?user&q=going/getreg');
 	} 
