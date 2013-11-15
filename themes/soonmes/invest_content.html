@@ -87,7 +87,7 @@
 					{/if}
 					value="自动填入全部金额"></li>
 
-					<li>支付密码：{if $_G.user_result.paypassword==""}<a href="/index.php?user&q=code/user/paypwd" target="_blank"><font color="red">请先设一个支付交易密码</font></a>{else}<input type="password" name="paypassword" size="11" tabindex="2" />{/if}</li>
+					<li>支付密码：{if $_G.user_result.paypassword==""}<a href="/index.php?user&q=code/user/paypwd" target="_blank"><font color="red">请先设一个支付交易密码,设置完后返回该页面刷新生效</font></a>{else}<input type="password" name="paypassword" size="11" tabindex="2" />{/if}</li>
 					{if $var.borrow.pwd != ""}<li>定向标密码：<input type="text" name="dxbPWD" id="dxbPWD" size="11" tabindex="3" /></li>{/if}
 					{if $var.borrow.is_mb==1}
 					<li>验证码：<input type="text" id="yzmcode" name="yzmcode" tabindex="4" size="10" style="margin-right:5px;" /> <img src="/plugins/index.php?q=imgcode&t=' + Math.random();" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer;" />
@@ -670,7 +670,7 @@
 					{/if}
 					value="自动填入全部金额"></li>
 				{/if}
-				<li>支付密码：{if $_G.user_result.paypassword==""}<a href="/index.php?user&q=code/user/paypwd" target="_blank"><font color="red">请先设一个支付交易密码</font></a>{else}<input type="password" name="paypassword" id="paypassword" size="11" tabindex="2" />{/if}
+				<li>支付密码：{if $_G.user_result.paypassword==""}<a href="/index.php?user&q=code/user/paypwd" target="_blank"><font color="red">请先设一个支付交易密码,设置完后返回该页面刷新生效</font></a>{else}<input type="password" name="paypassword" id="paypassword" size="11" tabindex="2" />{/if}
 				{if $var.borrow.pwd != ""}定向标密码：<input type="text" name="dxbPWD" id="dxbPWD" size="11" tabindex="3" />{/if}
 				</li>
 				<li>&nbsp;&nbsp;验证码：<input type="text" id="yzmcode" name="yzmcode" tabindex="4" size="10" style="margin-right:5px;" maxlength="4" /> <img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer;" />
