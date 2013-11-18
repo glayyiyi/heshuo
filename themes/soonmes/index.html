@@ -222,6 +222,26 @@
 	<!-- end 热门贷款 -->
    </div>
 		<div class="fr clum_r">
+			<!-- 公 告 -->
+			<div class="module_04 m_b_10">
+				<div class="hd">
+					<span class="float_left"><h3>
+							<s class="icon_gg"></s>公 告
+						</h3></span><a href="/gonggao/index.html" class="float_right">[更多]</a>
+				</div>
+				<div class="bg">
+					<ul class="noteList">
+						{site site_id="22" } {loop module="article" function="GetList"
+						limit="6" site_var="var" var="item" status=1}
+						<li class="clearfix"><a
+							href="{$item.site_nid}/a{$item.id}.html"><span
+								class="float_left">{$item.name|truncate:10}</span><span
+								class="float_right">{$item.addtime|date_format:"Y-m-d"}</span></a></li> {/loop} {/site}
+					</ul>
+				</div>
+			</div>
+			<!-- end 公 告 -->
+			
 			<!-- 理财顾问推介 -->
 			<div class="module_03">
 				<div class="hd">
@@ -266,26 +286,7 @@
 				</div>
 			</div>
 			<!-- end 理财顾问推介 -->
-			<!-- 公 告 -->
 
-			<div class="module_04 m_b_10">
-				<div class="hd">
-					<span class="float_left"><h3>
-							<s class="icon_gg"></s>公 告
-						</h3></span><a href="/gonggao/index.html" class="float_right">[更多]</a>
-				</div>
-				<div class="bg">
-					<ul class="noteList">
-						{site site_id="22" } {loop module="article" function="GetList"
-						limit="6" site_var="var" var="item" status=1}
-						<li class="clearfix"><a
-							href="{$item.site_nid}/a{$item.id}.html"><span
-								class="float_left">{$item.name|truncate:10}</span><span
-								class="float_right">{$item.addtime|date_format:"Y-m-d"}</span></a></li> {/loop} {/site}
-					</ul>
-				</div>
-			</div>
-			<!-- end 公 告 -->
 			<!-- <div class="module_04 m_b_10">
                 <div class="hd">
                     <span class="float_left"><h3>成功贷款</h3></span><a href="/invest/index.html?type=success" class="float_right">[更多]</a>
