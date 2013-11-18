@@ -24,10 +24,13 @@ IF(YJ_SysError){
 session_cache_limiter('private,must-revalidate');
 session_start();//打开缓存
 //error_reporting(E_ALL || ~E_NOTICE);
-error_reporting(E_ALL );//报告所有错误
+//By Glay error_reporting(E_ALL );//报告所有错误
+error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
 
 //define('ROOT_PATH', ereg_replace("[/\\]{1,}", '/', dirname(__FILE__) )."/../" );//根目录
-define('ROOT_PATH', dirname(__FILE__) . '/../');
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT_PATH', dirname(dirname(__FILE__)) . DS);
+//By Glay define('ROOT_PATH', dirname(__FILE__) . '/../');
 header('Content-Type:text/html;charset=GB2312');
 define('IN_TEMPLATE', "TRUE");
  
