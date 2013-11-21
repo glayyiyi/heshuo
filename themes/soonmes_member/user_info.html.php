@@ -42,7 +42,7 @@
 			</ul>            
 			{elseif $_U.query_type=="myuser" }
 			<ul id="tab" class="list-tab clearfix">
-				<li {if $_U.query_type=="myuser"} class="cur"{/if}><a href="{$_U.query_url}/myuser">我的客服</a></li>
+				<li {if $_U.query_type=="myuser"} class="cur"{/if}><a href="{$_U.query_url}/myuser">我的理财顾问</a></li>
 				<li ><a href="/?user&q=code/borrow/myuser">客户借款</a></li>
 				<li ><a href="/?user&q=code/borrow/myuser_account">统计信息</a></li>
 			</ul>
@@ -760,7 +760,7 @@
 		{elseif $_U.query_type=="realname"}
 		<!--修改登录密码 开始-->
 		{if $_G.user_result.real_status==1} 
-		<div class="user_help alert">恭喜您已经通过了实名认证，如要修改请跟客服联系，谢谢！</div>
+		<div class="user_help alert">恭喜您已经通过了实名认证，如要修改请跟理财顾问联系，谢谢！</div>
 		<div class="user_right_border" style="background: #E8EEE5">
 			<div class="l">用户名：</div>
 			<div class="c">
@@ -1001,7 +1001,7 @@
 		</script>{/literal}
 		{else}
 		<div class="user_help alert">
-		{if $_G.user_result.phone_status!=0}您的手机客服正在审核中，请耐心等待。手机号：<font color="#FF0000">{$_G.user_result.phone_status|$_G.user_result.phone}</font>。
+		{if $_G.user_result.phone_status!=0}您的手机理财顾问正在审核中，请耐心等待。手机号：<font color="#FF0000">{$_G.user_result.phone_status|$_G.user_result.phone}</font>。
 		{else}您的手机还没通过认证。
 					<div class="user_right_border">
 			<div class="c">
@@ -1100,7 +1100,7 @@
 		<div class="user_help alert">您已经通过了视频认证</div>
 		{else}
 		<div class="user_help alert">
-		{if $_G.user_result.video_status!=0}您的视频认证已经提交，客服人员会及时的跟你联系。</font>。{else}欢迎进行视频认证。<div class="user_right_border">
+		{if $_G.user_result.video_status!=0}您的视频认证已经提交，理财顾问人员会及时的跟你联系。</font>。{else}欢迎进行视频认证。<div class="user_right_border">
 			<div class="c">
 				<form action="" method="post">
                                     如果你需要视频认证，请点按钮提交。<input type="submit"  class="btn-action" value="提交申请" name="submit" /><br />

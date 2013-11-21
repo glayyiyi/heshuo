@@ -152,10 +152,29 @@ class borrowClass extends amountClass{
 		
 		//By Glay 增加年收益率查询
 		if (isset($data['q_apr']) && $data['q_apr']!=""){
-			$data['q_apr'] = intval($data['q_apr']);// Add by Liuyaoyao 2012-04-24
-			$_sql .= " and p1.apr = {$data['q_apr']}";
+			$apr_var = intval($data['q_apr']);
+			if($apr_var==1)
+				$_sql .= " and p1.apr < 12";
+			else if($apr_var==2)
+				$_sql .= " and p1.apr >=12 and p1.apr <= 16";
+			else if($apr_var==3)
+				$_sql .= " and p1.apr > 16";
 		}
 		
+		//By Glay 增加期限查询
+		if (isset($data['q_lmt']) && $data['q_lmt']!=""){
+			$apr_var = intval($data['q_lmt']);
+			if($apr_var==1)
+				$_sql .= " and p1.time_limit < 3";
+			else if($apr_var==2)
+				$_sql .= " and p1.time_limit >= 3 and p1.time_limit < 6";
+			else if($apr_var==3)
+				$_sql .= " and p1.time_limit >=6 and p1.time_limit < 9";
+			else if($apr_var==4)
+				$_sql .= " and p1.time_limit >=9 and p1.time_limit < 12";
+			else if($apr_var==5)
+				$_sql .= " and p1.time_limit >= 12";
+		}
 		
 		//add by weego for 我要投资搜索关键词 20120527
 		$data['keywords']=urldecode($data['keywords']);
@@ -407,7 +426,7 @@ class borrowClass extends amountClass{
 		exit();
 	}
 	/*
-	 * 获取客服
+	 * 获取理财顾问
 	 */
 	function Getkf(){
 		global $_G,$mysql;
@@ -528,7 +547,8 @@ class borrowClass extends amountClass{
 		//最近收款日期
 		$sql = "select p1.repay_time  from `{borrow_collection}` as p1 left join `{borrow_tender}` as p2  on p1.tender_id = p2.id  where p2.status=1 and p1.status=0  and  p2.user_id = '{$user_id}' and p1.repay_time>".time()." order by p1.repay_time asc";
 		$result = $mysql->db_fetch_array($sql);
-		$_result['collection_repaytime'] = $result['repay_time'];
+		if ($result!=false)//By Glay
+			$_result['collection_repaytime'] = $result['repay_time'];
 
 		//待还总额
 		$_result_wait = self::GetWaitPayment(array("user_id"=>$user_id));
@@ -4102,7 +4122,7 @@ class borrowClass extends amountClass{
 		global $mysql,$_G;
 		$user_id = $data['user_id'];
 		
-		//第一步，先读取出客服下面的用户
+		//第一步，先读取出理财顾问下面的用户
 		$sql = "select user_id from `{user_cache}` where kefu_userid = {$user_id}";
 		$result = $mysql->db_fetch_arrays($sql);
 		if ($result!=""){

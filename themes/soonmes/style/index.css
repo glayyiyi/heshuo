@@ -1217,12 +1217,12 @@ body { font-family:Microsoft YaHei, SimSun, SimHei, Verdana, Arial, Helvetica, s
 	margin-right: 13px;
 }
 .searchList .list li .sear_btn {
-	width: 185px;
+	width: 80px;
 	margin-top: 34px;
 }
 .searchList .list li .num_pr {
-	width: 115px;
-	margin-top: 35px;
+	width: 185px;
+	margin-top: 23px;
 }
 .searchList .list li .num_pr p {
 	line-height: 100%;

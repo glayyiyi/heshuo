@@ -308,9 +308,9 @@
                                 
 				<div class="c">
                     <div>
-                       <font color="red">线下充值如遇到问题，请马上与客服联系联系；<br>
+                       <font color="red">线下充值如遇到问题，请马上与理财顾问联系联系；<br>
 （1）线下充值红包奖励的单笔最低金额不低于20000元。<br>
-（2）<strong><font color="blue">有效充值登记时间为:周一至周五的9:30到16:00</font></strong>，充值成功请跟我们的客服联系。<br><br></font></div>
+（2）<strong><font color="blue">有效充值登记时间为:周一至周五的9:30到16:00</font></strong>，充值成功请跟我们的理财顾问联系。<br><br></font></div>
 					<div>
 					{foreach from=$_U.account_payment_list item="var"}
 					{if $var.nid=="offline"}
@@ -497,7 +497,7 @@
 			<div class="l" style="font-weight:bold;">开户行名称：</div>
 			<div class="c">
 				<input type="text" name="branch" value="" data-content="**分行**支行**分理处或营业部(如：上海分行杨浦支行控江路分理处),
-		    如果您无法确定,建议您致电您的开户银行客服进行询问。 " id="infokaih" />
+		    如果您无法确定,建议您致电您的开户银行理财顾问进行询问。 " id="infokaih" />
 			</div>
 		</div>
 		<div class="user_right_border" style="margin-left:0px">

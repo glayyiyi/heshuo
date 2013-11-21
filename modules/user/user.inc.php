@@ -367,7 +367,7 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 							$data['card_pic1'] = $pic_result['filename'];
 						}
 						if($data['card_pic1'] == "" || $data['card_pic2'] == "" ){
-							$msg = array("请重新上传身份证照片，如有问题，请联系客服","","?user&q=code/user/realname");	
+							$msg = array("请重新上传身份证照片，如有问题，请联系理财顾问","","?user&q=code/user/realname");	
 						}else{
 							$result = $user->UpdateUserAll($data);
 							if ($result == false){
@@ -473,7 +473,7 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 			if ($result == false){
 				$msg = array($result);	
 			}else{
-				$msg = array("视频操作成功，请等待客服人员与你联系","",$url);	
+				$msg = array("视频操作成功，请等待理财顾问人员与你联系","",$url);	
 			}
 		}
 	}
@@ -495,7 +495,7 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 			$data['vip_remark'] = nl2br($_POST['vip_remark']);;
 			$data['kefu_userid'] = $_POST['kefu_userid'];
             if($data['kefu_userid'] == ""){
-               $msg = array("请选择你的专属客服","","?vip");
+               $msg = array("请选择你的理财顾问","","?vip");
              }else{
 				require_once ROOT_PATH.'modules/account/account.class.php';
 				$re = accountClass::GetOneAccount(array('user_id'=>$_G['user_id']));

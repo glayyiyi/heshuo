@@ -1,4 +1,4 @@
-//QQ客服弹出对话框
+//QQ理财顾问弹出对话框
 var online= new Array();
 var urlroot = "http://gdp.istudy.com.cn/";
 var tOut = -1;

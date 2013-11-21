@@ -415,7 +415,7 @@ jQuery(function(){
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td width="30%" height="40" align="left"><img src="{$tpldir}/images/icon-demo.gif" width="16" height="16"><a href="/" target="_blank" class="left_txt3"> 前台首页</a> </td>
-                                        <td width="35%" align="left"><img src="{$tpldir}/images/icon-login-seaver.gif" width="16" height="16"><a href="#"; target=_blank;>在线客服</a></td>
+                                        <td width="35%" align="left"><img src="{$tpldir}/images/icon-login-seaver.gif" width="16" height="16"><a href="#"; target=_blank;>在线理财顾问</a></td>
 
                                     </tr>
                                 </table></td>

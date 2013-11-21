@@ -49,7 +49,7 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 {else}
 <!--header-end-->
 <div id="main" class="clearfix investlist">
-<form action="" method="get">
+
 	<div class="box">
 			<div class="bannerBar m_b_15">
 				<p class="pic">
@@ -72,44 +72,30 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 			</div>
 			<div class="box-title">搜索条件</div>
 		<div class="box-con">
-			<ul class="select-A clearfix">
-				<li>
+			<!-- <ul class="select-A clearfix"> -->
+				<!-- <li>
 						<label class="tit">金额</label> <span class="c"> <input
 							type="text" name="account2" size="20"
 							value="{$magic.request.account2}" />
 						</span>
-				</li>
+				</li> -->
 					
-				<li>
+				<!-- <li>
 						<label class="tit">年化收益率</label> <span class="c">  <select
 							name="q_apr" id="q_apr" >
 								<option value="">没有限制</option>
-								<option value="5" {if $magic.request.q_apr=='5'}selected{/if} >5%</option>
-								<option value="6" {if $magic.request.q_apr=='6'}selected{/if} >6%</option>
-								<option value="7" {if $magic.request.q_apr=='7'}selected{/if} >7%</option>
-								<option value="8" {if $magic.request.q_apr=='8'}selected{/if} >8%</option>
-								<option value="9" {if $magic.request.q_apr=='9'}selected{/if} >9%</option>
-								<option value="10" {if $magic.request.q_apr=='10'}selected{/if} >10%</option>
-								<option value="11" {if $magic.request.q_apr=='11'}selected{/if} >11%</option>
-								<option value="12" {if $magic.request.q_apr=='12'}selected{/if} >12%</option>
-								<option value="13" {if $magic.request.q_apr=='13'}selected{/if} >13%</option>
-								<option value="14" {if $magic.request.q_apr=='14'}selected{/if} >14%</option>
-								<option value="15" {if $magic.request.q_apr=='15'}selected{/if} >15%</option>
-								<option value="16" {if $magic.request.q_apr=='16'}selected{/if} >16%</option>
-								<option value="17" {if $magic.request.q_apr=='17'}selected{/if} >17%</option>
-								<option value="18" {if $magic.request.q_apr=='18'}selected{/if} >18%</option>
-								<option value="19" {if $magic.request.q_apr=='19'}selected{/if} >19%</option>
-								<option value="20" {if $magic.request.q_apr=='20'}selected{/if} >20%</option>
-								<option value="21" {if $magic.request.q_apr=='21'}selected{/if} >21%</option>
+								<option value="1" {if $magic.request.q_apr=='5'}selected{/if} >12%以下</option>
+								<option value="2" {if $magic.request.q_apr=='6'}selected{/if} >12%-16%</option>
+								<option value="3" {if $magic.request.q_apr=='7'}selected{/if} >16%以上</option>
 						</select>
 						</span>
-				</li>
+				</li> -->
 					
-               <li>
+              <!--  <li>
 						<label class="tit">期限</label> <span class="c"> {linkages
 							name="limittime" nid="borrow_time_limit" type="value"
 							value="$magic.request.limittime" default="没有限制"} </span>
-				</li>
+				</li> -->
 			
 			
 			
@@ -132,23 +118,176 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 				</select>
 				</li>
 				<li>关键字：<input type="text" name="keywords" size="20" value="{$magic.request.keywords|urldecode}" /></li> -->
-				<li><input type="submit" class="btn-action" id="search_btn" value="搜索" /> </li>
-			   <li><input type="hidden" name="type" value="{$magic.request.type}" /></li>
-			</ul>
+				<!-- <li><input type="submit" class="btn-action" id="search_btn" value="搜索" /> </li>
+			   <li><input type="hidden" name="type" value="{$magic.request.type}" /></li> -->
+			<!-- </ul> -->
+		
+		    <!-- 搜索 -->
+		
+        <div class="searchBar">
+        <form action="" method="get">
+					<div class="hd clearfix">
+						<div class="fl conditions">
+							<label class="th">投资金额</label> <span class="td"><input
+								type="text" class="input_search" name="account1" size="20"
+								value="{$magic.request.account1}" />元</span> <label class="th">年化收益率</label>
+							<span class="td"> <select style="width: 150px;"
+								class="input_search" name="q_apr" id="q_apr">
+									<option value="">没有限制</option>
+									<option value="1" {if $magic.request.q_apr=='1'}selected{/if} >12%以下</option>
+									<option value="2" {if $magic.request.q_apr=='2'}selected{/if} >12%-16%</option>
+									<option value="3" {if $magic.request.q_apr=='3'}selected{/if} >16%以上</option>
+							</select>
+							</span> <label class="th">期限</label> <span class="td"> <select
+								style="width: 150px;" class="input_search" name="q_lmt"
+								id="q_lmt">
+									<option value="">没有限制</option>
+									<option value="1" {if $magic.request.q_lmt=='1'}selected{/if} >3个月以下</option>
+									<option value="2" {if $magic.request.q_lmt=='2'}selected{/if} >3-6个月</option>
+									<option value="3" {if $magic.request.q_lmt=='3'}selected{/if} >6-9个月</option>
+									<option value="4" {if $magic.request.q_lmt=='4'}selected{/if} >9-12个月</option>
+									<option value="5" {if $magic.request.q_lmt=='5'}selected{/if} >12个月以上</option>
+							</select>
+							</span>
+						</div>
+						<span class="fr">
+							<li><input type="submit"
+								class="ico_sprite btnnew btn_view_02 f_14" id="search_btn"
+								value="重新搜索" /></li>
+							<li><input type="hidden" name="type"
+								value="{$magic.request.type}" /></li> <!-- <a href="#" class="ico_sprite btnnew btn_view_02 f_14">重新搜索</a> -->
+						</span>
+					</div>
+					</form>
+			<div class="bg select_brand">
+              <p class="m_b_10">请根据您的条件做筛选</p>
+              
+              <dl>
+                <dt>投资类别：</dt>
+                <dd>
+                  <div><a href="{$_G.uurl}&f_type=&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&f_type=1&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='1'}class="curr"{/if}>信托</a></div>
+                  <div><a href="{$_G.uurl}&f_type=2&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='2'}class="curr"{/if}>理财</a></div>
+                  <div><a href="{$_G.uurl}&f_type=3&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='3'}class="curr"{/if}>基金</a></div>
+                  <div><a href="{$_G.uurl}&f_type=4&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='4'}class="curr"{/if}>保险</a></div>
+                  <div><a href="{$_G.uurl}&f_type=5&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='5'}class="curr"{/if}>储蓄</a></div>
+                  <div><a href="{$_G.uurl}&f_type=6&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='6'}class="curr"{/if}>信用借款</a></div>
+                </dd>
+              </dl>
+              <dl>
+                <dt>预期年化收益：</dt>
+                <dd>
+                  <div><a href="{$_G.uurl}&q_apr=&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&q_apr=1&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr=='1'}class="curr"{/if}>12%以下</a></div>
+                  <div><a href="{$_G.uurl}&q_apr=2&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr=='2'}class="curr"{/if}>12%-16%</a></div>
+                  <div><a href="{$_G.uurl}&q_apr=3&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr=='3'}class="curr"{/if}>16%以上</a></div>
+                </dd>
+              </dl>
+              <dl>
+                <dt>投资期限：</dt>
+                <dd>
+                  <div><a href="{$_G.uurl}&q_lmt=&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=1&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='1'}class="curr"{/if}>3个月以下</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=2&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='2'}class="curr"{/if}>3-6个月</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=3&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='3'}class="curr"{/if}>6-9个月</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=4&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='4'}class="curr"{/if}>9-12个月</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=5&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='5'}class="curr"{/if}>12个月以上</a></div>
+                </dd>
+              </dl>
+              <dl>
+                <dt>投资门槛：</dt>
+                <dd>
+                  <div><a href="{$_G.uurl}&f_type=&account1=&account2=&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='' && $magic.request.account2==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&account1=&account2=100000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='' && $magic.request.account2=='100000'}class="curr"{/if}>10w以下</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&account1=100000&account2=200000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='100000' && $magic.request.account2=='200000'}class="curr"{/if}>10-20w</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&account1=200000&account2=500000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='200000' && $magic.request.account2=='500000'}class="curr"{/if}>20-50w</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&account1=500000&account2=1000000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='500000' && $magic.request.account2=='1000000'}class="curr"{/if}>50-100w</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&account1=1000000&account2=&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='1000000' && $magic.request.account2==''}class="curr"{/if}>100w以上</a></div>
+                </dd>
+              </dl>
+          </div>
+        </div>
+        <!-- end 搜索 -->
+        <!-- 搜索列表 -->
+        {list module="borrow" function="GetList" var="loop" site_id="0" biaoType="request" keywords="request" q_apr="request" q_lmt="request" type="request"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" page="request" epage="request" order="$magic.request.order"}
+		<div class="searchList">
+		{foreach from="$loop.list" item="var"}
+        
+            <ul class="list">
+                <li class="clearfix">
+                   
+                    <b class="pic fl"><img src="{$var.user_id|avatar:middle}" style="height: 100px;width: 100px;" /></b>
+                    <span class="sear_btn fr">
+                      <a class="btn_blueBg03" href="/invest/a{$var.id}.html" style="*width:150px;">
+                        <span class="fl"></span>
+                            <span class="fr"></span>
+                            <label class="txt">查看详情</label>
+                      </a>
+                      
+                    </span>
+                    <div class="num_pr fr">
+                      <p>已有<em>{$var.tender_times}人</em>参与认购</p>
+                      <p>还需￥{$var.other}满额</p>
+                      <!-- <p class="n"><em>12人</em></p> -->
+                      
+                      <p>剩余时间：<span id="endtime{$var.id}">{$var.lave_time} </span></p>
+                    </div>
+                    <div class="titItem fl">
+                        <a href="/invest/a{$var.id}.html"> <h3>{$var.name}</h3></a>
+                        {if $var.is_vouch==1}<a href="/question/a144.html" target="_blank"><img src="{$tpldir}/images/danbao.gif" border="0" alt= /></a>&nbsp;{/if}
+						{if $var.is_mb==1}<a href="/question/a145.html" target="_blank" rel="tooltip" title="秒标满额系统自动还款"
+><img src="{$tpldir}/images/miao.jpg"  border="0"   /></a>&nbsp;{/if}
+						{if $var.is_fast==1}<a href="/question/a146.html" target="_blank" rel="tooltip" title="抵押标是小微企业现场审核抵押借款标"><img src="{$tpldir}/images/fast.gif" border="0"  alt=  /></a>&nbsp;{/if}
+						{if $var.danbao==1} <img src="{$tpldir}/images/dan.gif" />{/if}
+						{if $var.is_kuai==1} <img src="{$tpldir}/images/kuai.gif" />{/if}
+						{if $var.is_lz==1} <img src="{$tpldir}/images/lz.gif" />{/if}
+						{if $var.is_jin==1}<a href="/question/a184.html" target="_blank" rel="tooltip" title="净值标是以用户在网站资产做担保的借款标"><img src="{$tpldir}/images/jin.gif"   border="0"  alt= /></a>&nbsp;{/if}
+						{if $var.biao_type=="xin"}<a href="/question/a143.html" target="_blank" rel="tooltip" title="信用标是以个人用户信用状况借款"><img src="{$tpldir}/images/xin.jpg"   border="0"  /></a>&nbsp;{/if}
+						{if $var.isday==1}<a href="#" target="_blank" rel="tooltip" title="天标是按天借款标"><img src="{$tpldir}/images/day.jpg"   border="0"  /></a>&nbsp;{/if}
+						{if $var.flag==1} <img src="{$tpldir}/images/tuijian.gif" align="absmiddle"  border="0"/>&nbsp;{/if}
+						{if $var.award==1 || $var.award==2 }<a  rel="tooltip" title="投资该借款标除利息外有额外的奖励" href="#" ><img src="{$tpldir}/images/jiangli.gif"  border="0"  /></a>&nbsp;{/if}
+						{if $var.pwd != ""}<a rel="tooltip" title="定向标是投标的时候需要定向密码的借款标" href="#"><img src="{$tpldir}/images/lock.gif"  border="0"  /></a>&nbsp;{/if}
+                        <p class="sort">类别：信托类</p>
+                        <!-- <p class="lBtn" style="padding-left:10px;"><a href="#" class="ico_sprite btnnew btn_view_01 hover">查 看</a></p> -->
+                    </div>
+                    <div class="dateInfo fl p_t_35">
+                        <p>预期年化收益：{$var.apr}%</p>
+                        <p>期限：{if $var.isday==1 } 
+					{$var.time_limit_day}天
+					{elseif $var.is_mb==1}
+					 额满即还
+					{else}
+					{$var.time_limit}个月 
+					{/if}</p>
+                        <p>投资门槛：￥{$var.account}元</p>
+                    </div>
+                    <div class="info p_t_35">
+                        <p>需根据要求准备资料并线下进行汇款认购</p>
+                    </div>
+                </li>
+
+            </ul>
+            {/foreach}
+        </div>
+        	<!--分页开始-->
+				<br/><div align="center" class="showpage">{$loop.showpage}</div>
+			<!--分页结束-->
+       {/list}
+        <!-- end 搜索列表 -->	
 		</div>
 	</div>
-</form>
-	<ul id="tab" class="list-tab clearfix">
+
+	<!-- <ul id="tab" class="list-tab clearfix">
 		<li class="active"><a href="#tb" data-toggle="tab">所有</a></li>
-		<!--<li><a href="#glb" data-toggle="tab">抵押标</a></li>
+		<li><a href="#glb" data-toggle="tab">抵押标</a></li>
 		<li><a href="#jzb" data-toggle="tab">净值标</a></li>
 		<li><a href="#dbb" data-toggle="tab">担保标</a></li>
 		<li><a href="#mb" data-toggle="tab">秒标</a></li>
-		<li><a href="#xyb" data-toggle="tab">信用标</a></li>-->
+		<li><a href="#xyb" data-toggle="tab">信用标</a></li>
 		<li class="list-tab-sel"><input type="checkbox" value="2" name="sel"> 只显示有奖励</li>
-	</ul>
+	</ul> -->
 	
-	<div class="list-select clearfix">
+	<!-- <div class="list-select clearfix">
 		<div class="list-select-l">排序：
 		
 		<span>
@@ -172,22 +311,22 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 				{else}<a href="{$_G.uurl}&order=credit_up&type={$magic.request.type}&keywords={$magic.request.keywords}">信用</a>{/if}
 			</span>  
 		
+		</div> 
+		<div class="list-select-r2">金额范围：<select><option value="">0～5000</option><option value="244">5000～10000</option></select>
+		显示：<a href="{$_G.epurl}&epage=20"><img src="{$tpldir}/images/ico_20.gif"  /></a> <a href="{$_G.epurl}&epage=40"><img src="{$tpldir}/images/ico_40.gif" /></a>
 		</div>
-		<div class="list-select-r2"><!--金额范围：<select><option value="">0～5000</option><option value="244">5000～10000</option></select>-->
-		<!--显示：<a href="{$_G.epurl}&epage=20"><img src="{$tpldir}/images/ico_20.gif"  /></a> <a href="{$_G.epurl}&epage=40"><img src="{$tpldir}/images/ico_40.gif" /></a> -->
-		</div>
-	<!--
+	
 		<div >
 		显示： <a href="{$_G.epurl}&epage=20"><img src="{$tpldir}/images/ico_20.gif"  /></a> 
 			<a href="{$_G.epurl}&epage=40"><img src="{$tpldir}/images/ico_40.gif" /></a> 
 			<a href="{$_G.epurl}&epage=60"><img src="{$tpldir}/images/ico_60.gif" /></a>
 		</div>
 		
-		-->
-	</div>
+		
+	</div> -->
 	
 <!--所有标-->
-{list module="borrow" function="GetList" var="loop" site_id="0" biaoType="request" keywords="request" q_apr="request" type="request"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" page="request" epage="request" order="$magic.request.order"}
+<!-- {list module="borrow" function="GetList" var="loop" site_id="0" biaoType="request" keywords="request" q_apr="request" q_lmt="request" type="request"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" page="request" epage="request" order="$magic.request.order"}
 		<div class="listmain">
 		{foreach from="$loop.list" item="var"}
 			<div class="list-div">
@@ -221,7 +360,7 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 						<li>剩余时间：<span id="endtime{$var.id}">{$var.lave_time} </span></li>
 						<li>
 						<span style="float:left">信用等级：</span><img class="rank" src="{$_G.system.con_credit_picurl}{$var.credit_pic|default:credit_s11.gif}" title="{$var.credit_jifen|default:0}分"  />
-						<!--籍 贯：{$var.user_area|area:"p,c"}-->
+						籍 贯：{$var.user_area|area:"p,c"}
 						</li>
 						<li>借款期限：{if $var.isday==1 } 
 					{$var.time_limit_day}天
@@ -266,10 +405,10 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 		
 	{/foreach}
 		</div>
-	<!--分页开始-->
+	分页开始
 				<br/><div align="center" class="showpage">{$loop.showpage}</div>
-	<!--分页结束-->
-	{/list}
+	分页结束
+	{/list} -->
 </div>
 {/if}
 

@@ -44,7 +44,7 @@
 			<li {if $magic.request.status=="1"} class="cur"{/if}><a href="{$_U.query_url}/tender_vouch_finish&status=1">已还完的担保标</a></li></ul>
 			{elseif $_U.query_type=="myuser" || $_U.query_type=="myuserrepay" || $_U.query_type=="myuser_account" }
 			<ul class="list-tab clearfix">
-				<li ><a href="index.php?user&q=code/user/myuser">我的客服</a></li>
+				<li ><a href="index.php?user&q=code/user/myuser">我的理财顾问</a></li>
 				<li {if $_U.query_type=="myuserrepay" || $_U.query_type=="myuser"} class="cur"{/if}><a href="index.php?user&q=code/borrow/myuser">客户借款</a></li>
 				<li {if $_U.query_type=="myuser_account"} class="cur"{/if}><a href="index.php?user&q=code/borrow/myuser_account">统计信息</a></li>
 			</ul>

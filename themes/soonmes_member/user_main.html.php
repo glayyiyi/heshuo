@@ -76,7 +76,7 @@
         &nbsp;<a href="/index.php?user&amp;q=code/account/cash">提现记录查询 </a> </td>
   </tr>
   <tr>
-    <td><a href="#" rel="tooltip" title="冻结金额账户中暂时冻结的金额，一般是投标中(尚未满标审核)或申请VIP等待客服审核等">冻结总额</a>：<font>￥{$acc.no_use_money|default:0}</font></td>
+    <td><a href="#" rel="tooltip" title="冻结金额账户中暂时冻结的金额，一般是投标中(尚未满标审核)或申请VIP等待理财顾问审核等">冻结总额</a>：<font>￥{$acc.no_use_money|default:0}</font></td>
     <td width="65%"><a href="/index.php?user&amp;q=code/borrow/bid">正在进行的投标</a> <a href="/index.php?user&amp;q=code/account/cash">正在申请的提现</a></td>
   </tr>
   
@@ -127,17 +127,17 @@
 			{article module="borrow" function="Getkf"}
 			{if $var.username}
 			<div class="user_right_info">
-				<div class="title">您的专属客服在您身边</div>
+				<div class="title">您的理财顾问在您身边</div>
 				<div class="content">
 					<ul>
 						<li><img src="{$var.kefu_userid|avatar:'big'}" border="0" class="picborder" width="150px" height="160px"/></li>
-						<li>客服名称：{$var.username}</li>
-						<li>客服QQ：
+						<li>理财顾问名称：{$var.username}</li>
+						<li>理财顾问QQ：
                             <a target="_blank" href="http://wpa.qq.com/msgrd?v=1&uin={$var.qq}&site=qq&menu=yes" >
                                <img border="0" src="http://wpa.qq.com/pa?p=1:{$var.qq}:1" alt="点击这里给我发消息" title="点击这里给我发消息">
                             </a>
                         </li>
-						<li>客服电话：{$var.phone}</li>
+						<li>理财顾问电话：{$var.phone}</li>
 					</ul>
 				</div>
 			</div>
