@@ -194,6 +194,7 @@ jQuery(function(){
 				</div>
 			</div>
 		</div>
+		</div>
 
 </form>
 {literal}
