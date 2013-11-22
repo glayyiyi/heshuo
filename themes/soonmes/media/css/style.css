@@ -345,7 +345,7 @@ DIV.jogger SPAN.disabled {DISPLAY: none}
 .box-info{float: left;width:790px;border: 1px solid #d5d5d5;background-color: #fff;}
 .box-info-u{float: left;width:930px;border: 1px solid #d5d5d5;background-color: #fff;}
 .box-info h2{font-size:16px;line-height:44px;color: #C30;}
-.box-info-user{background-color: #fdffe5;border: 1px solid #d5d5d5;border-width:0 1px 0 0;width:125px;line-height:30px;float: left;padding:15px;}
+.box-info-user{background-color: #fdffe5;border: 1px solid #d5d5d5;border-width:0 1px 0 0;width:170px;line-height:30px;float: left;padding:15px;}
 .user-photo{width:120px;height:120px;background-color: #FFFFFF;border: 1px solid #D5D5D5;padding: 4px;}
 p.credit_pic a{display: inline-block;width:40px;height:30px;margin-right:5px;}
 .box-kefu{float: right;width:198px;}

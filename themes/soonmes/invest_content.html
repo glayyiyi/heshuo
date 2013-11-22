@@ -132,7 +132,142 @@
 			</div>
 
 			<div class="box-info-detail">
-				<h2><span style="float:left;margin-right:5px;">{$var.borrow.name}</span> 
+			
+                  	<div class="pro_info">
+                        <table width="100%" class="tb_pro tb_pro02 m_b_10">
+                          <tr>
+                            <th class="f_16 f_bold" style="width:100px;">筹款金额：</th>
+                            <td class="f_16 f_bold">￥{$var.borrow.account}元   年利率：{$var.borrow.apr}%  期限：{if $var.borrow.isday==1 } 
+								{$var.borrow.time_limit_day}天
+							{else}
+								{$var.borrow.time_limit}个月
+							{/if}</td>
+                          </tr>
+                          <tr>
+                            <th class="f_16 f_bold" style="width:100px;">筹款用途：</th>
+                            <td class="f_16 f_bold">{$var.borrow.content}</td>
+                          </tr>
+                          <tr>
+                            <th class="f_16 f_bold" style="width:100px;">赎回方式：</th>
+                            <td class="f_16 f_bold"> {if $var.borrow.isday==1 &&$var.borrow.is_lz==0} 
+							到期全额还款
+							{elseif $var.borrow.is_mb==1}
+							系统自动还款
+							{elseif $var.borrow.is_lz==1}
+							到期自动回购
+							{else}
+							{$var.borrow.style|linkage:"borrow_style"}
+							{/if}</td>
+                          </tr>
+                        </table>
+                        <div class="clearfix shuliang m_b_10">
+                        <p class="fl">已有<em class="num">{$var.borrow.tender_times}人</em>参与投资</p>
+                        	
+                          <p class="fr price">
+                          	已经完成：{$var.borrow.scale|default:0} % <br> <em class="pri">剩余可投金额：￥{$var.borrow.other}</em>
+                          </p>
+                         
+                           
+                          	
+                    		
+                   
+                        </div>
+                        <!--  -->
+                        <div class="jiage m_b_20">
+                     	
+                        <p class="now">最低投资起点：￥{$var.borrow.lowest_account}元 </p>
+                  		<!-- <p class="m_b_20"><a class="btn_blueBg02" href="#">
+                                  <span class="fl"></span>
+                                  <span class="fr"></span>
+                                  <label class="txt">了解平台原理</label>
+                              </a>
+                           </p> -->
+                           <p class="f_12">剩余投资时间：</p>
+                           <p class="date"><span id="endtime">{$var.borrow.lave_time}</span> </p>
+                          
+                           <p>投资1万元,期限{if $var.borrow.isday==1 } 
+                {$var.borrow.time_limit_day}天
+                {else}
+                {$var.borrow.time_limit}个月
+                {/if},预计可获￥{$var.borrow.interest*100|round:"2"}元利息回报</p>
+                
+                
+           <p class="j_btn">     
+           {if $var.borrow.is_vouch==1 && $var.borrow.vouch_account!=$var.borrow.account} 
+					<a id="invest_dialog"  class="btnnew btn_login f_18" href="#">确认投资</a>
+			{else}
+				{if $var.borrow.status==3}
+					{if $var.borrow.repayment_account == $var.borrow.repayment_yesaccount  }
+					<a class="btnnew btn_login f_18" href="#">已还款</a>
+					{else}
+					<a class="btnnew btn_login f_18" href="#">还款中</a>
+					{/if}
+				{elseif $var.borrow.status==5}
+				<a class="btnnew btn_login f_18" href="#">用户取消</a>
+				{elseif $var.borrow.status==0}
+				<a class="btnnew btn_login f_18" href="#">等待初审</a>
+				{elseif $var.borrow.status==4}
+				<a class="btnnew btn_login f_18" href="#">复审失败</a>
+				{elseif $var.borrow.status==2}
+				<a class="btnnew btn_login f_18" href="#">等待复审</a>
+				{elseif $var.borrow.account>$var.borrow.account_yes}
+				
+				{if $_G.user_id>0}
+					{if $var.borrow.is_lz}
+					<a id="invest_dialog" class="btnnew btn_login f_18" href="#">马上认购</a>
+					{else}
+					<a id="invest_dialog" class="btnnew btn_login f_18" href="#">确认投资</a>
+					{/if}
+				 
+				{else}
+					<a  class="btnnew btn_login f_18" href="/index.action?user&q=going/login">请先登录</a>
+				{/if} 
+				
+				{else}
+				{if $var.borrow.is_lz}
+					<a class="btnnew btn_login f_18" href="#">已认购完</a>
+				{else}
+					<a class="btnnew btn_login f_18" href="#">等待复审</a>
+				{/if}
+				
+				{/if}
+				{if $var.borrow.is_vouch==1}
+					<a class="btnnew btn_login f_18" href="#">担保完成</a>
+				{/if}
+			{/if}
+			</p>
+        	<!--  <p class="j_btn"><a href="我要投资－在线充值.html" class="btnnew btn_login f_18">确认投资</a></p> -->
+           </div>
+           
+                       
+           <div class="clearfix fuxuan">
+                        {if $var.borrow.status==3}
+                          {if $var.borrow.is_mb==1}
+                          <a href="/protocol_miao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_fast==1}
+                          <a href="/protocol_fast/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_jin==1}
+                          <a href="/protocol_jin/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_vouch==1}
+                          <a href="/protocol_danbao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {if $var.borrow.is_vouch != 1 && $var.borrow.is_mb!=1 && $var.borrow.is_fast!=1 && $var.borrow.is_jin!=1 }
+                          <a href="/protocol_xin/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          {/if}
+                          {/if}
+                        
+                        	<!-- <p><label><input name="" type="checkbox" value=""> 我已经做过相关自己投资风险测试评估问卷  还没做过，现在做</label></p> -->
+                        	<p><label><input name="" type="checkbox" value="checked"> 我已经阅读并同意网站的相关投资声明条款</label></p>
+                        	<p><label><input name="" type="checkbox" value="checked"> 我已经阅读此项目的产品风险揭示书、信托计划说明书、风险申明书</label></p>
+                        </div> 
+                                                 
+                        
+        </div>                             
+               
+				<!-- <h2><span style="float:left;margin-right:5px;">{$var.borrow.name}</span> 
 						{if $var.borrow.is_vouch==1}<a href="/question/a144.html" target="_blank"><img src="{$tpldir}/images/danbao.gif" border="0" alt="点击查看详情" /></a>&nbsp;{/if}
 						{if $var.borrow.is_mb==1}<a href="/question/a145.html" target="_blank"><img src="{$tpldir}/images/miao.jpg"  border="0"  alt="点击查看详情" /></a>&nbsp;{/if}
 						{if $var.borrow.is_fast==1}<a href="/question/a146.html" target="_blank"><img src="{$tpldir}/images/fast.gif" border="0"  alt="点击查看详情"  /></a>&nbsp;{/if}
@@ -185,9 +320,9 @@
 					
 				</ul>
 				<div class="box-info-detail-ac" style="text-align:center;">
-					<!--<a class="btn-action" data-toggle="modal" href="#myModal">立即投标</a>-->
-					<!--<a id="invest_dialog" class="btn-action" href="#">立即投标</a>-->
-					{if $var.borrow.is_vouch==1 && $var.borrow.vouch_account!=$var.borrow.account} 
+					<a class="btn-action" data-toggle="modal" href="#myModal">立即投标</a>
+					<a id="invest_dialog" class="btn-action" href="#">立即投标</a>
+			{if $var.borrow.is_vouch==1 && $var.borrow.vouch_account!=$var.borrow.account} 
 					<a id="invest_dialog" class="btn-action" href="#">立即投标</a>
 			{else}
 				{if $var.borrow.status==3}
@@ -267,7 +402,7 @@
 					<li>最小投标额：￥{$var.borrow.lowest_account}元</li>
 					<li>最大投标额：{if $var.borrow.most_account==0}不限{else}￥{$var.borrow.most_account}元{/if}</li>
 					<li>总投标数：{$var.borrow.tender_times}次</li>
-				</ul>
+				</ul> -->
 			</div>
 
 		</div>
@@ -294,22 +429,22 @@
 			</div>
 		</div> -->
 		<div class="box box-kefu">
-			<div class="box-title">理财顾问</div>
+			<div class="box-title">你的理财顾问</div>
 			<div class="box-con">
 				{article module="borrow" function="Getkf" var="kfUser"}
 				<img class="user-photo" src="{$kfUser.kefu_userid|avatar:'middle'}" />
 				{if $kfUser.username != ""}
 				<p>姓名: {$kfUser.username}</p>
 				<p>电话：{$kfUser.phone}</p>
-				<p>QQ: <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$kfUser.qq}&site=qq&menu=yes">
+				<p>在线联系：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$kfUser.qq}&site=qq&menu=yes">
 				<img border="0" src="http://wpa.qq.com/pa?p=2:{$kfUser.qq}:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></p>
 				{/if}
-				
-				<p>总机：{$_G.system.con_tel}</p>
+				<p>发送消息：<a href="/index.php?user&q=code/message/sent&receive={$kfUser.username}">站内信</a></p>
+				<!-- <p>总机：{$_G.system.con_tel}</p> -->
 				<p>{if $kfUser.username== ""}
                     您好，您还没有申请您的理财顾问，赶快来<a href="/vip/index.html" style="color:red">申请</a>吧！
                     {else}
-                    您好，有任何疑问可随时跟您的理财顾问<font color="red">{$kfUser.username}</font>联系哦！
+                    您好，有任何疑问可随时跟您的理财顾问<font color="red">{$kfUser.username}</font>联系！
                     {/if}</p>
                 {/article}
 			</div>

@@ -129,8 +129,8 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					<div class="hd clearfix">
 						<div class="fl conditions">
 							<label class="th">投资金额</label> <span class="td"><input
-								type="text" class="input_search" name="account1" size="20"
-								value="{$magic.request.account1}" />元</span> <label class="th">年化收益率</label>
+								type="text" class="input_search" name="q_l_account1" size="20"
+								value="{$magic.request.q_l_account1}" />元</span> <label class="th">年化收益率</label>
 							<span class="td"> <select style="width: 150px;"
 								class="input_search" name="q_apr" id="q_apr">
 									<option value="">没有限制</option>
@@ -165,51 +165,51 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
               <dl>
                 <dt>投资类别：</dt>
                 <dd>
-                  <div><a href="{$_G.uurl}&f_type=&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type==''}class="curr"{/if}>不限</a></div>
-                  <div><a href="{$_G.uurl}&f_type=1&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='1'}class="curr"{/if}>信托</a></div>
-                  <div><a href="{$_G.uurl}&f_type=2&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='2'}class="curr"{/if}>理财</a></div>
-                  <div><a href="{$_G.uurl}&f_type=3&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='3'}class="curr"{/if}>基金</a></div>
-                  <div><a href="{$_G.uurl}&f_type=4&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='4'}class="curr"{/if}>保险</a></div>
-                  <div><a href="{$_G.uurl}&f_type=5&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='5'}class="curr"{/if}>储蓄</a></div>
-                  <div><a href="{$_G.uurl}&f_type=6&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.f_type=='6'}class="curr"{/if}>信用借款</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.f_type==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&f_type=1&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.f_type=='1'}class="curr"{/if}>信托</a></div>
+                  <div><a href="{$_G.uurl}&f_type=2&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.f_type=='2'}class="curr"{/if}>理财</a></div>
+                  <div><a href="{$_G.uurl}&f_type=3&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.f_type=='3'}class="curr"{/if}>基金</a></div>
+                  <div><a href="{$_G.uurl}&f_type=4&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.f_type=='4'}class="curr"{/if}>保险</a></div>
+                  <div><a href="{$_G.uurl}&f_type=5&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.f_type=='5'}class="curr"{/if}>储蓄</a></div>
+                  <div><a href="{$_G.uurl}&f_type=6&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.f_type=='6'}class="curr"{/if}>信用借款</a></div>
                 </dd>
               </dl>
               <dl>
                 <dt>预期年化收益：</dt>
                 <dd>
-                  <div><a href="{$_G.uurl}&q_apr=&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr==''}class="curr"{/if}>不限</a></div>
-                  <div><a href="{$_G.uurl}&q_apr=1&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr=='1'}class="curr"{/if}>12%以下</a></div>
-                  <div><a href="{$_G.uurl}&q_apr=2&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr=='2'}class="curr"{/if}>12%-16%</a></div>
-                  <div><a href="{$_G.uurl}&q_apr=3&account1={$magic.request.account1}&q_lmt={$magic.request.q_lmt}&account2={$magic.request.account2}" {if $magic.request.q_apr=='3'}class="curr"{/if}>16%以上</a></div>
+                  <div><a href="{$_G.uurl}&q_apr=&q_l_account1={$magic.request.q_l_account1}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_apr==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&q_apr=1&q_l_account1={$magic.request.q_l_account1}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_apr=='1'}class="curr"{/if}>12%以下</a></div>
+                  <div><a href="{$_G.uurl}&q_apr=2&q_l_account1={$magic.request.q_l_account1}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_apr=='2'}class="curr"{/if}>12%-16%</a></div>
+                  <div><a href="{$_G.uurl}&q_apr=3&q_l_account1={$magic.request.q_l_account1}&q_lmt={$magic.request.q_lmt}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_apr=='3'}class="curr"{/if}>16%以上</a></div>
                 </dd>
               </dl>
               <dl>
                 <dt>投资期限：</dt>
                 <dd>
-                  <div><a href="{$_G.uurl}&q_lmt=&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt==''}class="curr"{/if}>不限</a></div>
-                  <div><a href="{$_G.uurl}&q_lmt=1&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='1'}class="curr"{/if}>3个月以下</a></div>
-                  <div><a href="{$_G.uurl}&q_lmt=2&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='2'}class="curr"{/if}>3-6个月</a></div>
-                  <div><a href="{$_G.uurl}&q_lmt=3&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='3'}class="curr"{/if}>6-9个月</a></div>
-                  <div><a href="{$_G.uurl}&q_lmt=4&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='4'}class="curr"{/if}>9-12个月</a></div>
-                  <div><a href="{$_G.uurl}&q_lmt=5&account1={$magic.request.account1}&q_apr={$magic.request.q_apr}&account2={$magic.request.account2}" {if $magic.request.q_lmt=='5'}class="curr"{/if}>12个月以上</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_lmt==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=1&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_lmt=='1'}class="curr"{/if}>3个月以下</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=2&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_lmt=='2'}class="curr"{/if}>3-6个月</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=3&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_lmt=='3'}class="curr"{/if}>6-9个月</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=4&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_lmt=='4'}class="curr"{/if}>9-12个月</a></div>
+                  <div><a href="{$_G.uurl}&q_lmt=5&q_l_account1={$magic.request.q_l_account1}&q_apr={$magic.request.q_apr}&q_l_account2={$magic.request.q_l_account2}" {if $magic.request.q_lmt=='5'}class="curr"{/if}>12个月以上</a></div>
                 </dd>
               </dl>
               <dl>
                 <dt>投资门槛：</dt>
                 <dd>
-                  <div><a href="{$_G.uurl}&f_type=&account1=&account2=&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='' && $magic.request.account2==''}class="curr"{/if}>不限</a></div>
-                  <div><a href="{$_G.uurl}&f_type=&account1=&account2=100000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='' && $magic.request.account2=='100000'}class="curr"{/if}>10w以下</a></div>
-                  <div><a href="{$_G.uurl}&f_type=&account1=100000&account2=200000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='100000' && $magic.request.account2=='200000'}class="curr"{/if}>10-20w</a></div>
-                  <div><a href="{$_G.uurl}&f_type=&account1=200000&account2=500000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='200000' && $magic.request.account2=='500000'}class="curr"{/if}>20-50w</a></div>
-                  <div><a href="{$_G.uurl}&f_type=&account1=500000&account2=1000000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='500000' && $magic.request.account2=='1000000'}class="curr"{/if}>50-100w</a></div>
-                  <div><a href="{$_G.uurl}&f_type=&account1=1000000&account2=&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.account1=='1000000' && $magic.request.account2==''}class="curr"{/if}>100w以上</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&q_l_account1=&q_l_account2=&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.q_l_account1=='' && $magic.request.q_l_account2==''}class="curr"{/if}>不限</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&q_l_account1=&q_l_account2=100000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.q_l_account1=='' && $magic.request.q_l_account2=='100000'}class="curr"{/if}>10w以下</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&q_l_account1=100000&q_l_account2=200000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.q_l_account1=='100000' && $magic.request.q_l_account2=='200000'}class="curr"{/if}>10-20w</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&q_l_account1=200000&q_l_account2=500000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.q_l_account1=='200000' && $magic.request.q_l_account2=='500000'}class="curr"{/if}>20-50w</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&q_l_account1=500000&q_l_account2=1000000&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.q_l_account1=='500000' && $magic.request.q_l_account2=='1000000'}class="curr"{/if}>50-100w</a></div>
+                  <div><a href="{$_G.uurl}&f_type=&q_l_account1=1000000&q_l_account2=&q_apr={$magic.request.q_apr}&q_lmt={$magic.request.q_lmt}" {if $magic.request.q_l_account1=='1000000' && $magic.request.q_l_account2==''}class="curr"{/if}>100w以上</a></div>
                 </dd>
               </dl>
           </div>
         </div>
         <!-- end 搜索 -->
         <!-- 搜索列表 -->
-        {list module="borrow" function="GetList" var="loop" site_id="0" biaoType="request" keywords="request" q_apr="request" q_lmt="request" type="request"  use="request" account1="request" account2 = "request" limittime="request" award="request" province="request" city="request" page="request" epage="request" order="$magic.request.order"}
+        {list module="borrow" function="GetList" var="loop" site_id="0" biaoType="request" keywords="request" q_apr="request" q_lmt="request" type="request"  use="request" account1="request" account2 = "request" q_l_account1="request" q_l_account2 = "request" limittime="request" award="request" province="request" city="request" page="request" epage="request" order="$magic.request.order"}
 		<div class="searchList">
 		{foreach from="$loop.list" item="var"}
         
@@ -259,10 +259,10 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					{else}
 					{$var.time_limit}个月 
 					{/if}</p>
-                        <p>投资门槛：￥{$var.account}元</p>
+                        <p>投资门槛：￥{$var.lowest_account}元</p>
                     </div>
                     <div class="info p_t_35">
-                        <p>需根据要求准备资料并线下进行汇款认购</p>
+                        <p>{$var.content}</p>
                     </div>
                 </li>
 

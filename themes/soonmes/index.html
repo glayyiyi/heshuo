@@ -23,8 +23,8 @@
                     <p class="m_b_5">年利率：<strong>{$var.apr}</strong>%</p> -->
                     <p class="item">
 						<label class="tit">金额</label> <span class="c"> <input
-							type="text" class="input_picbg_01" name="account1" size="20"
-							value="{$magic.request.account1}" />
+							type="text" class="input_picbg_01" name="q_l_account1" size="20"
+							value="{$magic.request.q_l_account1}" />
 						</span>
 					</p>
 					
@@ -145,7 +145,7 @@
 							<h3>产品列表</h3>
 							</div>
 				<div class="bg">			
-							{loop module="borrow" function="GetList" var="var" limit="10"  order="biaoindex"}
+			{loop module="borrow" function="GetList" var="var" limit="10"  order="biaoindex"}
 				<div class="list-div">
                     <a href="invest/a{$var.id}.html"><img src="{$var.user_id|avatar:'middle'}" class="productimg"></a>
                     <ul class="list-ul">

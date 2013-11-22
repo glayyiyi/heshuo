@@ -204,6 +204,16 @@ class borrowClass extends amountClass{
 			$data['account2'] = intval($data['account2']);// Add by Liuyaoyao 2012-04-24
 			$_sql .= " and p1.account <= {$data['account2']}";
 		}
+		if (isset($data['q_l_account1']) && $data['q_l_account1']!=""){
+			$data['q_l_account1'] = intval($data['q_l_account1']);
+			$_sql .= " and p1.lowest_account >= {$data['q_l_account1']}";
+		}
+		if (isset($data['q_l_account2']) && $data['q_l_account2']!=""){
+			$data['q_l_account2'] = intval($data['q_l_account2']);
+			$_sql .= " and p1.lowest_account <= {$data['q_l_account2']}";
+		}
+		
+		
 		$_order = " order by p1.`order` desc,p1.id desc ";
 		if (isset($data['order']) && $data['order']!=""){
 			$order = $data['order'];
