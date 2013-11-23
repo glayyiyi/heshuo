@@ -182,10 +182,22 @@
                                   <label class="txt">了解平台原理</label>
                               </a>
                            </p> -->
-                           <p class="f_12">剩余投资时间：</p>
-                           <p class="date"><span id="endtime">{$var.borrow.lave_time}</span> </p>
+                  {if $var.borrow.status != 3}
+					
+					<!-- <p>发标时间：{$var.borrow.addtime|date_format:"Y-m-d H:i:s"}</p> -->
+                        {if $var.borrow.scale!=100 }
+                         
+						 <p class="f_12">剩余投资时间：</p>
+                         <p class="date"><span id="endtime">{$var.borrow.lave_time}</span> </p>
+                        {/if}
+					{else}
+					
+					<p>审核时间：{$var.borrow.verify_time|date_format:"Y-m-d H:i:s"}</p>
+					<p >剩余时间：已结束 </p>
+					{/if}
                           
-                           <p>投资1万元,期限{if $var.borrow.isday==1 } 
+                          
+                  <p>投资1万元,期限{if $var.borrow.isday==1 } 
                 {$var.borrow.time_limit_day}天
                 {else}
                 {$var.borrow.time_limit}个月
@@ -243,7 +255,7 @@
            <div class="clearfix fuxuan">
                         {if $var.borrow.status==3}
                           {if $var.borrow.is_mb==1}
-                          <a href="/protocol_miao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          <p><a href="/protocol_miao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
                           {/if}
                           {if $var.borrow.is_fast==1}
                           <a href="/protocol_fast/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
@@ -256,12 +268,13 @@
                           {/if}
                           {if $var.borrow.is_vouch != 1 && $var.borrow.is_mb!=1 && $var.borrow.is_fast!=1 && $var.borrow.is_jin!=1 }
                           <a href="/protocol_xin/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
+                          </p>
                           {/if}
                           {/if}
                         
                         	<!-- <p><label><input name="" type="checkbox" value=""> 我已经做过相关自己投资风险测试评估问卷  还没做过，现在做</label></p> -->
-                        	<p><label><input name="" type="checkbox" value="checked"> 我已经阅读并同意网站的相关投资声明条款</label></p>
-                        	<p><label><input name="" type="checkbox" value="checked"> 我已经阅读此项目的产品风险揭示书、信托计划说明书、风险申明书</label></p>
+                        	<p><label><input name="" type="checkbox" checked="checked"> 我已经阅读并同意网站的相关投资声明条款</label></p>
+                        	<p><label><input name="" type="checkbox" checked="checked"> 我已经阅读此项目的产品风险揭示书、信托计划说明书、风险申明书</label></p>
                         </div> 
                                                  
                         

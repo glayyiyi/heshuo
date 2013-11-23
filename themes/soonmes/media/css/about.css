@@ -797,10 +797,10 @@ a.rightheadertitle:hover {
 	margin: 0px 6px 0px 0px; width: 90px; float: left
 }
 .titSpan {
-    width: 100px;  /*¿í¶ÈÊÇ±ØÐëµÄ*/
+    width: 100px;  /*ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½*/
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;  /*Ê¡ÂÔºÅ*/
+    text-overflow: ellipsis;  /*Ê¡ï¿½Ôºï¿½*/
 }
 .toolboxdivbg {
 	width: 208px; background: url(../bg/toolbox_r_bg.jpg)
