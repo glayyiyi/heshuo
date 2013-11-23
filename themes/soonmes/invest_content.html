@@ -89,10 +89,11 @@
 
 					<li>支付密码：{if $_G.user_result.paypassword==""}<a href="/index.php?user&q=code/user/paypwd" target="_blank"><font color="red">请先设一个支付交易密码,设置完后返回该页面刷新生效</font></a>{else}<input type="password" name="paypassword" size="11" tabindex="2" />{/if}</li>
 					{if $var.borrow.pwd != ""}<li>定向标密码：<input type="text" name="dxbPWD" id="dxbPWD" size="11" tabindex="3" /></li>{/if}
-					{if $var.borrow.is_mb==1}
+					<!-- {if $var.borrow.is_mb==1}  {/if} -->
 					<li>验证码：<input type="text" id="yzmcode" name="yzmcode" tabindex="4" size="10" style="margin-right:5px;" /> <img src="/plugins/index.php?q=imgcode&t=' + Math.random();" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer;" />
 					</li>
-					{/if}
+					
+					
 				</ul>
 				<p class="mar20"><input type="submit" class="btn-action" value="确认付款"><p>
 				<p class="text-red"><input type="hidden" name="id" value="{$_G.article_id}" />注意:点击确认表示您将投标金额并同意支付,同一用户对同一个标限投5次</p>
@@ -103,7 +104,7 @@
 	{else}
 	<div class="box-detail clearfix">
 		<div class="box-info clearfix">
-			<div class="box-info-user">
+<!-- 			<div class="box-info-user">
 				<img class="user-photo" src="{$var.user.user_id|avatar:'middle'}" />
 				<p>用户名: {$var.user.username} </p>
 				<p> 积分等级： <img class="rank" src="{$_G.system.con_credit_picurl}{$var.credit_pic|default:credit_s11.gif}" title="{$var.user.credit_jifen|default:0}分"  /> </p>
@@ -123,21 +124,21 @@
 				<p><a href="/index.php?user&q=code/message/sent&receive={$var.user.username}">站内信</a></p>
 				{if $_G.user_id!="" && $_G.user_result.real_status==1}
 				<p><a href="/index.php?user&q=code/user/addfriend&username={$var.user.username}" title="加为好友" class="thickbox">加为好友</a></p>
-				<!-- <p><a href="javascript:void(0)" onclick='tipsWindown("加为好友","url:get?/index.php?user&q=code/user/addfriend&username={$var.user.username}",400,230,"true","","true","text");'>加为好友</a></p> -->
+				<p><a href="javascript:void(0)" onclick='tipsWindown("加为好友","url:get?/index.php?user&q=code/user/addfriend&username={$var.user.username}",400,230,"true","","true","text");'>加为好友</a></p>
 				{else}
 				<p><a href="javascript:alert('请先登陆及实名认证才能加好友')" title="加为好友">加为好友</a></p>
 				{/if}
 				<p><a href="/index.php?user&amp;q=code/user/blackfriend&amp;username={$var.user.username}" title="加为黑名单" style="color:#666666">设为黑名单</a></p>
 				<p><a href="/zaixian/index.html">举报此人</a></p>
-			</div>
+			</div> -->
 
-			<div class="box-info-detail">
+			<!-- <div class="box-info-detail"> -->
 			
                   	<div class="pro_info">
                         <table width="100%" class="tb_pro tb_pro02 m_b_10">
                           <tr>
                             <th class="f_16 f_bold" style="width:100px;">筹款金额：</th>
-                            <td class="f_16 f_bold">￥{$var.borrow.account}元   年利率：{$var.borrow.apr}%  期限：{if $var.borrow.isday==1 } 
+                            <td class="f_16 f_bold">￥{$var.borrow.account}元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年利率：{$var.borrow.apr}%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期限：{if $var.borrow.isday==1 } 
 								{$var.borrow.time_limit_day}天
 							{else}
 								{$var.borrow.time_limit}个月
@@ -416,7 +417,7 @@
 					<li>最大投标额：{if $var.borrow.most_account==0}不限{else}￥{$var.borrow.most_account}元{/if}</li>
 					<li>总投标数：{$var.borrow.tender_times}次</li>
 				</ul> -->
-			</div>
+			<!-- </div> end box-info-detail-->
 
 		</div>
 		<!-- <div class="box box-kefu">

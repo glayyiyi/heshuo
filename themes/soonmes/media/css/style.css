@@ -362,11 +362,11 @@ p.credit_pic a{display: inline-block;width:40px;height:30px;margin-right:5px
 .box-info-detail-ac p{text-align:center;padding-top:20px;color: #C30;}
 .list-tab-con ul li{width:230px;float: left;padding-left:20px;height:36px;line-height:36px;}
 .list-tab-con p{height:36px;line-height:36px;}
-.pop-tb{width:700px;height:310px;background-color: #fff;border: 1px solid #d5d5d5;margin: 10px auto;}
+.pop-tb{width:700px;height:330px;background-color: #fff;border: 1px solid #d5d5d5;margin: 10px auto;}
 .pop-tb-head{height:39px;background: #d5d5d5 url(../bg/pop-bg.png) 0 0;border-bottom: 1px solid #d5d5d5;float: left;line-height: 39px;width: 700px;}
 .pop-tb-head h2{width:500px;height:40px;float: left;line-height:40px;padding-left:20px;font-size:14px;color: #C30;}
 .pop-tb-head a{display: block;width:20px;height:20px;float: right;margin: 10px;line-height:20px;text-align:center;font-size:14px;}
-.pop-tb-l{float: left;width:198px;height:260px;padding-top:10px;background-color: #fdffe5;border: 1px solid #e5e5e5;border-width:0 1px 0 0;}
+.pop-tb-l{float: left;width:198px;height:280px;padding-top:10px;background-color: #fdffe5;border: 1px solid #e5e5e5;border-width:0 1px 0 0;}
 .pop-tb-l ul li{padding-left:20px;height:30px;line-height:30px;}
 .pop-tb-l ul li strong{font-size: 14px;color: #FF0000;}
 .pop-tb-r{width:480px;float: right;padding-left:20px;padding-top:10px;}
