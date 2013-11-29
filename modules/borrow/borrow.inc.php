@@ -322,7 +322,9 @@ elseif ($_U['query_type'] == "tender"){
 				$data['user_id'] = $_G['user_id'];
 				$data['status'] = 5;
 				$result = borrowClass::AddTender($data);//添加借款标
-				if ($result === true){
+// 				print_r($result);
+// 				exit();
+				if ($result["tender_result"] === true){
 					if ($borrow_result['status'] ==1 && ($borrow_result['account_yes'] + $account_money) >= $borrow_result['account'] && $borrow_result['is_lz']!=1){
 						$classname = $borrow_result['biao_type']."biaoClass";
 						$dynaBiaoClass = new $classname();
@@ -334,7 +336,8 @@ elseif ($_U['query_type'] == "tender"){
 							borrowClass::AddRepayment($data_e);
 						}
 					}
-					$msg = array("投标成功","","/index.php?user&q=code/borrow/bid");
+					//By Glay $msg = array("投标成功","","/index.php?user&q=code/borrow/bid");
+					$msg = array("投标成功","",'/invest/a'.$_POST['id'].'.html?doaction=success&tender_id='.$result['tender_id']);
 				}else{
 					if(is_bool($result) && $result==false){
 						$msg = array("投标失败",'','/invest/a'.$_POST['id'].'.html');
@@ -351,6 +354,32 @@ elseif ($_U['query_type'] == "tender"){
 	$lock->release($lockTenderNo);
 	}
 	//投标锁 add by weego 20121010
+}
+//担保标投标
+elseif ($_U['query_type'] == "tendercontract"){
+	
+	$data_c['id'] = $_POST['tender_id'];
+	$data_c['c_address'] = $_POST['c_address'];
+	$data_c['c_name'] = $_POST['c_name'];
+	$data_c['c_phone'] = $_POST['c_phone'];
+	$data_c['c_contact_way'] = $_POST['c_contact_way'];
+	if(isset($_POST['c_with_email'])&&$_POST['c_with_email']!="")
+		$data_c['c_with_email'] = 1;
+	else 
+		$data_c['c_with_email'] = 0;
+	
+	if( isset($_POST['c_with_post'])&&$_POST['c_with_post']!=null)
+		$data_c['c_with_post'] = 1;
+	else
+		$data_c['c_with_post'] =0;
+	
+
+	$result = borrowClass::UpdateTender($data_c);//添加借款标
+	if($result)
+		$msg = array("保存合同及其他设置成功！");
+	else 
+		$msg = array("错误，保存合同及其他设置失败！");
+		
 }
 //担保标投标
 elseif ($_U['query_type'] == "vouch"){

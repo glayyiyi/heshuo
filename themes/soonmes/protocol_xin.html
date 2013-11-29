@@ -1,3 +1,192 @@
+
+{if $magic.request.admin}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{$_A.list_name|default:"管理中心"}_{$_G.system.con_webname}管理后台</title>
+<link href="{$tpldir}/../mamger/admin.css" rel="stylesheet" type="text/css" />
+<script src="{$tpldir}/../mamger/js/jquery.js" type="text/javascript"></script>
+ 
+<script src="/plugins/timepicker/WdatePicker.js" type="text/javascript"></script>
+<script src="{$tpldir}/../mamger/js/base.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$tempdir}/media/js/thickbox/thickbox.js"></script>
+<link rel="stylesheet" href="{$tempdir}/media/js/thickbox/thickbox.css" type="text/css" media="screen" />
+<!--jbox-->
+<link id="skin" rel="stylesheet" href="{$tempdir}/media/js/jBox/Skins/Gray/jbox.css" />
+<script type="text/javascript" src="{$tempdir}/media/js/jBox/jquery.jBox-2.3.min.js?v=1" charset='gb2312'></script>
+<script type="text/javascript" src="{$tempdir}/media/js/jBox/i18n/jquery.jBox-zh-CN.js?v=1" charset='gb2312'></script>
+<script type="text/javascript" src="{$tempdir}/media/js/newAction.js"></script>
+<script type="text/javascript" src="{$tempdir}/media/js/tipswindown.js"></script>
+<link href="{$tempdir}/media/css/style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="{$tempdir}/media/css/jquery-ui.css" type="text/css" media="all" />
+<!-- <script src="{$tempdir}/script/jquery-1.7.2.min.js" type="text/javascript"></script> -->
+ <script type="text/javascript" src="{$tempdir}/media/js/jquery.js"></script> 
+<script type="text/javascript" src="{$tempdir}/media/js/jquery-ui.js"></script>
+<script type="text/javascript" src="{$tempdir}/media/js/thickbox/thickbox.js"></script>
+<link rel="stylesheet" href="{$tempdir}/media/js/thickbox/thickbox.css" type="text/css" media="screen" />
+<!--jbox-->
+<link id="skin" rel="stylesheet" href="{$tempdir}/media/js/jBox/Skins/Gray/jbox.css" />
+<script type="text/javascript" src="{$tempdir}/media/js/jBox/jquery.jBox-2.3.min.js?v=1" charset='gb2312'></script>
+<script type="text/javascript" src="{$tempdir}/media/js/jBox/i18n/jquery.jBox-zh-CN.js?v=1" charset='gb2312'></script>
+<script type="text/javascript" src="{$tempdir}/media/js/blockUI.js"></script>
+<script type="text/javascript" src="{$tempdir}/media/js/index.js"></script>
+<!--jbox-->
+ {literal}
+<script type="text/javascript">
+/*
+jQuery(document).ready(function() { 
+ 	// 绑定表单提交事件处理器
+	jQuery('form').submit(function() {
+		// 提交表单  add by weego 20130128
+ 	    jQuery.jBox.tip("正在提交..", 'loading');
+	    //end by weego
+		// 为了防止普通浏览器进行表单提交和产生页面导航（防止页面刷新？）返回false
+		return true;
+	   });
+
+}); */
+function submit_fool(){
+	jQuery.jBox.tip('正在提交，请不要关闭浏览器和刷新本页面','loading');return true;
+}
+</script>
+ {/literal}
+</head>
+
+<body>
+<div class="main top js-topHeight">
+	<div class="logo "><img src="{$tpldir}/../mamger/images/admin_top.png" /></div>
+	<div class="banner">
+		<div class="banner_top">
+			<span>
+			 <a href="/?admin">管理控台</a>  当前登录： <font color="#FF0000">{$_G.user_result.realname}</font> ({$_G.user_result.typename})<a href="/?admin&q=logout">[注销]</a> |&nbsp;<a href="/" target="_blank">网站首页</a> 
+		 </span>　</div>
+ 
+
+	</div>
+	
+</div>
+
+<div class="main mainbody js-bodyHeight">
+	<div class="main_left js-mainleft">
+		
+			  		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_1',this)">+</a></span><strong><a href="#" >审核管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="site_menu_1">
+					<li><a href="/?admin&q=module/borrow&status=0&site_id=8&a=borrow" id="adminlist">发标初审</a></li>
+					<li><a href="/?admin&q=module/borrow/full&status=1&site_id=8&a=borrow" id="adminlist">满标复审</a></li>
+					<li><a href="/?admin&q=module/borrow/amount&site_id=8&a=borrow" id="adminlist">信用额度审批</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_4',this)">+</a></span><strong><a href="/?admin&q=module/borrow&site_id=8&a=borrow" >贷款管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="site_menu_4">
+					<li><a href="/borrow/index.html">创建新借款</a></li>
+					<li><a href="/?admin&q=module/borrow&status=1&site_id=8&a=borrow" id="adminlist">正在招标的借款</a></li>
+					<li><a href="/?admin&q=module/borrow&status=2&site_id=8&a=borrow" id="adminlist">初审未通过的借款</a></li>
+					<li><a href="/?admin&q=module/borrow/full&status=3&site_id=8&a=borrow" id="adminlist">满标复审状态</a></li>
+					<li><a href="/?admin&q=module/borrow/liubiao&site_id=8&a=borrow" id="adminlist">流标</a></li>
+					<li><a href="/?admin&q=module/borrow&site_id=8&a=borrow" id="admintype">所有借款</a></li>
+ 					<li><a href="/?admin&q=module/borrow/tongji&site_id=8&a=borrow" id="adminlist">贷款统计</a></li>
+ 					<li><a href="/protocol_xin/index.html?admin=admin">借款协议</a></li>
+
+				</ul>
+			</div>
+		</div>
+
+ 
+		
+		
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_5',this)">+</a></span><strong><a href="#" >还款管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="site_menu_5">
+					<li><a href="/?admin&q=module/borrow/lateFast&site_id=8&a=borrow" id="adminlist">即将到期借款</a></li>
+					<li><a href="/?admin&q=module/borrow/repayment&site_id=8&a=borrow&status=1" id="adminlist">已还款借款</a></li>
+					<li><a href="/?admin&q=module/borrow/late&site_id=8&a=borrow" id="adminlist">当前逾期借款</a></li>
+					
+				</ul>
+			</div>
+		</div>
+		
+ 
+		
+	</div>
+	<div class="main_right js-mainright">
+ 		<div class="banner_position">
+ 
+		<ul class="aNavContent">
+			<li class=""><a href="/?admin&q=module/borrow&site_id=8&a=borrow">借款管理</a></li>
+			<li class=""><a href="/?admin&q=module/attestation/all_s&site_id=26&a=attestation">认证管理</a></li>
+			<li class=""><a href="/?admin&q=module/account/list&a=cash">资金管理</a></li>
+			<li class=""><a href="/?admin&q=module/userinfo&site_id=46&a=userinfo">用户管理</a></li>
+			<li class=""><a href="/?admin&q=module/article&a=content">文章管理</a></li> 
+			<li class=""><a href="/?admin&q=site/loop&a=loop">栏目管理</a></li> 
+			<li class=""><a href="/?admin&q=module">模块管理</a></li>
+			<li class=""><a href="/?admin&q=system">系统设置</a></li>
+ 
+		</ul>
+	</div>	
+    	
+		<div class="main_site">
+			<ul>
+				
+				<li class="site_sub">{$_A.list_menu}</li>
+				<li class="title">借款模块 <span>/ 借款协议</span></li>
+				
+			</ul>
+		</div>
+		<div class="main_content">
+
+			<table width="100%" cellspacing="1" border="0" bgcolor="#CCCCCC">
+				<tr align="center">
+					<th class="main_td" style="text-align: center">协议号</th>
+					<th class="main_td" style="text-align: center">出借人</th>
+					<th class="main_td" style="text-align: center">借款金额</th>
+					<!-- <th class="main_td">借款期限</th>
+					<th class="main_td">年利率</th> -->
+					<!-- <th class="main_td">借款开始日</th>
+					<th class="main_td">借款到期日</th>
+					<th class="main_td">截止还款日</th> -->
+					<th class="main_td" style="text-align: center">签订日期</th>
+					<!-- <th class="main_td" style="text-align: center">还款本息</th> -->
+					<th class="main_td" style="text-align: center">合同／地址</th>
+					<th class="main_td" style="text-align: center">姓名</th>
+					<th class="main_td" style="text-align: center">联系方式</th>
+					<th class="main_td" style="text-align: center">时间</th>
+					<th class="main_td" style="text-align: center">电子邮件</th>
+					<th class="main_td" style="text-align: center">邮寄</th>
+				</tr>
+				{loop module="borrow" var="bor" function="GetTenderList" limit="all"}
+				
+				<tr>
+					<td>{$bor.id}</td>
+					<td>{$bor.username}</td><td>{$bor.tender_account}元</td>
+					<!-- <td>{if $var.isday==1}{$var.time_limit_day}天{else}{$var.time_limit|linkage:"borrow_time_limit"}{/if}</td>
+					<td>{$var.apr}%</td> -->
+					<td>{$bor.addtime|date_format:"Y-m-d"}</td>
+					<!-- <td>
+		               {$bor.equal.monthly_repayment|round:2} 元
+		             </td> -->
+		                    <td>{$bor.c_address}</td>
+		                    <td>{$bor.c_name}</td>
+		                    <td>{$bor.c_phone}</td>
+		                    <td>{if $bor.c_contact_way==1}随时{elseif $bor.c_contact_way==2}仅工作日 {elseif $bor.c_contact_way==3}仅双休日 {else}来前先电话预约 {/if}</td>
+		                    <td>{if $bor.c_with_email==1}是{else}否{/if}</td>
+		                    <td>{if $bor.c_with_post==1}是{else}否{/if}</td>
+				</tr>
+				{/loop}
+		  </table>
+		
+		</div>
+		</div>
+<div class="foot"><span class="login-buttom-txt">Powered by　<strong><a href="http://www.erongdu.com" style="color:#fff;">RDTECH</a>　V6.1.0</strong> <font color="#FF9900"></font> &copy; 2010-2012, RONGDU &nbsp;Inc.</span></div>
+{else}
 {include file="header.html"}
 {if $_G.user_id==""}
 	{rewrite url="/index.action?user&q@@going/login"}
@@ -8,46 +197,65 @@
 	{/if}
 {/article}
 {article module="borrow" function="GetOne" id="$magic.request.borrow_id"}
-{if $var.status!=3}
-{message content="您的操作有误!"}
-{else}
+
 <div id="main" class="clearfix">
 	<div class="protocol">
 		<div class="title">借款协议书</div>
-		<div class="but">借款协议号：{$var.addtime}{$_G.user_id} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借款人： {$var.username}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出借人：详见本协议第一条 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签订日期：{$var.repayment_time|date_format:"Y-m-d"}</div>
+		<div class="but">借款协议号：{$magic.request.tender_id} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借款人： {$var.username}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出借人：详见本协议第一条</div>
 		<div class="xieyi">借款人通过{$_G.system.con_webname}网站(以下简称“本网站”),就有关借款事项与各出借人达成如下协议：</div>
 		<div><b>第一条：借款详情如下表所示： </b></div>
 		<div>
 			<table class="gvList" cellspacing="0" rules="all" border="1" id="ctl00_ContentPlaceHolder1_gvLoans" style="width:100%;border-collapse:collapse;">
 				<tr height="30">
-					<th align="center" scope="col">出借人(id)</th>
+					<th align="center" scope="col">出借人</th>
 					<th align="center" scope="col">借款金额</th>
 					<th align="center" scope="col">借款期限</th>
 					<th align="center" scope="col">年利率</th>
-					<th align="center" scope="col">借款开始日</th>
+					<!-- <th align="center" scope="col">借款开始日</th>
 					<th align="center" scope="col">借款到期日</th>
-					<th align="center" scope="col">截止还款日</th>
+					<th align="center" scope="col">截止还款日</th> -->
+					<th align="center" scope="col">签订日期</th>
 					<th align="center" scope="col">还款本息</th>
+					<!-- <th align="center" scope="col">合同／地址</th>
+					<th align="center" scope="col">姓名</th>
+					<th align="center" scope="col">联系方式</th>
+					<th align="center" scope="col">时间</th>
+					<th align="center" scope="col">电子邮件</th>
+					<th align="center" scope="col">邮寄</th> -->
 				</tr>
-				{loop module="borrow" var="bor" function="GetTenderList" borrow_id="request" limit="all"}
+				{loop module="borrow" var="bor" function="GetTenderList" borrow_id="request" tender_id="request" limit="all"}
+				{if $bor.user_id!=$_G.user_id}
+					{message content="未找到相应的借款标!" mode=1}
+				{/if}
 				<tr height="30">
 					<td>{$bor.username}</td><td>{$bor.tender_account}元</td>
 					<td>{if $var.isday==1}{$var.time_limit_day}天{else}{$var.time_limit|linkage:"borrow_time_limit"}{/if}</td>
-					<td>{$var.apr}%</td><td>{$var.success_time|date_format:"Y-m-d"}</td>
+					<td>{$var.apr}%</td>
+				<!-- 	<td>{$var.success_time|date_format:"Y-m-d"}</td>
 					<td>{$var.end_time|date_format:"Y-m-d"}</td>
-					<td>{if $var.isday==1 || $var.style==2}{$var.end_time|date_format:"Y-m-d"}{else}{$var.each_time}{/if}</td><td>
-		                       {$bor.equal.monthly_repayment|round:2} 元
-		                    </td>
+					<td>{if $var.isday==1 || $var.style==2}{$var.end_time|date_format:"Y-m-d"}{else}{$var.each_time}{/if}</td> -->
+					<td>{$bor.addtime|date_format:"Y-m-d"}</td>
+					<td>
+		               {$bor.equal.monthly_repayment|round:2} 元
+		             </td>
+		                   <!--  <td>{$bor.c_address}</td>
+		                    <td>{$bor.c_name}</td>
+		                    <td>{$bor.c_phone}</td>
+		                    <td>{if $bor.c_contact_way==1}随时{elseif $bor.c_contact_way==2}仅工作日 {elseif $bor.c_contact_way==3}仅双休日 {else}来前先电话预约 {/if}</td>
+		                    <td>{if $bor.c_with_email==1}是{else}否{/if}</td>
+		                    <td>{if $bor.c_with_post==1}是{else}否{/if}</td> -->
 				</tr>
 				{/loop}
 		  </table>
 		</div>
 		<div class="content">
 			{$_G.site_result.content}
-			<div style="text-align:center"><input type="button" value="下载协议书" onclick="location.href=location.href+'&type=pdf'" /></div>
+			<!-- <div style="text-align:center"><input type="button" value="下载协议书" onclick="location.href=location.href+'&type=pdf'" /></div> -->
 		</div>
 	</div>
 </div>
-{/if}
+
 {/article}
+
 {include file="footer.html"}
+{/if}

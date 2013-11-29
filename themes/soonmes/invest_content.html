@@ -2,7 +2,8 @@
 {article module="borrow" function="GetInvest" article_id="0"}
 {if $var.borrow.id<1}
 {message content="未找到相应的借款标!" mode=1}
-{else}
+{/if}
+
 <link href="{$tempdir}/media/css/modal.css" rel="stylesheet" type="text/css" />
 
 <div id="main" class="clearfix">
@@ -44,7 +45,175 @@
 			<span class="fr num">项目编号：{$var.borrow.id}</span> 
 		</div>
 	<div class="bg clearfix">
-	{if $magic.request.detail=="true"}
+	
+	{if $magic.request.doaction=="success"}
+	{loop module="borrow" var="bor" function="GetTenderList" borrow_id="request" tender_id="request" limit="all"}
+	{if $bor.user_id!=$_G.user_id}
+		{message content="未找到相应的借款标!" mode=1}
+	{/if}
+	
+	<div class="successful">
+                      <s class="icon_successful"></s>
+			您已完成<em class="c_red">{$bor.tender_account}元</em>项目投资，目前您的相关投资资金已冻结，在正式起息日{$bor.success_time|date_format:"Y-m-d"}开始后我们将从您的账户划出这笔冻结资金，以下为具体投资协议合同:（起息日计算规则为筹标时间的期限+1天）
+                  </div>
+		<div class="fl b_f0f0f0">
+                	
+                  <!--  -->
+                  <div class="succ_m">
+                    <div class="s_hd">
+                        <h3 class="fl">投资协议合同</h3>
+                       <!--  <span class="fr suc_btn">
+                            <a class="btn_whiteBg01 m_r_5" style="width:44px;" href="#">
+                              <span class="fl"></span>
+                              <span class="fr"></span>
+                              <label class="txt">打印</label>
+                            </a>
+                            <a class="btn_whiteBg01 m_r_5" style="width:56px;" href="#">
+                              <span class="fl"></span>
+                              <span class="fr"></span>
+                              <label class="txt">另存为</label>
+                            </a>
+                            <a class="btn_whiteBg01" style="width:104px;" href="#">
+                              <span class="fl"></span>
+                              <span class="fr"></span>
+                              <label class="txt">电子邮件发给我</label>
+                            </a>
+                        </span> -->
+                    </div>
+                    <div class="s_bg p_10">
+                        <table width="100%" class="tb_succ">
+                          <tr>
+                            <td>协议号：{$magic.request.tender_id}</td>
+                            <td>签订日期：{$bor.addtime|date_format:"Y-m-d"}</td>
+                          </tr>
+                          <tr>
+                            <td>筹款人：{$bor.op_username}</td>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>投资出借人：{$bor.username}</td>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>借款人通过君赋堂网站(以下简称“本网站”),就有关借款事项与各出借人达成如下协议：......</td>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td>
+                            
+                        
+                          {if $var.borrow.is_mb==1}
+                          <p><a href="/protocol_miao/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
+                          {/if}
+                          {if $var.borrow.is_fast==1}
+                          <a href="/protocol_fast/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
+                          {/if}
+                          {if $var.borrow.is_jin==1}
+                          <a href="/protocol_jin/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
+                          {/if}
+                          {if $var.borrow.is_vouch==1}
+                          <a href="/protocol_danbao/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
+                          {/if}
+                          {if $var.borrow.is_vouch != 1 && $var.borrow.is_mb!=1 && $var.borrow.is_fast!=1 && $var.borrow.is_jin!=1 }
+                          <a href="/protocol_xin/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
+                          </p>
+                          {/if}
+                            </td>
+                            <td>&nbsp;</td>
+                          </tr>
+                        </table>
+                    </div>
+                  </div>
+                  <!--  -->
+                  <!--  -->
+                  <div class="succ_m">
+                    <div class="s_hd">
+                        <h3 class="fl">合同及其他设置</h3>
+                        <span class="fr"></span>
+                    </div>
+                    
+                  <form action="/index.php?user&q=code/borrow/tendercontract" name="form2" method="post">
+                    <div class="s_bg p_10">
+                        <ol class="ht_list">
+                            <li>
+                                <em class="num">1、</em>
+                                <div class="con">
+                                    <p>我们将把合同和相关的收益权转让协议给您签字，请告知方便的时间和地点，我们有专门的服务人员上门服务：</p>
+                                    <p>地址：<input style="width:310px;" name="c_address" type="text" class="input_style_02" id="textfield" value="{$bor.c_address}" /></p>
+                                    <p>姓名：<input style="width:310px;" name="c_name" type="text" class="input_style_02" id="textfield" value="{$bor.c_name}" /></p>
+                                    <p>联系方式 ：<input style="width:280px;" name="c_phone" type="text" class="input_style_02" id="textfield" value="{$bor.c_phone}" /></p>
+                                    <p>
+                                      <label class="m_r_10"><input type="radio" name="c_contact_way" value="1" {if $bor.c_contact_way==1} checked="checked"{/if} /> 随时</label>
+                                      <label class="m_r_10"><input type="radio" name="c_contact_way" value="2"  {if $bor.c_contact_way==2} checked="checked"{/if}/> 仅工作日</label>
+                                      <label class="m_r_10"><input type="radio" name="c_contact_way" value="3" {if $bor.c_contact_way==3} checked="checked"{/if}/> 仅双休日</label>
+                                      <label><input type="radio" name="c_contact_way" value="4" {if $bor.c_contact_way==4} checked="checked"{/if}/> 来前先电话预约</label>
+                                      <input type="hidden" name="tender_id" value="{$magic.request.tender_id}" />
+                                       <!-- <input type="hidden" name="user_id" value="{$_G.user_id}" /> -->
+
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <em class="num">2、</em>
+                                <div class="con">
+                                    <p>将后续的对账单以以下形式发给我</p>
+                                    <p>
+                                      <label class="m_r_10"><input type="checkbox" name="c_with_email" id="c_with_email" {if $bor.c_with_email==1} checked="checked"{/if}/> 电子邮件</label>
+                                      <label class="m_r_10"><input type="checkbox" name="c_with_post" id="c_with_post" {if $bor.c_with_post==1} checked="checked"{/if}/> 线下邮寄</label>
+                                    </p>
+                                </div>
+                            </li>
+                        </ol>
+                        <p class="tc m_b_20"><input type="submit" class="ico_sprite btnnew btn_view_02" value='确 认'/></p>
+                        
+                        <p class="f_12">您还可以：<span class="c_157aeb"><a href="/invest/a{$var.borrow.id}.html" class="noneLine_style">查看此次投资详情</a> | <a href="/index.php?user&q=code/borrow/lenddetail" class="noneLine_style">查看我投资成功的其他项目</a>  | <a href="/invest/index.html?order=account_up" class="noneLine_style">查看其他投资项目</a></span></p>
+                    </div>
+                    </form>
+                  </div>
+                  <!--  -->
+              </div>
+
+              	<div class="p_8_5 recharge">
+                   <div class="personnel m_b_60">
+          {article module="borrow" function="Getkf"}
+			{if $var.username}
+					
+			
+			<div class="box box-kefu">
+			<div class="box-title">你的理财顾问</div>
+			<div class="box-con">
+				{article module="borrow" function="Getkf" var="kfUser"}
+				<img class="user-photo" src="{$kfUser.kefu_userid|avatar:'middle'}" />
+				{if $kfUser.username != ""}
+				<p>{$kfUser.username}</p>
+				<p>姓名：{$kfUser.realname}</p>
+				<p>电话：{$kfUser.phone}</p>
+				<p>在线联系：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$kfUser.qq}&site=qq&menu=yes">
+				<img border="0" src="http://wpa.qq.com/pa?p=2:{$kfUser.qq}:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></p>
+				{/if}
+				<p>发送消息：<a href="/index.php?user&q=code/message/sent&receive={$kfUser.username}">站内信</a></p>
+				<!-- <p>总机：{$_G.system.con_tel}</p> -->
+				<p>{if $kfUser.username== ""}
+                    您好，您还没有申请您的理财顾问，赶快来<a href="/vip/index.html" style="color:red">申请</a>吧！
+                    {else}
+                    您好，有任何疑问可随时跟您的理财顾问<font color="red">{$kfUser.username}</font>联系！
+                    {/if}</p>
+                {/article}
+			</div>
+		</div>
+			{/if}
+			{/article}
+                   </div>  
+                 
+
+                
+              </div>
+            </div>
+        </div>
+        <!-- end 项目详情 -->
+	{/loop}	
+		
+	{elseif $magic.request.detail=="true"}
 	<div class="pop-tb clearfix">
 	<div class="pop-tb-head clearfix">
 		<h2>{$var.borrow.name}</h2>
@@ -96,9 +265,11 @@
 					
 				</ul>
 				<p class="mar20"><input type="submit" class="btn-action" value="确认付款"><p>
-				<p class="text-red"><input type="hidden" name="id" value="{$_G.article_id}" />注意:点击确认表示您将投标金额并同意支付,同一用户对同一个标限投5次</p>
+				<p class="text-red"><input type="hidden" name="id" value="{$_G.article_id}" />注意:点击确认表示您将投标金额并同意支付</p>
 			</form>
 			</div>
+		</div>
+		</div>
 		</div>
 		</div>
 	{else}
@@ -254,25 +425,6 @@
            
                        
            <div class="clearfix fuxuan">
-                        {if $var.borrow.status==3}
-                          {if $var.borrow.is_mb==1}
-                          <p><a href="/protocol_miao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
-                          {/if}
-                          {if $var.borrow.is_fast==1}
-                          <a href="/protocol_fast/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
-                          {/if}
-                          {if $var.borrow.is_jin==1}
-                          <a href="/protocol_jin/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
-                          {/if}
-                          {if $var.borrow.is_vouch==1}
-                          <a href="/protocol_danbao/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
-                          {/if}
-                          {if $var.borrow.is_vouch != 1 && $var.borrow.is_mb!=1 && $var.borrow.is_fast!=1 && $var.borrow.is_jin!=1 }
-                          <a href="/protocol_xin/index.html?borrow_id={$var.borrow.id}" target="_blank"><font color="#fb1515" size="3"><b>借款协议书</b></font></a>
-                          </p>
-                          {/if}
-                          {/if}
-                        
                         	<!-- <p><label><input name="" type="checkbox" value=""> 我已经做过相关自己投资风险测试评估问卷  还没做过，现在做</label></p> -->
                         	<p><label><input name="" type="checkbox" checked="checked"> 我已经阅读并同意网站的相关投资声明条款</label></p>
                         	<p><label><input name="" type="checkbox" checked="checked"> 我已经阅读此项目的产品风险揭示书、信托计划说明书、风险申明书</label></p>
@@ -448,7 +600,8 @@
 				{article module="borrow" function="Getkf" var="kfUser"}
 				<img class="user-photo" src="{$kfUser.kefu_userid|avatar:'middle'}" />
 				{if $kfUser.username != ""}
-				<p>姓名: {$kfUser.username}</p>
+				<p>{$kfUser.username}</p>
+				<p>姓名：{$kfUser.realname}</p>
 				<p>电话：{$kfUser.phone}</p>
 				<p>在线联系：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$kfUser.qq}&site=qq&menu=yes">
 				<img border="0" src="http://wpa.qq.com/pa?p=2:{$kfUser.qq}:41" alt="点击这里给我发消息" title="点击这里给我发消息"></a></p>
@@ -993,7 +1146,7 @@ var sDay="",sTime="";
 {/literal}
 	
 </script>
-{/if}
 
+{/article}
 </div>
 {include file="footer.html"}

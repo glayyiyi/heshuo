@@ -177,8 +177,10 @@ class borrowClass extends amountClass{
 		}
 		
 		//add by weego for 我要投资搜索关键词 20120527
-		$data['keywords']=urldecode($data['keywords']);
-		$data['keywords']=safegl($data['keywords']);
+		if(isset($data['keywords']) && $data['keywords']!=""){
+			$data['keywords']=urldecode($data['keywords']);
+			$data['keywords']=safegl($data['keywords']);
+		}
 		 
 		if (isset($data['keywords']) && $data['keywords']!=""){
 			$_sql .= " and (p1.name like '%".$data['keywords']."%')";
@@ -445,7 +447,7 @@ class borrowClass extends amountClass{
 		}else{
 			$kfUserId=$_G['user_id'];
 		}
-		$sql="select u.username,u.qq,u.phone from `{user}` as u left join `{user_cache}` as uca on uca.kefu_userid=u.user_id where uca.user_id=".$kfUserId;
+		$sql="select u.username,u.qq,u.phone,u.realname from `{user}` as u left join `{user_cache}` as uca on uca.kefu_userid=u.user_id where uca.user_id=".$kfUserId;
 		$row = $mysql->db_fetch_array($sql);
 		return $row;
 	}
@@ -1031,6 +1033,9 @@ class borrowClass extends amountClass{
 		if (!empty($username)){
 			$_sql .= " and p2.username = '$username'";
 		}
+		if (isset($data['tender_id']) && $data['tender_id']!=""){
+			$_sql .= " and p1.id = '{$data['tender_id']}'";
+		}
 		if (isset($data['borrow_id']) && $data['borrow_id']!=""){
 			$_sql .= " and p1.borrow_id = '{$data['borrow_id']}'";
 		}
@@ -1091,6 +1096,8 @@ class borrowClass extends amountClass{
 				$result[$key]['i'] = $i;
 				$i++;
 			}
+// 			print_r($result);
+// 			exit();
 			return $result;
 		}
 		$row = $mysql->db_fetch_array(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array('count(1) as num', '', ''), $sql));
@@ -1119,6 +1126,7 @@ class borrowClass extends amountClass{
 			$result[$key]['i'] = $i;
 			$i++;
 		}
+		
 		return array(
             'list' => $list,
             'total' => $total,
@@ -1277,16 +1285,39 @@ class borrowClass extends amountClass{
 	public static function GetTenderOne($data = array()){
 		global $mysql;
 		$id = $data['id'];
+		$borrow_id = $data['borrow_id'];
 		$sql = "select * from {borrow_tender}  where id=$id";
 		$result = $mysql->db_fetch_array($sql);
 		//获取用户的基本资料
-		$sql = "select sum(money) as total from {borrow_tender}  where  borrow_id=$id";
+		$sql = "select sum(money) as total from {borrow_tender}  where  borrow_id=$borrow_id";
 		$_result = $mysql->db_fetch_array($sql);
 		$result['other'] = $result['borrow']['account'] - $_result['total'];
 		$result['scale'] = round(100*$_result['total']/$result['borrow']['account'],1);
 		$result['scale_width'] = round((20*$_result['total']/$result['borrow']['account']))*7;
 		return $result;
 	}
+	
+	/**
+	 * 添加投标
+	 *
+	 * @param Array $data
+	 * @return Boolen
+	 */
+	public static function UpdateTender($data = array()){
+		global $mysql;
+		$id = $data['id'];
+		if ($id  == "") {
+			return self::ERROR;
+		}
+		$_sql = "";
+		$sql = "update `{borrow_tender}` set ";
+		foreach($data as $key => $value){
+			$_sql[] .= "`$key` = '$value'";
+		}
+		$sql .= join(",",$_sql)." where 1 = 1 and id='{$id }'";
+		return $mysql->db_query($sql);
+	}
+	
 	/**
 	 * 添加投标
 	 *
@@ -1312,10 +1343,10 @@ class borrowClass extends amountClass{
 		$tenderResult = $mysql->db_fetch_array($sql);
 		$tendNum=$tenderResult["num"];
 		$max_tender_times = $dynaBiaoClass->get_max_tender_times();
-		if ($tendNum >= $max_tender_times){
-			$msg = "对不起，你已经超过最大投标次数(".$max_tender_times."次),谢谢。";
-			return $msg;
-		}
+//By Glay if ($tendNum >= $max_tender_times){
+// 			$msg = "对不起，你已经超过最大投标次数(".$max_tender_times."次),谢谢。";
+// 			return $msg;
+// 		}
 		mysql_query("start transaction");
 		$sql = "update {borrow} set account_yes=account_yes+{$data['account']},tender_times=tender_times+1  where id='{$data['borrow_id']}' and account>=account_yes+{$data['account']}";
 		$re = $mysql->db_query($sql);//更新已经投标的钱
@@ -1387,8 +1418,11 @@ class borrowClass extends amountClass{
 			$tender_data['account'] = $data['account'];
 			$tender_data['tender_id'] = $tender_id;
 			$tender_data['borrow_result'] = $resultBorrow;
-
+			
 			$tender_result = $dynaBiaoClass->tender($tender_data);
+			
+			//By Glay
+			$tender_data['tender_result'] = $tender_result;
 			if($tender_result==false){
 				mysql_query("rollback");
 			}else{
@@ -1397,7 +1431,8 @@ class borrowClass extends amountClass{
 					accountClass::ReturneTender(array('user_id'=>$data['user_id'],'borrow_id'=>$data['borrow_id'],'tender_money'=>$data['account']));
 				}
 			}
-			return $tender_result;
+			//By Glay return $tender_result;
+			return $tender_data;
 		}else{
 			mysql_query("rollback");
 			$msg = "投标失败。";
@@ -4531,7 +4566,8 @@ class borrowClass extends amountClass{
 					$data['user_id'] = $v['user_id'];
 					$data['status'] = 5;
 					$result = self::AddTender($data);//添加借款标
-					if($result == true){
+					//By Glay if($result== true)
+					if($result["tender_result"] == true){
 						$have_auto_do[]=$v['user_id'];//不再判断此用户
 						continue;
 					}

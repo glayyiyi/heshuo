@@ -1352,9 +1352,11 @@ body { font-family:Microsoft YaHei, SimSun, SimHei, Verdana, Arial, Helvetica, s
 
 /************** 付款成功 ****************/
 .successful {
-	height: 64px;
-	line-height: 64px;
+	height: 74px;
+	/* line-height: 64px; */
 	padding-left: 26px;
+	padding-right: 280px;
+	padding-top: 10px;
 	font-size: 18px;
 }
 .successful s {
