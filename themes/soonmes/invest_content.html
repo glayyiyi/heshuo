@@ -102,22 +102,10 @@
                             <td>
                             
                         
-                          {if $var.borrow.is_mb==1}
-                          <p><a href="/protocol_miao/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
-                          {/if}
-                          {if $var.borrow.is_fast==1}
-                          <a href="/protocol_fast/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
-                          {/if}
-                          {if $var.borrow.is_jin==1}
-                          <a href="/protocol_jin/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
-                          {/if}
-                          {if $var.borrow.is_vouch==1}
-                          <a href="/protocol_danbao/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
-                          {/if}
-                          {if $var.borrow.is_vouch != 1 && $var.borrow.is_mb!=1 && $var.borrow.is_fast!=1 && $var.borrow.is_jin!=1 }
+                          
                           <a href="/protocol_xin/index.html?borrow_id={$var.borrow.id}&tender_id={$magic.request.tender_id}" target="_blank" class="ico_sprite btnnew btn_view_02 f_bold">查看详情</a>
-                          </p>
-                          {/if}
+                  
+                          
                             </td>
                             <td>&nbsp;</td>
                           </tr>

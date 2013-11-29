@@ -1,6 +1,10 @@
 <?php
 !defined('IN_TEMPLATE') && exit('Access Denied');
 ?>
+{if $_G.user_id=="" ||$_G.user_result.type!=1 }
+	{rewrite url='/?admin&q=logout'}
+	
+{/if}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -87,7 +91,7 @@ function submit_fool(){
 			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_4',this)">+</a></span><strong><a href="/?admin&q=module/borrow&site_id=8&a=borrow" >贷款管理</a></strong></div>
 			<div class="fenlan_content">
 				<ul id="site_menu_4">
-					<li><a href="/borrow/index.html">创建新借款</a></li>
+					<li><a href="/borrow/index.html?admin=admin">创建新借款</a></li>
 					<li><a href="/?admin&q=module/borrow&status=1&site_id=8&a=borrow" id="adminlist">正在招标的借款</a></li>
 					<li><a href="/?admin&q=module/borrow&status=2&site_id=8&a=borrow" id="adminlist">初审未通过的借款</a></li>
 					<li><a href="/?admin&q=module/borrow/full&status=3&site_id=8&a=borrow" id="adminlist">满标复审状态</a></li>

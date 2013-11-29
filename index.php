@@ -90,8 +90,9 @@ $_user_id = array("");
 $_G['user_id']=''; //初始化当前登录的用户id
 $_G['is_cookie'] = isset($_G['system']['con_cookie'])?(int)$_G['system']['con_cookie']:0;
 
-if ($_G['query_site'] == $admin_name ){
-	//后台
+//By Glay 
+if ($_G['query_site'] == $admin_name ||(isset($_REQUEST['admin']) && $_REQUEST['admin']!="") ){
+	//后台 
 	if (isset($_SESSION['manager_loginendtime']) && $_SESSION['manager_loginendtime']>time()){
 			$_user_id = explode(",",authcode(isset($_SESSION['manager_rdun'])?$_SESSION['manager_rdun']:"","DECODE"));
 			$check_uid=$_SESSION['manager_uid'];
