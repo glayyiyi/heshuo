@@ -83,10 +83,10 @@
     <td width="65%"><a href="/index.php?user&amp;q=code/borrow/bid">正在进行的投标</a> <a href="/index.php?user&amp;q=code/account/cash">正在申请的提现</a></td>
   </tr>
   
-  <tr>
-    <td><a href="#" rel="tooltip" title="红包可直接用于抵扣提现手续费用或购买U盾等，主要来源于线下充值的奖励(奖励万分之三的红包)">可用红包</a>：<font>￥{$_G.user_result.hongbao}</font></td>
-    <td width="65%"></td>
-  </tr>
+<!--   <tr> -->
+<!--     <td><a href="#" rel="tooltip" title="红包可直接用于抵扣提现手续费用或购买U盾等，主要来源于线下充值的奖励(奖励万分之三的红包)">可用红包</a>：<font>￥{$_G.user_result.hongbao}</font></td> -->
+<!--     <td width="65%"></td> -->
+<!--   </tr> -->
   
  </table>
   <br>
