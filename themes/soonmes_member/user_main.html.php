@@ -32,7 +32,10 @@
 				<div class="user_right_txt">
 					<ul>
 					<li>
-					 <font color="red" size="5">尊敬的 {$_G.user_result.username} 客户</font>
+					 <font color="red" size="5">尊敬的 {$_G.user_result.realname} 客户</font>
+					</li>
+					<li>
+					 投资等级：<font color="red" size="3">{if $acc.collection>1000000}投资专家{elseif $acc.collection<1000000 && $acc.collection>800000}投资能手{elseif $acc.collection<800000 && $acc.collection>500000}投资达人{else}投资新手{/if}</font>
 					</li>
  <!-- 					<li><a href="/index.php?user&q=code/user/credit" style="float:left">{$_G.user_result.credit|credit}</a><font color="red">{$_G.user_result.credit}分</font> -->
 <!--                        {$_G.user_result.typename} -->
