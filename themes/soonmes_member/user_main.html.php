@@ -102,7 +102,7 @@
   </tr>
   <tr>
     <td>已赚利息：<font>￥{$acc.collection_interest1|round:2|default:0}</font> </td>
-    <td width="65%">&nbsp;&nbsp;&nbsp;&nbsp;已赚奖励：<font>￥{$acc.award_add|round:2|default:0}</font></td>
+<!--     <td width="65%">&nbsp;&nbsp;&nbsp;&nbsp;已赚奖励：<font>￥{$acc.award_add|round:2|default:0}</font></td> -->
   </tr>
 <!--   <tr> -->
 <!--     <td>借款总额：<font>￥{$acc.borrow_num|round:2|default:0}</font></td> -->
