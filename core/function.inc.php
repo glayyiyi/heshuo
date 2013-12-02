@@ -1433,6 +1433,10 @@ function sendSMS($userid,$content,$system=0,$phone=0)
 			$mobile = $phone;
 		}
 		if($mobile<1) return false;
+		//By Glay
+		$_u_results = userClass::GetOnes(array("user_id"=>$userid));
+		$realname=$_u_results['realname'];
+		
 		$http = $_G['system']['con_smsurl'];
 		$content = str_replace(",", "，", $content);
 		$content = str_replace("'", " ", $content);
@@ -1443,7 +1447,7 @@ function sendSMS($userid,$content,$system=0,$phone=0)
 				'username'=>$_G['system']['con_smsusername'],
 				'password'=>$_G['system']['con_smspassword'],
 				'mobile'=>$mobile,
-				'content'=>$content
+				'content'=>'尊敬的【'.$realname.'】用户：'.$content.'感谢您使用中硕信投金融平台。' //By Glay
 				//'time'=>$time,
 				//'mid'=>$mid
 		);

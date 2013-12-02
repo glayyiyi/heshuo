@@ -519,7 +519,7 @@ class remindClass{
 		if($data['receive_user']<=0){
 			return false;
 		}
-		$sql = "select remind,email,phone from `{user}` where user_id={$data['receive_user']}";
+		$sql = "select remind,email,phone,realname from `{user}` where user_id={$data['receive_user']}";
 		$result = $mysql->db_fetch_array($sql);
 		$remind_user = unserialize ($result['remind']);
 		$remind_result = self::GetNidOne(array("nid"=>$data['nid']));
@@ -534,6 +534,10 @@ class remindClass{
 		$message['receive_user'] = $data['receive_user'];
 		$message['name'] = $data['title'];
 		$message['content'] = $data['content'];
+		//By Glay
+		$realname=$result['realname'];
+		$message['content']='尊敬的用户【'.$realname.'】：<br>'.$message['content'].'感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
+		
 		$message['type'] = $data['type'];
 		$message['status'] = 0;
 		messageClass::Add($message);//发送短消息
@@ -543,7 +547,7 @@ class remindClass{
 			$remail['user_id'] = $data['receive_user'];
 			$remail['email'] = $email;
 			$remail['title'] = $data['title'];
-			$remail['msg'] =  $data['content'];
+			$remail['msg'] =  '尊敬的用户【'.$realname.'】：<br>'.$data['content'].'感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
 			$remail['type'] =  $data['type'];
 			$result = $user->SendEmail($remail);
 		}
