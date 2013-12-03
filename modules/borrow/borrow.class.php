@@ -1062,7 +1062,7 @@ class borrowClass extends amountClass{
 		if (isset($data['keywords']) && $data['keywords']!=""){
 			$_sql .= " and p1.name like '%".safegl($data['keywords'])."%'";
 		}
-		$_select = "p1.*,p1.account as tender_account,p1.money as tender_money,p2.user_id as borrow_userid,p2.username as op_username,p4.username as username,p3.apr,p3.time_limit,p3.time_limit_day,p3.isday,p3.name as borrow_name,p3.id as borrow_id,p3.account ,p3.account_yes,p3.end_time,p3.style,p5.value as credit_jifen,p6.pic as credit_pic";
+		$_select = "p1.*,p1.account as tender_account,p1.money as tender_money,p2.user_id as borrow_userid,p2.username as op_username,p2.realname as op_realname,p4.username as username,p4.realname as realname,p3.apr,p3.time_limit,p3.time_limit_day,p3.isday,p3.name as borrow_name,p3.id as borrow_id,p3.account ,p3.account_yes,p3.end_time,p3.style,p5.value as credit_jifen,p6.pic as credit_pic";
 		$sql = "select SELECT from `{borrow_tender}` as p1
 				left join `{borrow}` as p3 on p1.borrow_id=p3.id 
 				left join `{user}` as p2 on p3.user_id = p2.user_id

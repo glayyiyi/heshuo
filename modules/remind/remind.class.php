@@ -536,7 +536,7 @@ class remindClass{
 		$message['content'] = $data['content'];
 		//By Glay
 		$realname=$result['realname'];
-		$message['content']='尊敬的用户【'.$realname.'】：<br>'.$message['content'].'感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
+		$message['content']='尊敬的用户【'.$realname.'】：<br>'.$message['content'].'<br><br>感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
 		
 		$message['type'] = $data['type'];
 		$message['status'] = 0;
@@ -547,7 +547,7 @@ class remindClass{
 			$remail['user_id'] = $data['receive_user'];
 			$remail['email'] = $email;
 			$remail['title'] = $data['title'];
-			$remail['msg'] =  '尊敬的用户【'.$realname.'】：<br>'.$data['content'].'感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
+			$remail['msg'] =  '尊敬的用户【'.$realname.'】：<br>'.$data['content'].'<br><br>感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
 			$remail['type'] =  $data['type'];
 			$result = $user->SendEmail($remail);
 		}
