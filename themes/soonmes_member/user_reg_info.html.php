@@ -203,10 +203,10 @@ jQuery(function(){
 
 
 						</table>
-						<p style="padding-left: 30px; margin-bottom: 20px;">
-							<input type="checkbox" id="dianji" checked="checked"></>我已阅读并且同意助贷网-个人信用贷款
-							小额贷款 投资理财 企业融资 的 <a href="/data/reg.doc">使用协议</a>
-						</p>
+					<!--  	<p style="padding-left: 30px; margin-bottom: 20px;">-->
+<!-- 							<input type="checkbox" id="dianji" checked="checked"/>我已阅读并且同意助贷网-个人信用贷款 -->
+<!-- 							小额贷款 投资理财 企业融资 的 <a href="/data/reg.doc">使用协议</a> -->
+<!-- 						</p> -->
 						<p style="padding-left: 110px;">
 							<input type="submit" id="reg_btn" class="btnnew btn_login"
 								value="注 册" />
