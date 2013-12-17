@@ -1,15 +1,15 @@
 <?
 //被禁止的IP列表
 $ip_list = array(
-  '42.120.13.157', //yesmyloan
-  '58.215.172.36', //yesmyloan
-  '211.101.18.40', //yesmyloan
-  '124.226.69.0', //other
-  '110.75.189.78', //other
-  '42.121.96.243', //yesmyloan
-  '42.121.88.194', //daishuba
-  '118.123.13.181', //p2peye
- '219.234.2.99', //zeyansoft
+//   '42.120.13.157', //yesmyloan
+//   '58.215.172.36', //yesmyloan
+//   '211.101.18.40', //yesmyloan
+//   '124.226.69.0', //other
+//   '110.75.189.78', //other
+//   '42.121.96.243', //yesmyloan
+//   '42.121.88.194', //daishuba
+//   '118.123.13.181', //p2peye
+//  '219.234.2.99', //zeyansoft
 );
 if(!empty($_SERVER["HTTP_CLIENT_IP"])) {
 	$ip_address = $_SERVER["HTTP_CLIENT_IP"];
@@ -373,6 +373,11 @@ elseif ($_G['query_site'] == "comment" ){
 	include_once ("modules/comment/comment.inc.php");
 }
 else{
+	//By Glay
+	if  (!isset($_G['user_id']) || $_G['user_id']==""){
+		header('location:/index.action?user&q=going/login');
+		exit;
+	}
 		//获得站点和文章的信息
 		$quer = explode("/",$query_string[0]);	
 		if (isset($_REQUEST['query_site']) && $_REQUEST['query_site']!=""){

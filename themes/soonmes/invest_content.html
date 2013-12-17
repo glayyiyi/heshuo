@@ -23,19 +23,28 @@
             </div>
 					<!-- end 浮动层 -->
 				</div>
-<div class="step_tz m_b_10">
+	
+	
+	{if $magic.request.doaction=="contract"} <!-- 第二步 确认合同 -->
+	
+		<div class="step_tz m_b_10">
         	  <div class="step_n num_01">
             	<em class="n">1</em>
                 <label class="txt">选择项目</label>
             </div>
             <span class="direction"></span>
-            <div class="step_n num_02">
+            <div class="step_n num_02 hover">
             	<em class="n">2</em>
-                <label class="txt">确认付款（在线充值）</label>
+                <label class="txt">确认合同</label>
             </div>
             <span class="direction"></span>
             <div class="step_n num_03">
             	<em class="n">3</em>
+                <label class="txt">在线支付</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_04 ">
+            	<em class="n">4</em>
                 <label class="txt">投资完成</label>
             </div>
         </div>
@@ -46,11 +55,87 @@
 		</div>
 	<div class="bg clearfix">
 	
-	{if $magic.request.doaction=="success"}
+	<br>
+	<div >
+            <p>       
+			<B><font size=3>以下共有三份协议需要您阅读并同意：</font></B>
+			</p>
+			
+			<br>
+			<p>
+			<B>一,项目风险提示书</B>
+			</p>
+			<div align="center">
+			<div align="left" style="width:99%;height:200px; overflow:scroll; border:1px solid #FF6C00;"> 
+			{$_G.system.con_risk_notes}
+			</div>
+			</div>
+			<br>
+			<p>
+			<B>二,投资协议</B>
+			</p>
+			<div align="center">
+			<div align="left" style="width:99%;height:200px; overflow:scroll; border:1px solid #FF6C00;"> 
+			{$_G.system.con_invest_protocol}
+			</div>
+			</div>
+		<br>
+			<p>
+			<B>三,投资委托书</B>
+			</p>
+			<div align="center">
+			<div align="left" style="width:99%;height:200px; overflow:scroll; border:1px solid #FF6C00;"> 
+			{$_G.system.con_invest_commission}
+			</div>
+			</div>
+			
+			<br>
+    </div>
+   
+    </div>
+    <br>
+    <p align="center"> <a  class="btnnew btn_login f_18" href="?detail=true">
+			同意并继续</a>
+	</p>
+    </div>
+    
+	
+	
+	
+	{elseif $magic.request.doaction=="success"} <!-- 第四步 -->
 	{loop module="borrow" var="bor" function="GetTenderList" borrow_id="request" tender_id="request" limit="all"}
-	{if $bor.user_id!=$_G.user_id}
+		{if $bor.user_id!=$_G.user_id}
 		{message content="未找到相应的借款标!" mode=1}
-	{/if}
+		{/if}
+	
+	<div class="step_tz m_b_10">
+        	  <div class="step_n num_01">
+            	<em class="n">1</em>
+                <label class="txt">选择项目</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_02">
+            	<em class="n">2</em>
+                <label class="txt">确认合同</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_03">
+            	<em class="n">3</em>
+                <label class="txt">在线支付</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_04 hover">
+            	<em class="n">4</em>
+                <label class="txt">投资完成</label>
+            </div>
+        </div>
+	<div class="module_05 m_b_20">
+		<div class="hd">
+			<h3 class="fl tit">项目详情：{$var.borrow.name}</h3>
+			<span class="fr num">项目编号：{$var.borrow.id}</span> 
+		</div>
+	<div class="bg clearfix">
+	
 	
 	<div class="successful">
                       <s class="icon_successful"></s>
@@ -199,7 +284,36 @@
         <!-- end 项目详情 -->
 	{/loop}	
 		
-	{elseif $magic.request.detail=="true"}
+	{elseif $magic.request.detail=="true"}<!-- 第三步 -->
+	<div class="step_tz m_b_10">
+        	  <div class="step_n num_01">
+            	<em class="n">1</em>
+                <label class="txt">选择项目</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_02">
+            	<em class="n">2</em>
+                <label class="txt">确认合同</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_03 hover">
+            	<em class="n">3</em>
+                <label class="txt">在线支付</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_04">
+            	<em class="n">4</em>
+                <label class="txt">投资完成</label>
+            </div>
+        </div>
+	<div class="module_05 m_b_20">
+		<div class="hd">
+			<h3 class="fl tit">项目详情：{$var.borrow.name}</h3>
+			<span class="fr num">项目编号：{$var.borrow.id}</span> 
+		</div>
+	<div class="bg clearfix">
+	
+	
 	<div class="pop-tb clearfix">
 	<div class="pop-tb-head clearfix">
 		<h2>{$var.borrow.name}</h2>
@@ -258,7 +372,36 @@
 		</div>
 		</div>
 		</div>
-	{else}
+	{else}<!--第一步 -->
+	<div class="step_tz m_b_10">
+        	  <div class="step_n num_01 hover">
+            	<em class="n">1</em>
+                <label class="txt">选择项目</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_02">
+            	<em class="n">2</em>
+                <label class="txt">确认合同</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_03">
+            	<em class="n">3</em>
+                <label class="txt">在线支付</label>
+            </div>
+            <span class="direction"></span>
+            <div class="step_n num_04">
+            	<em class="n">4</em>
+                <label class="txt">投资完成</label>
+            </div>
+        </div>
+		<div class="module_05 m_b_20">
+			<div class="hd">
+			<h3 class="fl tit">项目详情：{$var.borrow.name}</h3>
+			<span class="fr num">项目编号：{$var.borrow.id}</span> 
+			</div>
+		<div class="bg clearfix">
+	
+        
 	<div class="box-detail clearfix">
 		<div class="box-info clearfix">
 <!-- 			<div class="box-info-user">
@@ -354,7 +497,7 @@
 					<p >剩余投资时间：已结束 </p>
 					{/if}
                           
-                          
+                   <br>      
                   <p>投资1万元,期限{if $var.borrow.isday==1 } 
                 {$var.borrow.time_limit_day}天
                 {else}
@@ -409,13 +552,14 @@
         	<!--  <p class="j_btn"><a href="我要投资－在线充值.html" class="btnnew btn_login f_18">确认投资</a></p> -->
            </div>
            
-                       
+           
+          <!--             
            <div class="clearfix fuxuan">
-                        	<!-- <p><label><input name="" type="checkbox" value=""> 我已经做过相关自己投资风险测试评估问卷  还没做过，现在做</label></p> -->
+                        	 <p><label><input name="" type="checkbox" value=""> 我已经做过相关自己投资风险测试评估问卷  还没做过，现在做</label></p> 
                         	<p><label><input name="" type="checkbox" checked="checked"> 我已经阅读并同意网站的相关投资声明条款</label></p>
                         	<p><label><input name="" type="checkbox" checked="checked"> 我已经阅读此项目的产品风险揭示书、信托计划说明书、风险申明书</label></p>
-                        </div> 
-                                                 
+           </div> 
+         -->                               
                         
         </div>                             
                
@@ -1011,7 +1155,8 @@ jQuery(function(){
 	});*/
 	jQuery( "#modal_dialog" ).dialog({ autoOpen: false , modal: true ,height: 410,width:760 });
         jQuery('#invest_dialog').click(function(){
-                jQuery( "#modal_dialog" ).dialog( "open" );
+                //By Glay jQuery( "#modal_dialog" ).dialog( "open" );
+                window.location.href="?doaction=contract";
         });
 
 

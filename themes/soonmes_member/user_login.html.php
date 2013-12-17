@@ -42,7 +42,7 @@
                 			  <p class="item tc">
                                 	<input type="submit" class="btnnew btn_login m_r_25" value="µÇ Â¼"</>
                                 	
-									<a href="/index.php?user&q=going/getreg" class="link">×¢ ²á</a>			 
+									{if $_G.system.con_is_reg_open }<a href="/index.php?user&q=going/getreg" class="link">×¢ ²á</a>	{/if}		 
 							  </p>
 							  <p class="item">
 							  <a href="/index.php?user&q=going/getpwd" class="link">Íü¼ÇÃÜÂë?</a>

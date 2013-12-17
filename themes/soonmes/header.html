@@ -60,8 +60,8 @@
 				 <a href="/index.action?user&q=going/login">°ó¶¨ÒÑÓÐÕÊºÅ</a> | 
 				<a href="/?user&q=going/logout">ÍË³ö</a>
 				 {else}
-				 <a href="/index.action?user&q=going/login">µÇÂ¼</a> | 
-				 <a href="/index.action?user&q=going/getreg">×¢²á</a>
+				 <a href="/index.action?user&q=going/login">µÇÂ¼</a> {if $_G.system.con_is_reg_open } | 
+				 <a href="/index.action?user&q=going/getreg">×¢²á</a>{/if}
 				 {/if}
 				
 				{/if}
