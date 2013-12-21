@@ -2,7 +2,7 @@
 class wyzxPayment {
 	public static function ToSubmit($payment){
 		$v_mid = '1001';
-		$v_url = 'http://demoa.erongdu.com/modules/payment/wyzx_return.php';
+		$v_url = 'http://115.28.172.63/modules/payment/wyzx_return.php';
 		$key   = 'test';
 		
 		
@@ -16,15 +16,16 @@ class wyzxPayment {
 		
 		}
 			
-		$v_amount = trim($payment['money']);
-		$v_moneytype = "CNY";
+		$v_amount = trim($payment['money']); //支付金额 
+		$v_moneytype = "CNY";	//币种
 		
-		$text = $v_amount.$v_moneytype.$v_oid.$v_mid.$v_url.$key;
-		$v_md5info = strtoupper(md5($text));
+		$text = $v_amount.$v_moneytype.$v_oid.$v_mid.$v_url.$key;//md5加密拼凑串,注意顺序不能变
+		$v_md5info = strtoupper(md5($text));	//md5函数加密并转化成大写字母
 		
-		$remark1 = trim($_POST['remark1']);
+		$remark1 = trim($_POST['remark1']); 	//备注字段1
 		$remark2 = trim($_POST['remark2']);
 		
+		$pmode_id = trim($payment['bankCode']);					 //代表选择的银行
 		
 		
 		$v_rcvname   = trim($_POST['v_rcvname'])  ;
@@ -58,6 +59,7 @@ class wyzxPayment {
 			<input type="hidden" name="v_moneytype"   value="<?php echo $v_moneytype;?>">
 			<input type="hidden" name="v_url"         value="<?php echo $v_url;?>">
 			<input type="hidden" name="v_md5info"     value="<?php echo $v_md5info;?>">
+			<input type="hidden" name="pmode_id"     value="<?php echo $pmode_id;?>">
 		
 			
 			<input type="hidden" name="remark1"       value="<?php echo $remark1;?>">

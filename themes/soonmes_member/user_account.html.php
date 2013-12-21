@@ -249,48 +249,48 @@
 <div id="ban">
 <table width="100%" cellpadding="3" cellspacing="3">
 <tr>
-<td width="160"><input type="radio" name="payment1" value="ICBC_g"/>
+<td width="160"><input type="radio" name="payment1" value="1025_cbp"/>
 <img src="../data/bank/ICBC_OUT.gif" border="0"/></td>
 <td width="160">
-<input type="radio" name="payment1" value="BOC_g">
+<input type="radio" name="payment1" value="104_cbp">
 <img src="../data/bank/BOC_OUT.gif" border="0"/>
 </td>
 <td  width="160">
-<input type="radio" name="payment1" value="CCB_g"/>
+<input type="radio" name="payment1" value="105_cbp"/>
 <img src="../data/bank/CCB_OUT.gif" border="0"/></td>
 </tr>
 <tr>
-<td><input type="radio" name="payment1" value="ABC_g"/>
+<td><input type="radio" name="payment1" value="103_cbp"/>
 <img src="../data/bank/ABC_OUT.gif" border="0"/></td>
 <td>
-<input type="radio" name="payment1" value="CMB_g"/>
+<input type="radio" name="payment1" value="3080_cbp"/>
 <img src="../data/bank/CMB_OUT.gif" border="0"/>
 </td>
-<td><input type="radio" name="payment1" value="GDB_g" />
+<td><input type="radio" name="payment1" value="306_cbp" />
 <img src="../data/bank/GDB_OUT.gif" border="0"/></td>
 </tr><tr>
-<td><input type="radio" name="payment1" value="CMBC_g"/>
+<td><input type="radio" name="payment1" value="305_cbp"/>
 <img src="../data/bank/CMBC_OUT.gif" border="0"/></td>
-<td><input type="radio" name="payment1" value="CEB_g"/>
+<td><input type="radio" name="payment1" value="312_cbp"/>
 <img src="../data/bank/CEB_OUT.gif" border="0"/></td>
-<td><input type="radio" name="payment1" value="CIB_g"/>
+<td><input type="radio" name="payment1" value="309_cbp"/>
 <img src="../data/bank/CIB_OUT.gif" border="0"/></td>
 </tr>
 <tr>
-<td><input type="radio" name="payment1" value="PSBC_g"/>
+<td><input type="radio" name="payment1" value="3230_cbp"/>
 <img src="../data/bank/yz.jpg" border="0"/></td>
-<td><input type="radio" name="payment1" value="HXBC_g"/>
+<td><input type="radio" name="payment1" value="311_cbp"/>
 <img src="../data/bank/hx.jpg" border="0"/></td>
-<td><input type="radio" name="payment1" value="BOCOM_g"/>
+<td><input type="radio" name="payment1" value="301_cbp"/>
 <img src="../data/bank/COMM_OUT.gif" border="0"/></td>
 </tr>
 <tr>
-<td><input type="radio" name="payment1" value="CITIC_g"/>
+<td><input type="radio" name="payment1" value="313_cbp"/>
 <img src="../data/bank/CITIC_OUT.gif" border="0"/></td>
-<td><input type="radio" name="payment1" value="SPDB_g">
+<td><input type="radio" name="payment1" value="314_cbp">
 <img src="../data/bank/pf.jpg" border="0"/></td>
-<td><input type="radio" name="payment1" value="SDB_g">
-<img src="../data/bank/SZFZ_OUT.gif" border="0"/></td>
+<td><input type="radio" name="payment1" value="307_cbp">
+<img src="../data/bank/bank_payh.gif" border="0"/></td>
 </tr>
 </table>
 </div>

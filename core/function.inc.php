@@ -244,7 +244,8 @@ function get_file($dir,$type='dir'){
 		if ($dh = opendir($dir)){
 			while (($file = readdir($dh)) !== false){
 				$_file = $dir."/".$file;
-				if ($file !="." && $file != ".." && filetype($_file)==$type ){
+				//By Glay 去掉 .Ds_Store文件的影响
+				if ($file !="." && $file != ".." && $file != ".DS_Store" && filetype($_file)==$type ){
 					$result[] = $file;
 				}
 			}

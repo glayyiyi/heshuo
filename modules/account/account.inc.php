@@ -88,7 +88,12 @@ if(1==2){
 			$payment_type = '';
 			$payment = explode("_",$_POST['payment1']);
 			if(count($payment)==2){  // 通过银行连接
-				if($payment[1]=='g'){  //  xx_g 结尾，通过国付宝 连接
+				
+				if($payment[1]=='cbp'){  //  xx_cbp 结尾，通过网银在线 连接 By Glay 使用网银在线
+					$bco = $payment[0];
+					$_POST['payment1']=55;
+					$payment_type = 'wyzx';
+				}else if($payment[1]=='g'){  //  xx_g 结尾，通过国付宝 连接
 					$bco = $payment[0];
 					$_POST['payment1']=32;
 					$payment_type = 'gopay';
@@ -154,7 +159,10 @@ if(1==2){
 				if ($data['type']==1){
 				
 					if(isset($bco)) {
-						if($payment_type == 'gopay'){
+						
+						if($payment_type == 'wyzx'){
+							$data['bankCode'] = $bco;//By Glay 使用网银在线
+						}else if($payment_type == 'gopay'){
 							$data['bankCode'] = $bco;//使用国付宝
 						}elseif($payment_type == 'hna'){
 							$data['bankCode'] = $bco;//海南新生
