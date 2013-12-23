@@ -528,6 +528,11 @@ class remindClass{
 		$phone_status = isset($remind_user[$data['nid']]['phone'])?$remind_user[$data['nid']]['phone']:$remind_result['phone'];			
 		$email = isset($data['email'])?$data['email']:$result['email'];
 		$phone = isset($data['phone'])?$data['phone']:$result['phone'];
+		
+		//By Glay 总是发送站内信和邮件
+		$message_status=1;
+		$email_status=1;
+		
 		if ($message_status==1 || $message_status==3){
 		require_once ROOT_PATH.'modules/message/message.class.php';
 		$message['sent_user'] = $data['sent_user'];
