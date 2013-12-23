@@ -987,7 +987,7 @@ class borrowClass extends amountClass{
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $value['user_id'];
 				$remind['title'] = "您所投资的标[{$value['borrow_name']}]已经撤消";
-				$remind['content'] = "你所投资的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$value['borrow_name']}</font></a>]在".date("Y-m-d",time())."已经撤消了，您所投标的金额已解冻了。";
+				$remind['content'] = "投资的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$value['borrow_name']}</font></a>]在".date("Y-m-d",time())."已经撤消了，您所投标的金额已解冻了。";
 				$remind['type'] = "system";
 				$sendRemind[] = $remind;
 				$sql = "update `{borrow_tender}` set status=2 where id = '{$value['id']}'";
@@ -1581,7 +1581,7 @@ class borrowClass extends amountClass{
 					mysql_query("rollback");
 					return false;
 				}
-				$sendSMS[] = array('user_id'=>$reBuyBorrowUid,'content'=>"您已经成功对[{$borrow_repayment_result['name']}]标的还款".$account_log['money']."元。");
+				$sendSMS[] = array('user_id'=>$reBuyBorrowUid,'content'=>"成功对[{$borrow_repayment_result['name']}]标的还款".$account_log['money']."元。");
 				
 				//更新投资人的分期信息
 				$sql = "update  `{borrow_collection}` set repay_yestime='".time()."',repay_yesaccount = repay_account ,status=1   where tender_id = '{$reBuyTenderid}'";
@@ -1783,7 +1783,7 @@ class borrowClass extends amountClass{
 			return false;
 		}
 		$sendSMS = array();
-		$sendSMS[]=array('user_id'=>$data['user_id'],'content'=>"你已经成功扣除".$account_log['money']."[{$borrow_repayment_result['borrow_name']}]标的还款。");
+		$sendSMS[]=array('user_id'=>$data['user_id'],'content'=>"成功扣除".$account_log['money']."[{$borrow_repayment_result['borrow_name']}]标的还款。");
 		//liukun add for bug 133 begin
 		$_repay_time = $borrow_repayment_result['repayment_time'];
 		$re_time = (strtotime(date("Y-m-d",$_repay_time))-strtotime(date("Y-m-d",time())))/(60*60*24);
@@ -2687,10 +2687,10 @@ class borrowClass extends amountClass{
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $value['user_id'];
 				$remind['title'] = "[借出成功，扣除冻结款]恭喜您，投资[{$borrow_name}]成功.";
-				$remind['content'] = "恭喜您，您投资[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]在".date("Y-m-d",time())."已经审核通过";
+				$remind['content'] = "投资[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]在".date("Y-m-d",time())."已经审核通过";
 				$remind['type'] = "system";  
 				$sendRemind[] = $remind;
-				$sendSMS[] = array('user_id'=>$value['user_id'],'content'=>"您已于".date("Y-m-d",time())."成功投资[{$borrow_name}]".$value['account']."元。");
+				$sendSMS[] = array('user_id'=>$value['user_id'],'content'=>"成功投资[{$borrow_name}]".$value['account']."元。");
 
 				$credit['nid'] = "invest_success";
 				$result = creditClass::GetTypeOne(array("nid"=>$credit['nid']));
@@ -2737,7 +2737,7 @@ class borrowClass extends amountClass{
 			if($account_result==false || $re==false){
 				return false;
 			}
-			$sendSMS[] = array('user_id'=>$user_id,'content'=>"你的流转标[{$borrow_name}]已被购买，你的账户增加了{$borrow_account}元。");
+			$sendSMS[] = array('user_id'=>$user_id,'content'=>"流转标[{$borrow_name}]已被购买，你的账户增加了{$borrow_account}元。");
 
 			//扣除手续费
 			$biao_type = new lzbiaoClass();
@@ -2953,11 +2953,11 @@ class borrowClass extends amountClass{
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $value['user_id'];
 				$remind['title'] = "[借出成功，扣除冻结款]恭喜您，你所投资的标[{$borrow_name}]满标审核成功.";
-				$remind['content'] = "恭喜您，你所投资的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]在".date("Y-m-d",time())."已经满标审核通过";
+				$remind['content'] = "投资的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]已经满标审核通过";
 				$remind['type'] = "system";
 				
 				$sendRemind[] = $remind;
-				$sendSMS[] = array('user_id'=>$value['user_id'],'content'=>"你的冻结金额于".date("Y-m-d",time())."成功扣除，[{$borrow_name}]标成功满额。");
+				$sendSMS[] = array('user_id'=>$value['user_id'],'content'=>"冻结金额于成功扣除，[{$borrow_name}]标成功满额。");
 
 				$credit['nid'] = "invest_success";
 				$result = creditClass::GetTypeOne(array("nid"=>$credit['nid']));
@@ -3014,7 +3014,7 @@ class borrowClass extends amountClass{
 				mysql_query("rollback");
 				return false;
 			}
-			$sendSMS[] = array('user_id'=>$user_id,'content'=>"你的[{$borrow_name}]已成功满额复审通过，你的账户增加了{$borrow_account}。");
+			$sendSMS[] = array('user_id'=>$user_id,'content'=>"[{$borrow_name}]已成功满额复审通过，你的账户增加了{$borrow_account}。");
 			
 			//liukun add for bug 164 begin
 			//冻结借款标的保证金10%。
@@ -3089,7 +3089,7 @@ class borrowClass extends amountClass{
 			$remind['sent_user'] = "0";
 			$remind['receive_user'] = $user_id;
 			$remind['title'] = "恭喜您，你的借款标[{$borrow_name}]满标审核成功";
-			$remind['content'] = "恭喜您，你的借款标[{$borrow_url}]在".date("Y-m-d",time())."已经审核通过";
+			$remind['content'] = "借款标[{$borrow_url}]已经审核通过";
 			$remind['type'] = "system";
 			$sendRemind[] = $remind;
 			$view_status = 1;//回款续投
@@ -3113,7 +3113,7 @@ class borrowClass extends amountClass{
 				$log['to_user'] = $user_id;
 				$log['remark'] = "招标[{$borrow_url}]失败返回的投标额";
 				$re = accountClass::AddLog($log);
-				$sendSMS[] = array('user_id'=>$value['user_id'],'content'=>"你的冻结金额已被解冻，[{$borrow_name}]标已被取消。");
+				$sendSMS[] = array('user_id'=>$value['user_id'],'content'=>"冻结金额已被解冻，[{$borrow_name}]标已被取消。");
 				
 				if($re==false || $account_result==false){
 					mysql_query("rollback");
@@ -3125,7 +3125,7 @@ class borrowClass extends amountClass{
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $value['user_id'];
 				$remind['title'] = "很遗憾，你所投资的标[{$borrow_name}]满标审核失败";
-				$remind['content'] = "很遗憾，你所投资的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]在".date("Y-m-d",time())."审核失败,失败原因：{$data['repayment_remark']}";
+				$remind['content'] = "投资的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]审核失败,失败原因：{$data['repayment_remark']}";
 				$remind['type'] = "system";
 				$sendRemind[] = $remind;
 			}
@@ -3134,7 +3134,7 @@ class borrowClass extends amountClass{
 			$remind['sent_user'] = "0";
 			$remind['receive_user'] = $user_id;
 			$remind['title'] = "很遗憾，您所申请的标[{$borrow_name}]满标审核失败";
-			$remind['content'] = "很遗憾，您所申请的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]在".date("Y-m-d",time())."审核失败,失败原因：{$data['repayment_remark']}";
+			$remind['content'] = "申请的标[<a href=\'/invest/a{$data['id']}.html\' target=_blank><font color=red>{$borrow_name}</font></a>]审核失败,失败原因：{$data['repayment_remark']}";
 			$remind['type'] = "system";
 			$sendRemind[] = $remind;
 			$view_status = 2;//回款续投

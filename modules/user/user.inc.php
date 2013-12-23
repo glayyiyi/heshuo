@@ -429,7 +429,7 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 			$itype=3;
 			$sql = "insert into `{sms_check}`(code,lasttime,user_id,addtime,itype,phone) values('".$code."','".$lasttime."',".$_G["user_id"].",unix_timestamp(),".$itype.",'".$_POST['phone']."')";
 			$mysql->db_query($sql);
-			$re = sendSMS($_G['user_id'], '你的手机认证验证码为'.$code.'请在5分钟内提交！', 1, $_POST['phone']);
+			$re = sendSMS($_G['user_id'], '手机认证验证码为'.$code.'请在5分钟内提交！', 1, $_POST['phone']);
 			if($re){
 				echo 1;
 			}else{

@@ -1443,28 +1443,42 @@ function sendSMS($userid,$content,$system=0,$phone=0)
 		$content = str_replace("'", " ", $content);
 		$content = str_replace("\"", " ", $content);
 		$content = str_replace(":", "：", $content);
-		$data = array
-		(
-				'username'=>$_G['system']['con_smsusername'],
-				'password'=>$_G['system']['con_smspassword'],
-				'mobile'=>$mobile,
-				'content'=>'尊敬的【'.$realname.'】用户：'.$content.'感谢您使用中硕信投金融平台。' //By Glay
-				//'time'=>$time,
-				//'mid'=>$mid
+		
+		//要post的数据
+		$argv = array(
+				'sn'=>$_G['system']['con_smsusername'], ////替换成您自己的序列号
+				'pwd'=>strtoupper(md5('SDK-BBX-010-19374'.$_G['system']['con_smspassword'])), //此处密码需要加密 加密方式为 md5(sn+password) 32位大写
+				'mobile'=>$mobile,//手机号 多个用英文的逗号隔开 post理论没有长度限制.推荐群发一次小于等于10000个手机号
+				'content'=>'尊敬的【'.$realname.'】用户：'.'您于'.date('Y-m-d H:i:s',time()).'，'.$content.'感谢您使用'.$_G['system']['con_webname'].'金融平台。' ,//短信内容
+				'ext'=>'',
+				'stime'=>'',//定时时间 格式为2011-6-29 11:09:21
+				'rrid'=>''
 		);
+		
+		
+// 		$data = array
+// 		(
+// 				'username'=>$_G['system']['con_smsusername'],
+// 				'password'=>$_G['system']['con_smspassword'],
+// 				'mobile'=>$mobile,
+// 				'content'=>'尊敬的【'.$realname.'】用户：'.$content.'感谢您使用中硕信投金融平台。' //By Glay
+// 				//'time'=>$time,
+// 				//'mid'=>$mid
+// 		);
 		$content = mysql_real_escape_string($content);
 		$sql="insert into {sms_log}(userid,msgcontent,mobile,spnumber,addtime) values(".$userid.",'".$content."','".$mobile."','1069800000091717',now())";
 		$mysql->db_query($sql);
 		$myid=$mysql->db_insert_id();
-		$re= getSend($http,$data);			//POST方式提交
-		//$re= getSend($http,$data);				//GET方式提交
+		//By Glay
+		$re=postMt($argv);
+		//$re= getSend($http,$data);			//POST方式提交
+		//By Glay $re= getSend($http,$data);				//GET方式提交
 		if(trim($re) == '1' )
 		{
 			$sql="update {sms_log} set issend=1,reportmsg='".$re."',updatetime=now() where id=".$myid;
 			$mysql->db_query($sql);
 			return true;
-		}
-		else
+		}else
 		{
 			$sql="update {sms_log} set issend=2,reportmsg='".$re."',updatetime=now() where id=".$myid;
 			$mysql->db_query($sql);
@@ -1501,6 +1515,55 @@ function getSend($url,$data)
     }
     curl_close($ch);
 	return $output;	
+}
+
+//By Glay
+function postMt($argv){
+	$flag = 0;
+	//构造要post的字符串
+	foreach ($argv as $key=>$value) {
+		if ($flag!=0) {
+			$params .= "&";
+			$flag = 1;
+		}
+		$params.= $key."="; $params.= urlencode($value);
+		$flag = 1;
+	}
+	$length = strlen($params);
+	//创建socket连接
+	$fp = fsockopen($_G['system']['con_smsurl'],8060,$errno,$errstr,10) or exit($errstr."--->".$errno);
+	//构造post请求的头
+	$header = "POST /webservice.asmx/mt HTTP/1.1\r\n";
+	$header .= "Host:sdk2.entinfo.cn\r\n";
+	$header .= "Content-Type: application/x-www-form-urlencoded\r\n";
+	$header .= "Content-Length: ".$length."\r\n";
+	$header .= "Connection: Close\r\n\r\n";
+	//添加post的字符串
+	$header .= $params."\r\n";
+	//发送post的数据
+	fputs($fp,$header);
+	$inheader = 1;
+	while (!feof($fp)) {
+		$line = fgets($fp,1024); //去除请求包的头只显示页面的返回数据
+		if ($inheader && ($line == "\n" || $line == "\r\n")) {
+			$inheader = 0;
+		}
+		if ($inheader == 0) {
+			// echo $line;
+		}
+	}
+	//<string xmlns="http://tempuri.org/">-5</string>
+	$line=str_replace("<string xmlns=\"http://tempuri.org/\">","",$line);
+	$line=str_replace("</string>","",$line);
+		   $result=explode("-",$line);
+			   // echo $line."-------------";
+	if(count($result)>1)
+		echo '发送失败返回值为:'.$line.'。请查看webservice返回值对照表';
+	else
+		//echo '发送成功 返回值为:'.$line;
+		return 1;
+	
+	
 }
  
 

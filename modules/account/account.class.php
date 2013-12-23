@@ -1480,7 +1480,7 @@ class accountClass{
 					mysql_query("rollback");
 					return false;
 				}
-				$sendSMS[] = array('user_id'=>$data['user_id'],'content'=>"您的提现{$log['money']}元申请通过了审核,即将安排财务处理,请注意查收！。");
+				$sendSMS[] = array('user_id'=>$data['user_id'],'content'=>"提现{$log['money']}元申请通过了审核,即将安排财务处理,请注意查收！。");
 				
 				$real_tixian_fee = $data['fee'] - $result['hongbao'];
 				$account_result =  accountClass::GetOneAccount(array("user_id"=>$data['user_id']));
@@ -1505,7 +1505,7 @@ class accountClass{
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $data['user_id'];
 				$remind['title'] = "您的提现{$result['total']}元申请“通过”了审核,正在打款中";
-				$remind['content'] = "您的提现{$result['total']}元申请“通过”了审核,正在打款中";
+				$remind['content'] = "提现{$result['total']}元申请“通过”了审核,正在打款中";
 				$remind['content'] .= "<br>提现总金额：￥{$result['total']}";
 				$remind['content'] .= "<br>提现到帐金额：￥{$data['credited']}";
 				$remind['content'] .= "<br>提现手续费：￥{$data['fee']}";
@@ -1532,13 +1532,13 @@ class accountClass{
 					mysql_query("rollback");
 					return false;
 				}
-				$sendSMS[] = array('user_id'=>$data['user_id'],'content'=>"您的提现{$log['money']}元申请没有通过审核,请登录网站了解详情！。");
+				$sendSMS[] = array('user_id'=>$data['user_id'],'content'=>"提现{$log['money']}元申请没有通过审核,请登录网站了解详情！。");
 				//提醒设置
 				$remind['nid'] = "cash_no";
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $data['user_id'];
 				$remind['title'] = "您的提现{$result['total']}元申请“没有通过”审核,请联系财务了解详情";
-				$remind['content'] = date("Y-m-d",time())."提现{$result['total']}元申请审核失败";
+				$remind['content'] = "提现{$result['total']}元申请审核失败";
 				$remind['type'] = "cash";
 				$sendRemind[] = $remind;
 			}
@@ -1789,17 +1789,17 @@ class accountClass{
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $result['user_id'];
 				$remind['title'] = "您的账户成功充值{$result['money']}元";
-				$remind['content'] = "您好，您已经于".date("Y-m-d",time())."成功充值{$result['money']}元,流水号:{$result['trade_no']}";
+				$remind['content'] = "成功充值{$result['money']}元,流水号:{$result['trade_no']}";
 				$remind['type'] = "recharge";
 				$sendRemind[] = $remind;
-				$sendSMS[] = array('user_id'=>$result['user_id'],'content'=>"您好，您已经于".date("Y-m-d",time())."你的账号余额增加{$result['money']}元。");
+				$sendSMS[] = array('user_id'=>$result['user_id'],'content'=>"账号余额增加{$result['money']}元。");
 			}elseif ($data['status']==2){
 				//提醒设置
 				$remind['nid'] = "recharge";
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $result['user_id'];
 				$remind['title'] = "您的账户充值{$result['money']}元失败";
-				$remind['content'] = date("Y-m-d",time())."充值{$result['money']}元审核失败,流水号:{$result['trade_no']}";
+				$remind['content'] ="充值{$result['money']}元审核失败,流水号:{$result['trade_no']}";
 				$remind['type'] = "recharge";
 				$sendRemind[] = $remind;
 			}

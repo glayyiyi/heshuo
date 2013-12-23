@@ -682,7 +682,7 @@ elseif ($_A['query_type'] == "vipview"){
 				$remind['sent_user'] = "0";
 				$remind['receive_user'] = $user_id;
 				$remind['title'] = "恭喜您,您的VIP会员申请已经“通过”了审核";
-				$remind['content'] = "恭喜您,您的VIP会员申请已经在".date("Y-m-d",time())."通过审核。";
+				$remind['content'] = "VIP会员申请已经通过审核。";
 				$remind['type'] = "system";
 				remindClass::sendRemind($remind);
 			}elseif($data['vip_status']==3){

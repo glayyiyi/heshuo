@@ -515,7 +515,7 @@ class remindClass{
 	//receive_user,接收用户id
 	//type,类型
 	function SendRemind($data){
-		global $mysql,$user;
+		global $_G,$mysql,$user;
 		if($data['receive_user']<=0){
 			return false;
 		}
@@ -536,7 +536,7 @@ class remindClass{
 		$message['content'] = $data['content'];
 		//By Glay
 		$realname=$result['realname'];
-		$message['content']='尊敬的用户【'.$realname.'】：<br>'.$message['content'].'<br><br>感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
+		$message['content']='尊敬的用户【'.$realname.'】：<br>'.'您好，感谢您使用'.$_G['system']['con_webname'].'金融平台，'.'您于'.date('Y-m-d H:i:s',time()).'在'.$_G['system']['con_webname'].'金融平台，'.$message['content'].'<br><br>感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
 		
 		$message['type'] = $data['type'];
 		$message['status'] = 0;
@@ -547,7 +547,7 @@ class remindClass{
 			$remail['user_id'] = $data['receive_user'];
 			$remail['email'] = $email;
 			$remail['title'] = $data['title'];
-			$remail['msg'] =  '尊敬的用户【'.$realname.'】：<br>'.$data['content'].'<br><br>感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
+			$remail['msg'] =  '尊敬的用户【'.$realname.'】：<br>'.'您好，感谢您使用'.$_G['system']['con_webname'].'金融平台，'.'您于'.date('Y-m-d H:i:s',time()).'在'.$_G['system']['con_webname'].'金融平台，'.$data['content'].'<br><br>感谢您对我们的支持与关注，如仍有问题请联系我们客服。';
 			$remail['type'] =  $data['type'];
 			$result = $user->SendEmail($remail);
 		}
