@@ -9,7 +9,7 @@
 $flag = 0; 
         //要post的数据 
 $argv = array( 
-         'sn'=>'SDK-OFT-010-xxxxx', ////替换成您自己的序列号
+         'sn'=>'SDK-BBX-010-19374', ////替换成您自己的序列号
 		 'pwd'=>strtoupper(md5('SDK-BBX-010-19374'.'63[d-29f')), //此处密码需要加密 加密方式为 md5(sn+password) 32位大写
 		 'mobile'=>'13929579770',//手机号 多个用英文的逗号隔开 post理论没有长度限制.推荐群发一次小于等于10000个手机号
 		 'content'=>'测试短信 ',//短信内容
@@ -39,6 +39,7 @@ foreach ($argv as $key=>$value) {
          $header .= $params."\r\n"; 
          //发送post的数据 
          fputs($fp,$header); 
+         //print_r($header);
          $inheader = 1; 
           while (!feof($fp)) { 
                          $line = fgets($fp,1024); //去除请求包的头只显示页面的返回数据 
@@ -54,6 +55,8 @@ foreach ($argv as $key=>$value) {
 	       $line=str_replace("</string>","",$line);
 		   $result=explode("-",$line);
 		  // echo $line."-------------";
+		   //echo "-------------". $line;
+		  // exit;
 		    if(count($result)>1)
 			echo '发送失败返回值为:'.$line.'。请查看webservice返回值对照表';
 			else
