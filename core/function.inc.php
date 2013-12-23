@@ -1470,7 +1470,7 @@ function sendSMS($userid,$content,$system=0,$phone=0)
 		$mysql->db_query($sql);
 		$myid=$mysql->db_insert_id();
 		//By Glay
-		$re=postMt($argv);
+		$re=postMt($_G['system']['con_smsurl'],$argv);
 		//$re= getSend($http,$data);			//POST方式提交
 		//By Glay $re= getSend($http,$data);				//GET方式提交
 		if(trim($re) == '1' )
@@ -1518,7 +1518,7 @@ function getSend($url,$data)
 }
 
 //By Glay
-function postMt($argv){
+function postMt($url,$argv){
 	$flag = 0;
 	//构造要post的字符串
 	foreach ($argv as $key=>$value) {
@@ -1531,7 +1531,7 @@ function postMt($argv){
 	}
 	$length = strlen($params);
 	//创建socket连接
-	$fp = fsockopen($_G['system']['con_smsurl'],8060,$errno,$errstr,10) or exit($errstr."--->".$errno);
+	$fp = fsockopen($url,8060,$errno,$errstr,10) or exit($errstr."--->".$errno);
 	//构造post请求的头
 	$header = "POST /webservice.asmx/mt HTTP/1.1\r\n";
 	$header .= "Host:sdk2.entinfo.cn\r\n";
