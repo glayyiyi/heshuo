@@ -10,7 +10,8 @@ if ($_G['user_id'] != "" && isset($_SESSION['step']) && $_SESSION['reg_step'] ==
 	exit;
 } 
 if (isset($_POST['email'])) {
-	$var = array('email', 'username', 'sex', 'password', 'email', 'realname', 'invite_userid', 'type_id', 'phone', 'area', 'qq', 'card_type', 'card_id');
+	//By Glay Ôö¼Óinvite_userid
+	$var = array('email', 'username', 'sex', 'password', 'email', 'realname', 'invite_userid', 'type_id', 'phone', 'area', 'qq', 'card_type', 'card_id','invite_userid');
 	$index = post_var($var);
 	$varUserName = array('invite_username');
         $index2 =  post_var($varUserName);
