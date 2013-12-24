@@ -405,17 +405,18 @@ jQuery(function(){
                                     
                                     <tr>
                                         <td>&nbsp;</td>
-                                        <td height="25" colspan="2" class="left_txt" align="left"><p>1- 感谢杭州融都商务咨询有限公司提供的支持</p></td>
+                                        <td height="25" colspan="2" class="left_txt" align="left"><p>1- 欢迎使用网贷业务处理平台</p></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;</td>
-                                        <td height="25" colspan="2" class="left_txt" align="left"><p>2- 进入管理模块请注意选择安全退出</p>　 技术支持：0571-85135916</td>
+                                        <td height="25" colspan="2" class="left_txt" align="left"><p>2- 注意选择安全退出</p></td>
                                     </tr>
                                     
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td width="30%" height="40" align="left"><img src="{$tpldir}/images/icon-demo.gif" width="16" height="16"><a href="/" target="_blank" class="left_txt3"> 前台首页</a> </td>
-                                        <td width="35%" align="left"><img src="{$tpldir}/images/icon-login-seaver.gif" width="16" height="16"><a href="#"; target=_blank;>在线理财顾问</a></td>
+                                        <td width="35%" align="left"></td>
+<!--                                         <td width="35%" align="left"><img src="{$tpldir}/images/icon-login-seaver.gif" width="16" height="16"><a href="#"; target=_blank;>在线理财顾问</a></td> -->
 
                                     </tr>
                                 </table></td>
