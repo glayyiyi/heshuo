@@ -84,7 +84,7 @@ elseif ($_A['query_sort']=='login' ){
 						 
 					}else{
 //							if( ($result['type_id']=='1') && !$uchon_sn_db){
-                                                  if( 1==2){
+                           if( 1==2){
 								$login_msg = "亲，作为超级管理员，怎么可以不绑定动态口令？";
 								$uchon_stat='0';
 							}else{	
@@ -133,7 +133,10 @@ elseif ($_A['query_sort']=='login' ){
 									$_SESSION['purview'] = $result['pur'];
 									$_SESSION['user_type'] = $result['type_id'];
 									
-									 
+									//By Glay 增加管理员登陆时的短信通知功能
+									$msg_info='您于'.date('Y-m-d H:i:s',time()).'登陆了'.$_G['system']['con_webname'].'管理后台。如果不是您自己的操作，请检查是否有人非法使用你的帐号进行操作。';
+									sendSMS($result['user_id'],$msg_info,1);
+									
 									if (isset($_SESSION['referer_url']) && $_SESSION['referer_url']!=""){
 										$referer_url = $_SESSION['referer_url'];
 										$_SESSION['referer_url'] = "";
