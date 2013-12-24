@@ -234,18 +234,18 @@ jQuery(function(){
 
 </form>
 {literal}
-<script type="text/javascript">
-jQuery('#reg_btn').click(function(){
-	 if(jQuery('#dianji').attr("checked")){
-			jQuery('#reg_sub').submit();
-			}
-		else{
-			alert("请勾选我已阅读并且同意协议");
-			 return false;
-	 }	
+<script type="text/javascript"> 
+//By Glay jQuery('#reg_btn').click(function(){
+// 	 if(jQuery('#dianji').attr("checked")){
+// 			jQuery('#reg_sub').submit();
+// 			}
+// 		else{
+// 			alert("请勾选我已阅读并且同意协议");
+// 			 return false;
+// 	 }	
 
-});
-</script>
+// });
+</script> 
 {/literal}
 <script type="text/javascript" src="{$tempdir}/media/js/user2.js"></script>
 <script src="{$tempdir}/media/js/tooltip.js"></script>
