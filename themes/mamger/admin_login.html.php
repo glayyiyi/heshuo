@@ -450,10 +450,10 @@ jQuery(function(){
                                             <td height="27">验证码:&nbsp;</td>
                                             <td colspan="2" align="left"><input name="valicode" type="text" size="11" maxlength="4" tabindex="3"/>&nbsp;<img src="plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" /></td>
                                         </tr>
-                                        <tr>
-                                            <td height="27">动态口令:&nbsp;</td>
-                                            <td colspan="2" align="left"><input name="uchoncode" type="text" size="21" maxlength="20"  tabindex="4" style="width:185px;"/></td>
-                                        </tr>
+<!--                                         <tr> -->
+<!--                                             <td height="27">动态口令:&nbsp;</td> -->
+                                           <!--  <td colspan="2" align="left"><input name="uchoncode" type="text" size="21" maxlength="20"  tabindex="4" style="width:185px;"/></td>--> 
+<!--                                         </tr> -->
                                         <tr>
                                             <td height="27">&nbsp;</td>
                                             <td colspan="2" valign="bottom"><input name="imageField" type="image" src="{$tpldir}/images/login2.gif" width="69" height="21" border="0">

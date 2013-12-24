@@ -22,8 +22,8 @@
 				
 				<li {if $_U.query_type=="userpwd"} class="cur"{/if}><a href="{$_U.query_url}/userpwd">登录密码</a></li>
 				<li {if $_U.query_type=="paypwd" || $_U.query_type=="getpaypwd"} class="cur"{/if}><a href="{$_U.query_url}/paypwd">交易密码</a></li>
-				<li {if $_U.query_type=="protection"} class="cur"{/if}><a href="{$_U.query_url}/protection">密码保护</a></li>
-				<li {if $_U.query_type=="serialStatusSet"} class="cur"{/if}><a href="{$_U.query_url}/serialStatusSet">动态口令设置</a></li>
+<!-- 				<li {if $_U.query_type=="protection"} class="cur"{/if}><a href="{$_U.query_url}/protection">密码保护</a></li> -->
+<!-- 				<li {if $_U.query_type=="serialStatusSet"} class="cur"{/if}><a href="{$_U.query_url}/serialStatusSet">动态口令设置</a></li> -->
 			</ul>
 			{elseif $_U.query_type=="reginvite"  || $_U.query_type=="request" || $_U.query_type=="myfriend" || $_U.query_type=="black"|| $_U.query_type=="ticheng"}
 			<ul id="tab" class="list-tab clearfix">
