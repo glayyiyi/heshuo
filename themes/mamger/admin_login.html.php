@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>网站业务系统处理平台</title>
+<title>网贷业务管理平台</title>
 {literal}
     <style type="text/css">
        
@@ -405,11 +405,11 @@ jQuery(function(){
                                     
                                     <tr>
                                         <td>&nbsp;</td>
-                                        <td height="25" colspan="2" class="left_txt" align="left"><p>1- 欢迎使用网贷业务处理平台</p></td>
+                                        <td height="25" colspan="2" class="left_txt" align="left"><p>欢迎使用网贷业务管理平台</p></td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;</td>
-                                        <td height="25" colspan="2" class="left_txt" align="left"><p>2- 注意选择安全退出</p></td>
+                                        <td height="25" colspan="2" class="left_txt" align="left"><p>退出时，注意选择［注销］进行安全退出</p></td>
                                     </tr>
                                     
                                     <tr>
@@ -428,7 +428,7 @@ jQuery(function(){
                 <td width="50%" valign="bottom"><table width="100%" height="59" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
                         <td width="4%">&nbsp;</td>
-                        <td width="96%" height="38"><span class="login_txt_bt">登录网贷业务处理平台</span></td>
+                        <td width="96%" height="38"><span class="login_txt_bt">登录网贷业务管理平台</span></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
