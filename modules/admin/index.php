@@ -134,7 +134,7 @@ elseif ($_A['query_sort']=='login' ){
 									$_SESSION['user_type'] = $result['type_id'];
 									
 									//By Glay 增加管理员登陆时的短信通知功能
-									$msg_info='您于'.date('Y-m-d H:i:s',time()).'登陆了'.$_G['system']['con_webname'].'管理后台。如果不是您自己的操作，请注意检查是否有人非法使用你的帐号进行操作。【glay】';
+									$msg_info='登陆了'.$_G['system']['con_webname'].'管理后台。如果不是您自己的操作，请注意检查是否有人非法使用你的帐号进行操作。';
 									//echo "===".$msg_info;
 									//exit;
 									sendSMS($result['user_id'],$msg_info,1);
