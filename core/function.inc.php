@@ -1455,8 +1455,8 @@ function sendSMS($userid,$content,$system=0,$phone=0)
 				'rrid'=>''
 		);
 		
-		//print_r($argv);
-		//exit;
+		print_r($argv);
+		exit;
 		
 		
 // 		$data = array
