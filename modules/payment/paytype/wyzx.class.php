@@ -2,7 +2,7 @@
 class wyzxPayment {
 	public static function ToSubmit($payment){
 		$v_mid = '1001';
-		$v_url = 'http://115.28.172.63/modules/payment/wyzx_return.php';
+		$v_url = 'http://www.viptouzi.com/modules/payment/wyzx_return.php';
 		$key   = 'test';
 		
 		
