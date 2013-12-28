@@ -5,9 +5,9 @@
 <div class="cor_divtop">
 <div id="left" class="left">
 
-<div class="NavLinkHeader"><span>网站栏目</span></div>
+<div class="NavLinkHeader"><span>咨询服务</span></div>
 <div class="NavLinkContent">
-			{loop module="article" function="GetSiteList" var="var" epage="20"  pid="1"  keywords="request" status=1 }
+			{loop module="article" function="GetSiteList" var="var" epage="20"  pid="21"  keywords="request" status=1 }
 		   <div id="item1" class="page" onClick="showsubmenu( 1, 10)"><span class="txtspan"><a href="/{$var.nid}/index.html" rel="{$var.nid}" >{$var.name}</a></span></div>
 		  {/loop}
 </div>
@@ -54,7 +54,8 @@
 							<!--内容开始-->
 				<div class="content_ro2">
 				<table width="90%"><tr>
-				  <td>{$_G.article.content}</td>
+				
+				  <td>{$_G.site_result.content}</td>
 				</tr></table>
 
 				{if $_G.article.files!=""}
