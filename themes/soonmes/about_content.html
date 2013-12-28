@@ -47,7 +47,7 @@
 
 {if $_G.site_result.name == "媒体报道" ||  $_G.site_result.name == "最新公告" }    
 <div class="content_h3"><h3>{$_G.article.name}</h3></div>
-<div class="content_div" align="center"> 来源：{$_G.article.author|default:"测试站"} &nbsp;&nbsp;  
+<div class="content_div" align="center"> 来源：{$_G.article.author|default:"管理员"} &nbsp;&nbsp;  
 发布时间：{$_G.article.addtime|date_format:"Y-m-d H:i:s"} &nbsp;&nbsp;  
 点击次数：{$_G.article.hits} </div>
 {/if}
