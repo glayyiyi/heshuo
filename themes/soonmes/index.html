@@ -175,7 +175,8 @@
                         <li>筹款金额：￥{$var.account_format}元</li>
                         <li>年化收益率：<strong>{$var.apr}</strong>%</li>
                         <li>{if $var.is_lz==1}流转周期：{else}期限：{/if}{if $var.isday==1}<strong>{$var.time_limit_day}</strong>天{else}<strong>{$var.time_limit}</strong>个月{/if}</li>
-                        <li><span style="float:left">信用等级：</span><img class="rank" src="{$_G.system.con_credit_picurl}{$var.credit_pic|default:credit_s11.gif}" title="{$var.credit_jifen|default:0}分" /></li>
+                        <!-- <li><span style="float:left">信用等级：</span><img class="rank" src="{$_G.system.con_credit_picurl}{$var.credit_pic|default:credit_s11.gif}" title="{$var.credit_jifen|default:0}分" /></li> -->
+                        <li><span style="float:left">剩余时间：{$var.lave_time} </span></li>
                         <li>
                             <div class="float_left">已完成：</div>
                             <div class="jindu float_left">
