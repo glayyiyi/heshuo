@@ -100,13 +100,13 @@
 	</div>
 	<!-- end 广告模块 -->
 				<!-- 热门投资 -->
-				<div class="module_01 m_b_17">
+<!-- 				<div class="module_01 m_b_17">
 					<div class="hd m_b_15">
 						<h3 class="fl">热门投资</h3>
 						<span class="fr more"><a href="/invest/index.html?order=account_up">MORE</a></span>
 					</div>
 					<div class="bg posit_rel">
-						<!-- 左右 -->
+						左右
 						<div class="global_module prolist">
 							<div  class="prolist_content">
 				                <ul>
@@ -126,15 +126,15 @@
 				                </ul>
 				            </div>
 						</div>
-						<!-- 左右按钮 -->
+						左右按钮
 			            <p class="module_left"><img class="goLeft" src="{$tempdir}/images/btn_left.png" alt="" /></p>
 			            <p class="module_right"><img class="goRight" src="{$tempdir}/images/btn_right.png" alt="" /></p>
 
-			            <!-- 修饰背景 -->
+			            修饰背景
 			            <div class="module_01tip"></div>
 
 					</div>
-				</div>
+				</div> -->
 				<!-- end 热门投资 -->
 				<!-- 2列 -->
 				<div class="grid_c2 clearfix m_b_10">
@@ -142,10 +142,12 @@
 						<!-- 热门贷款 -->
 						<div class="module_02">
 							<div class="hd">
-							<h3>产品列表</h3>
-							</div>
+							<h3 class="fl">推荐投资项目</h3>
+							<span class="fr more"><a href="/invest/index.html?order=account_up">[更多]</a></span>
+							
+						</div>
 				<div class="bg">			
-			{loop module="borrow" function="GetList" var="var" limit="10"  order="biaoindex"}
+			{loop module="borrow" function="GetList" var="var" limit="3"  order="biaoindex"}
 				<div class="list-div">
                     <a href="invest/a{$var.id}.html"><img src="{$var.user_id|avatar:'middle'}" class="productimg"></a>
                     <ul class="list-ul">
@@ -227,7 +229,7 @@
 				<div class="bg">
 					<ul class="noteList">
 						{site site_id="22" } {loop module="article" function="GetList"
-						limit="6" site_var="var" var="item" status=1}
+						limit="3" site_var="var" var="item" status=1}
 						<li class="clearfix"><a
 							href="{$item.site_nid}/a{$item.id}.html"><span
 								class="float_left">{$item.name|truncate:10}</span><span

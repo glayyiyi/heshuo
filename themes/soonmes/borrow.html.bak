@@ -8,7 +8,7 @@
 	 				<div class="pop_club">
 						<div class="hd"></div>
                 <div class="bg">
-                	君赋堂由合硕成投发起和建立的非盈利性会员组织，邀请平台投资者为会员，是为投资者之间进行沟通而搭建的线下私密交际平台。
+                	{$_G.system.con_webname}由君和资本旗下发起和建立的非盈利性会员组织，邀请平台投资者为会员，是为投资者之间进行沟通而搭建的线下私密交际平台。
                 </div>
                 <div class="ft"><a href="#"><img width="110" height="53" src="{$tempdir}/images/btn_jr.png"></a></div>
 					  </div>

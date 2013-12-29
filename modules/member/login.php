@@ -127,7 +127,8 @@ if (isset($_POST['password'])) {
 					setcookie('login_uid',$data['user_id'], $ctime);
 
 					$areaLoginMsg=$result['areaLoginMsg'];
-					$msg = array($ucsynlogin."登录成功<br/><font style=color:red>请确认您的上一次登录时间</font><br/><font style=color:red>{$areaLoginMsg}</font>","跳过进入用户中心>>", $_url);
+					//By Glay 修改为跳到首页
+					$msg = array($ucsynlogin."登录成功<br/><font style=color:red>请确认您的上一次登录时间</font><br/><font style=color:red>{$areaLoginMsg}</font>","跳过进入首页>>", "/");
 					}
 			} elseif ($uid == -1) {
 				$result = $user -> Login($index);
@@ -245,7 +246,7 @@ if (isset($_POST['password'])) {
 				//add by weego for 登录cookies验证 20120610
 				setcookie('login_uid',$data['user_id'], $ctime);
 				$areaLoginMsg=$result['areaLoginMsg'];
-				$msg = array($ucsynlogin."登录成功<br/><font style=color:red>请确认您的上一次登录时间</font><br/><font style=color:red>{$areaLoginMsg}</font>","跳过进入用户中心>>", $_url); 
+				$msg = array($ucsynlogin."登录成功<br/><font style=color:red>请确认您的上一次登录时间</font><br/><font style=color:red>{$areaLoginMsg}</font>","跳过进入首页>>", "/"); 
 			} else {
 				$msg = array("用户不存在或密码错误", "", "?user&q=going/login&errror=" . $uid);
 			}

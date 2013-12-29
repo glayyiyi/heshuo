@@ -310,6 +310,15 @@ body { font-family:Microsoft YaHei, SimSun, SimHei, Verdana, Arial, Helvetica, s
 	font-family: Arial;
 	color: #ff7e00;
 }
+
+.module_02 .hd .more {
+	
+}
+.module_02 .hd .more a {
+	text-decoration:none;
+	font-family: Arial;
+	color: #ff7e00;
+}
 .module_01 .bg {
 	height: 133px;
 }
@@ -672,7 +681,7 @@ body { font-family:Microsoft YaHei, SimSun, SimHei, Verdana, Arial, Helvetica, s
 	border:1px solid #bdbbbb;
 	width:640px;
 	height:250px;
-	margin-top:25px;
+	margin-top:2px;
 }
 
 .down .phoneDown {

@@ -56,35 +56,38 @@
 		</div>
 	<div class="col_extra">
                   	<!-- 右侧 -->
-                    <div class="banner_login m_b_50">
+                    <div class="banner_login">
                     	<img src="{$tempdir}/images/banner_login.jpg" />
                     </div>
-                    <div class="clearfix down">
-                   	  <div class="fl phoneDown">
-                       	<h4 class="m_b_10">客户端下载</h4>
-                       	
-                          <p>
-                             <a href="#"><img src="{$tempdir}/images/icon_android.png"></a>
-                             <a href="#"><img src="{$tempdir}/images/icon_iPhone.png"></a>
-                          </p>
-                          <p>即将推出</p>
-                        </div>
-                        
-                       <div class="fl club"><a href="#"><img src="{$tempdir}/images/club.jpg"></a>
-<!--                        <p>即将推出</p> -->
-                       </div>
-                       
-                   	  <div class="fl weixin">
-                        	<h4 class="tit m_b_10">官方微信</h4>
-                        	 
-                        	 
-                            <p>微信扫描二维码，<br>获得每日精选资讯</p>
-                            
-                            <br>
-                            <br>
-                            <p>即将推出</p>
-                        </div>
+                     <div >
+                    	<img src="{$tempdir}/images/maidian.jpg" />
                     </div>
+<!--                     <div class="clearfix down"> -->
+<!--                    	  <div class="fl phoneDown"> -->
+<!--                        	<h4 class="m_b_10">客户端下载</h4> -->
+                       	
+<!--                           <p> -->
+<!--                              <a href="#"><img src="{$tempdir}/images/icon_android.png"></a> -->
+<!--                              <a href="#"><img src="{$tempdir}/images/icon_iPhone.png"></a> -->
+<!--                           </p> -->
+<!--                           <p>即将推出</p> -->
+<!--                         </div> -->
+                        
+<!--                        <div class="fl club"><a href="#"><img src="{$tempdir}/images/club.jpg"></a> -->
+<!--                         <p>即将推出</p>  -->
+<!--                        </div> -->
+                       
+<!--                    	  <div class="fl weixin"> -->
+<!--                         	<h4 class="tit m_b_10">官方微信</h4> -->
+                        	 
+                        	 
+<!--                             <p>微信扫描二维码，<br>获得每日精选资讯</p> -->
+                            
+<!--                             <br> -->
+<!--                             <br> -->
+<!--                             <p>即将推出</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
                     <!-- end 右侧 -->
                   </div>
                   <!-- end -->

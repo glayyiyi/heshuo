@@ -215,10 +215,11 @@ jQuery(function(){
 					<div class="fl regInfo">
 						<h3 class="tit">您还没有注册?</h3>
 						<ol class="list m_b_40">
-							<li>1、帮助他人 快乐自己 收获利息</li>
-							<li>2、助您创业 资金周转 分期偿还</li>
-							<li>3、收益稳定可靠回报高</li>
-							<li>4、交易安全快捷有保障</li>
+<!-- 							<li>1、帮助他人 快乐自己 收获利息</li> -->
+<!-- 							<li>2、助您创业 资金周转 分期偿还</li> -->
+							<li>1、收益稳定可靠回报高</li>
+							<li>2、交易安全快捷有保障</li>
+							<li>3、私密投资结交实力朋友</li>
 						</ol>
 						<p style="padding-left: 25px;">
 							<label class="f_14 m_r_10">已有账号？</label> <a
