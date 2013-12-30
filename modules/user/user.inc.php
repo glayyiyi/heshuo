@@ -485,8 +485,23 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 	
 	//邀请好友
 	elseif ($_U['query_type'] == "reginvite"){
-		$_U['user_inviteid'] =  Key2Url($_G['user_id'],"reg_invite");
+		
+		$oUrl=$_G['weburl']."/index.php?user&q=going/reginvite&u=".Key2Url($_G['user_id'],"reg_invite");
+		
+		$_U['user_inviteid'] =  shortenSinaUrl($oUrl);
+		
+		//By Glay
+		//$data = '11118';		// 被加密信息
+		//$key = 'reg_invite';					// 密钥
+		//$encrypt = encrypt($data,$key);
+		//$decrypt = decrypt($encrypt, $key);
+		//echo $encrypt, "\n", $decrypt;
+		
+		//$_U['user_inviteid'] = $encrypt."XXXXXXXXXXXX".$decrypt;
 	}
+	
+	
+					
 
 	//VIP申请
 	elseif ($_U['query_type'] == "applyvip"){
@@ -678,6 +693,92 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 		}
 	}
 }
+//By Glay
+function encrypt($data, $key) {
+	$key = md5 ( $key );
+	$x = 0;
+	$len = strlen ( $data );
+	$l = strlen ( $key );
+	for($i = 0; $i < $len; $i ++) {
+		if ($x == $l) {
+			$x = 0;
+		}
+		$char .= $key {$x};
+		$x ++;
+	}
+	for($i = 0; $i < $len; $i ++) {
+		$str .= chr ( ord ( $data {$i} ) + (ord ( $char {$i} )) % 256 );
+	}
+	return base64_encode ( $str );
+}
+function decrypt($data, $key) {
+	$key = md5 ( $key );
+	$x = 0;
+	$data = base64_decode ( $data );
+	$len = strlen ( $data );
+	$l = strlen ( $key );
+	for($i = 0; $i < $len; $i ++) {
+		if ($x == $l) {
+			$x = 0;
+		}
+		$char .= substr ( $key, $x, 1 );
+		$x ++;
+	}
+	for($i = 0; $i < $len; $i ++) {
+		if (ord ( substr ( $data, $i, 1 ) ) < ord ( substr ( $char, $i, 1 ) )) {
+			$str .= chr ( (ord ( substr ( $data, $i, 1 ) ) + 256) - ord ( substr ( $char, $i, 1 ) ) );
+		} else {
+			$str .= chr ( ord ( substr ( $data, $i, 1 ) ) - ord ( substr ( $char, $i, 1 ) ) );
+		}
+	}
+	return $str;
+}
+
+function shortenSinaUrl($url, $key = '2746907695') {
+	$opts['http'] = array('method' => "GET", 'timeout'=>60,);
+	$context = stream_context_create($opts);
+	$url = "http://api.t.sina.com.cn/short_url/shorten.json?source=$key&url_long=$url";
+	$html =  file_get_contents($url,false,$context);
+	$url = json_decode($html,true);
+	if (!empty($url[0]['url_short'])) {
+		return $url[0]['url_short'];
+	}
+	return $url;
+}
+
+function shortenGoogleUrl($long_url){
+	$apiKey = 'AIzaSyB_c4rw2EDGbUh5MhIDHxUP_NDdcxjskBY'; //Get API key from : http://code.google.com/apis/console/
+	$postData = array('longUrl' => $long_url, 'key' => $apiKey);
+	$jsonData = json_encode($postData);
+	$curlObj = curl_init();
+	curl_setopt($curlObj, CURLOPT_URL, 'https://www.googleapis.com/urlshortener/v1/url');
+	curl_setopt($curlObj, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curlObj, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($curlObj, CURLOPT_HEADER, 0);
+	curl_setopt($curlObj, CURLOPT_HTTPHEADER, array('Content-type:application/json'));
+	curl_setopt($curlObj, CURLOPT_POST, 1);
+	curl_setopt($curlObj, CURLOPT_POSTFIELDS, $jsonData);
+	$response = curl_exec($curlObj);
+	print_r($response);
+	exit;
+	curl_close($curlObj);
+	$json = json_decode($response);
+	return $json->id;
+}
+
+//还原
+function expandGoogleUrl($short_url){
+	$curlObj = curl_init();
+	curl_setopt($curlObj, CURLOPT_URL, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl='.$short_url);
+	curl_setopt($curlObj, CURLOPT_HEADER, 0);
+	curl_setopt($curlObj, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($curlObj, CURLOPT_SSL_VERIFYPEER, 0);
+	$response = curl_exec($curlObj);
+	curl_close($curlObj);
+	$json = json_decode($response);
+	return $json->longUrl;
+}
+
 
 $template = "user_info.html.php";
 ?>

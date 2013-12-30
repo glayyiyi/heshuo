@@ -584,7 +584,9 @@
 		<div class="user_right_border">
 			<div class="l">ÑûÇëÁ´½Ó£º</div>
 			<div class="c">
-				<textarea style="height:100px;width:500px" id="invite">{$_G.weburl}/index.php?user&q=going/reginvite&u={$_U.user_inviteid}</textarea><br/><input type="button" onclick="doCopy('invite')" class="btn-action" value="¸´ÖÆ" />
+				<!--  <textarea style="height:100px;width:500px" id="invite">{$_G.weburl}/index.php?user&q=going/reginvite&u={$_U.user_inviteid}</textarea>-->
+				<textarea style="height:100px;width:500px" id="invite">{$_U.user_inviteid}</textarea>
+				<br/><input type="button" onclick="doCopy('invite')" class="btn-action" value="¸´ÖÆ" />
 			</div>
 		</div>
 		<table border="0" cellspacing="1" class="table table-striped  table-condensed" style="width:98%">
