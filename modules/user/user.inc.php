@@ -486,7 +486,7 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 	//ÑûÇëºÃÓÑ
 	elseif ($_U['query_type'] == "reginvite"){
 		
-		$oUrl=$_G['weburl']."/index.php?user&q=going/reginvite&u=".Key2Url($_G['user_id'],"reg_invite");
+		$oUrl=$_G['weburl'].urlencode("/index.php?user&q=going/reginvite&u=").$_G['user_id'];
 		
 		$_U['user_inviteid'] =  shortenSinaUrl($oUrl);
 		
@@ -738,45 +738,12 @@ function shortenSinaUrl($url, $key = '2746907695') {
 	$opts['http'] = array('method' => "GET", 'timeout'=>60,);
 	$context = stream_context_create($opts);
 	$url = "http://api.t.sina.com.cn/short_url/shorten.json?source=$key&url_long=$url";
-	$html =  file_get_contents($url,false,$context);
+	$html =  @file_get_contents($url,false,$context);
 	$url = json_decode($html,true);
 	if (!empty($url[0]['url_short'])) {
 		return $url[0]['url_short'];
 	}
 	return $url;
-}
-
-function shortenGoogleUrl($long_url){
-	$apiKey = 'AIzaSyB_c4rw2EDGbUh5MhIDHxUP_NDdcxjskBY'; //Get API key from : http://code.google.com/apis/console/
-	$postData = array('longUrl' => $long_url, 'key' => $apiKey);
-	$jsonData = json_encode($postData);
-	$curlObj = curl_init();
-	curl_setopt($curlObj, CURLOPT_URL, 'https://www.googleapis.com/urlshortener/v1/url');
-	curl_setopt($curlObj, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($curlObj, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($curlObj, CURLOPT_HEADER, 0);
-	curl_setopt($curlObj, CURLOPT_HTTPHEADER, array('Content-type:application/json'));
-	curl_setopt($curlObj, CURLOPT_POST, 1);
-	curl_setopt($curlObj, CURLOPT_POSTFIELDS, $jsonData);
-	$response = curl_exec($curlObj);
-	print_r($response);
-	exit;
-	curl_close($curlObj);
-	$json = json_decode($response);
-	return $json->id;
-}
-
-//»¹Ô­
-function expandGoogleUrl($short_url){
-	$curlObj = curl_init();
-	curl_setopt($curlObj, CURLOPT_URL, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl='.$short_url);
-	curl_setopt($curlObj, CURLOPT_HEADER, 0);
-	curl_setopt($curlObj, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($curlObj, CURLOPT_SSL_VERIFYPEER, 0);
-	$response = curl_exec($curlObj);
-	curl_close($curlObj);
-	$json = json_decode($response);
-	return $json->longUrl;
 }
 
 

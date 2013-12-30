@@ -383,13 +383,20 @@ if ($_U['query_sort'] == "going"){
 	elseif ($_U['query_class'] == "reginvite"){	
 		//$_user_id = Url2Key($_REQUEST['u'],"reg_invite");
 		$key = urldecode($_GET['u']);
-		$key = explode(",",authcode(trim($key),"DECODE"));
-		$key = base64_decode ($key[0]);
-		$_user_id = explode ("reg_invite", $key );
-		$_SESSION['reginvite_user_id'] = intval($_user_id[1]);
-		$_SESSION['reginvite_user_id'] = $_user_id[1];
-		if(intval($_user_id[1])>0){
-			$sql = "select username from {user} where `user_id`={intval($_user_id[1])}";
+		//By Glay
+		//$key = explode(",",authcode(trim($key),"DECODE"));
+		//$key = base64_decode ($key[0]);
+		//$_user_id = explode ("reg_invite", $key );
+		
+		$_user_id = $key;
+
+		
+		//$_SESSION['reginvite_user_id'] = intval($_user_id[1]);
+		//$_SESSION['reginvite_user_id'] = $_user_id[1];
+		
+		$_SESSION['reginvite_user_id'] = $_user_id;
+		if(intval($_user_id)>0){
+			$sql = "select username from {user} where `user_id`={intval($_user_id)}";
 			$result = $mysql->db_fetch_array($sql);
 			$_SESSION['reginvite_user_Name'] = $result["username"];
 		}    
