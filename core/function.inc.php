@@ -1449,7 +1449,7 @@ function sendSMS($userid,$content,$system=0,$phone=0)
 				'sn'=>$_G['system']['con_smsusername'], ////替换成您自己的序列号
 				'pwd'=>strtoupper(md5($_G['system']['con_smsusername'].$_G['system']['con_smspassword'])), //此处密码需要加密 加密方式为 md5(sn+password) 32位大写
 				'mobile'=>$mobile,//手机号 多个用英文的逗号隔开 post理论没有长度限制.推荐群发一次小于等于10000个手机号
-				'content'=>'尊敬的【'.$realname.'】用户：'.'您于'.date('Y-m-d H:i:s',time()).'，'.$content.'感谢您使用'.$_G['system']['con_webname'].'金融平台。【glay】' ,//短信内容
+				'content'=>'尊敬的【'.$realname.'】用户：'.'于'.date('Y-m-d H:i:s',time()).'，'.$content.'感谢您使用'.$_G['system']['con_webname'].'金融平台。【glay】' ,//短信内容
 				'ext'=>'',
 				'stime'=>'',//定时时间 格式为2011-6-29 11:09:21
 				'rrid'=>''
