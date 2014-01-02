@@ -379,7 +379,7 @@ if ($_U['query_sort'] == "going"){
 		exit;
 	}
 	
-	#ÒªÇëºÃÓÑ×¢²á	
+	#ÑûÇëºÃÓÑ×¢²á	
 	elseif ($_U['query_class'] == "reginvite"){	
 		//$_user_id = Url2Key($_REQUEST['u'],"reg_invite");
 		$key = urldecode($_GET['u']);

@@ -514,13 +514,14 @@ class userClass extends friendsClass{
 	function AddUser($data = array()){
 		global $mysql;
         $password = '';
-        if (!$data['username'] || !$data['password'] || !$data['email']) {
+        //By Glay if (!$data['username'] || !$data['password'] || !$data['email']) {
+        if (!$data['username'] || !$data['password'] ) {
             return self::ERROR;
         }
 		if (strlen($data['username'])>15){
 			return self::USER_ADD_LONG_USERNAME;
 		}
-		if(self::CheckEmail($data)) return self::USER_REG_EMAIL_EXIST;
+		//By Glay if(self::CheckEmail($data)) return self::USER_REG_EMAIL_EXIST;
 		if(self::CheckUsername($data)) return self::USER_REG_USERNAME_EXIST;
 		$password = $data['password'];
         $data['password'] = md5($data['password']);

@@ -170,6 +170,32 @@ function checkUsername(username){
 	}
 }
 
+
+/* 检查邀请码 */
+function checkInviteCode(code){
+	var reg_btn = document.getElementById("reg_btn");
+	var submit_disabled = false;
+
+	if (code == ""){
+		document.getElementById('invitecode_notice').innerHTML = invitecode_msg;
+		submit_disabled = true;
+		reg_btn.disabled = true;
+        return false;
+	}
+	 else{
+        document.getElementById('invitecode_notice').innerHTML = "提交后进行验证";
+    }
+	
+	if( submit_disabled ){
+		reg_btn.disabled = true;
+		return false;
+	}else{
+		reg_btn.disabled = false;
+		return true;
+	}
+}
+
+
 function checkNameExist(username){
 		var reg_btn = document.getElementById("reg_btn");
         var useranme=encodeURI(encodeURI(username));
@@ -270,7 +296,9 @@ function checkRealname(realname){
 
 //检验注册
 function userReg(){
-    if(emailFlag && userNameFlag && pwdFlag && pwdFlag2 ){
+	//if(emailFlag && userNameFlag && pwdFlag && pwdFlag2 ){
+    //By Glay
+	if(userNameFlag && pwdFlag && pwdFlag2 ){
 		$("#submit").display='display';
 		return true;
     }
@@ -280,6 +308,7 @@ function userReg(){
 
 var msg_can_reg = "<font color=blue># 可以注册</font>";
 var username_msg = '<font color=red>* 请输入4-15位字符.英文,数字</font>';
+var invitecode_msg='<font color=red>* 请输入有效的邀请码</font>';
 var username_msg_exist = "<font color=red>* 用户名已经存在,请重新输入</font>";
 var email_msg_empty = "<font color=red>* Email 为空</font>";
 var email_msg_invalid = "<font color=red>* Email 不是合法的地址</font>";

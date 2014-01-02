@@ -240,8 +240,44 @@
 			</div>
 			<!-- end 公 告 -->
 			
-			<!-- 理财顾问推介 -->
+			
 			<div class="module_03">
+				<div class="hd">
+					<h3>
+						<s class="icon_tj"></s>我的好友
+					</h3>
+				</div>
+				<div class="bg">
+					<ul class="list_lc">
+						
+				{loop module="user" function="GetFriendsList" var="item" user_id="0" status=1 limit="2"}
+				
+						<li>
+							<div class="clearfix posit_rel">
+								<div class="info">
+									<!-- <h4 class="name m_b_10">{$item.friend_username}</h4> -->
+									<h4 class="name m_b_10">好友姓名：{$item.friend_realname}</h4>
+									
+									<p><a href="/u/{$item.friends_userid}">－查看他投资的项目</a></p>
+									<p><a href="/index.php?user&q=code/message/sent&receive={$item.friend_username}">－给他留言</a></p>
+								</div>
+								<b class="photo"><img src="{$item.friends_user_id|avatar}"
+									width="100" height="99" /></b>
+
+
+							</div>
+
+
+						</li> 
+						{/loop}
+					</ul>
+				</div>
+			</div>
+			
+			
+			
+			<!-- 理财顾问推介 -->
+			<!-- <div class="module_03">
 				<div class="hd">
 					<h3>
 						<s class="icon_tj"></s>理财顾问推介
@@ -257,11 +293,11 @@
 									<h4 class="name m_b_10">{$var.username}</h4>
 									<p class="item">姓名：{$var.realname}</p>
 									<p class="item">电话:{$var.phone}</p>
-									<!-- <p class="item m_b_6">
+									<p class="item m_b_6">
 										<label>服务星级：</label><span class="star"><s
 											class="star_01"></s><s class="star_01"></s><s class="star_01"></s><s
 											class="star_01"></s><s class="star_01"></s></span>
-									</p> -->
+									</p>
 									<p class="zx m_b_10">
 										<a target="_blank"
 											href="http://wpa.qq.com/msgrd?v=3&uin={$var.qq}&site=qq&menu=yes">
@@ -270,7 +306,7 @@
 										</a>
 									</p>
 
-									<!-- <p class="item">{$var.content}</p> -->
+									<p class="item">{$var.content}</p>
 								</div>
 								<b class="photo"><img src="{$var.user_id|avatar}"
 									width="100" height="99" /></b>
@@ -282,7 +318,7 @@
 						</li> {/loop}
 					</ul>
 				</div>
-			</div>
+			</div> -->
 			<!-- end 理财顾问推介 -->
 
 			<!-- <div class="module_04 m_b_10">

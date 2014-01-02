@@ -9,32 +9,59 @@ if ($_G['user_id'] != "" && isset($_SESSION['step']) && $_SESSION['reg_step'] ==
 	header('location:index.php?user&q=going/reg_email');
 	exit;
 } 
-if (isset($_POST['email'])) {
+//By Glay 无email也可以注册
+if (isset($_POST['email'])||isset($_POST['username'])) {
 	//By Glay 增加invite_userid
 	$var = array('email', 'username', 'sex', 'password', 'email', 'realname', 'invite_userid', 'type_id', 'phone', 'area', 'qq', 'card_type', 'card_id','invite_userid');
 	$index = post_var($var);
-	$varUserName = array('invite_username');
+	
+	
+	
+		$varUserName = array('invite_username');
         $index2 =  post_var($varUserName);
-        $index["invite_userid"] = $_SESSION["reginvite_user_id"];
+		
+       
+       
+	// By Glay 去掉session里的邀请码 $index["invite_userid"] = $_SESSION["reginvite_user_id"];
+	if (isset ( $_POST ['invite_userid'] ) && ( $_POST ['invite_userid']!="")) {
+		
+		// By Glay 邀请码的密文进行解密
+		$key = 'reg_invite'; // 密钥
+		
+		$decrypt = decrypt ( $_POST ['invite_userid'], $key );
+		$index ["invite_userid"] = $decrypt;
+		$sql = "select user_id from {user} where `user_id`='{$decrypt}'";
+		
+		$result = $mysql->db_fetch_array ( $sql );
+	
+		if ($result ['user_id'] == "") {
+			echo "<script>alert('此邀请码不存在，请填写有效的邀请码！');location.href='index.php?user&q=going/getreg';</script>";
+			exit ();
+		}
+	}
         
         if(isset($_POST['invite_username']) && $_POST['invite_username'] != ""){
             $sql = "select user_id from {user} where `username`='{$_POST['invite_username']}'";
+            
             $result = $mysql->db_fetch_array($sql);
+            
             if($result['user_id'] == ""){
                 echo "<script>alert('此邀请人不存在，请慎重填写！');location.href='index.php?user&q=going/getreg';</script>";
                 exit();
             }
        }
+       
+   
         
-        if($index["invite_userid"] == ""){
+        if($index["invite_userid"] == "" && $index2["invite_username"]!=""){
             $invite_username = $index2["invite_username"];
             $sql = "select user_id from {user} where `username`='{$invite_username}'";
             $result = $mysql->db_fetch_array($sql);
             $index["invite_userid"] = $result["user_id"];
+           
         }
-	$index["type_id"] = 2;
-		if ($rdGlobal['uc_on'])
-		{
+		$index["type_id"] = 2;
+		if ($rdGlobal['uc_on']){
 			$uid = uc_user_register($index["username"], $index["password"], $index["email"]);
 			if ($uid <= 0) {
 				if ($uid == -1) {
@@ -59,7 +86,11 @@ if (isset($_POST['email'])) {
 			}
 			//$ucsynlogin = uc_user_synlogin($uid);
 		}
+		
+	
+		
 	$user_id = $user -> AddUser($index);
+	
 	if ($user_id > 0) {
 		//注册成功
 		if($_G['open_connet']['type']=='qq'){
@@ -109,5 +140,28 @@ if (isset($_POST['email'])) {
 	$title = '用户注册';
 	$template = 'user_reg_info.html.php';
 } 
+
+function decrypt($data, $key) {
+	$key = md5 ( $key );
+	$x = 0;
+	$data = base64_decode ( $data );
+	$len = strlen ( $data );
+	$l = strlen ( $key );
+	for($i = 0; $i < $len; $i ++) {
+		if ($x == $l) {
+			$x = 0;
+		}
+		$char .= substr ( $key, $x, 1 );
+		$x ++;
+	}
+	for($i = 0; $i < $len; $i ++) {
+		if (ord ( substr ( $data, $i, 1 ) ) < ord ( substr ( $char, $i, 1 ) )) {
+			$str .= chr ( (ord ( substr ( $data, $i, 1 ) ) + 256) - ord ( substr ( $char, $i, 1 ) ) );
+		} else {
+			$str .= chr ( ord ( substr ( $data, $i, 1 ) ) - ord ( substr ( $char, $i, 1 ) ) );
+		}
+	}
+	return $str;
+}
 
 ?>

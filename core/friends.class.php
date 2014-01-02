@@ -31,7 +31,7 @@ class friendsClass{
 			$_sql .=" and p1.status = '{$data['status']}'";
 		}
 		$_order = "";
-		$_select = " p1.*,p2.username as friend_username ";
+		$_select = " p1.*,p2.username as friend_username ,p2.realname as friend_realname  ";
 		$sql = "select SELECT from `{friends}` as p1 left join `{user}` as p2 on  p1.friends_userid =p2.user_id {$_sql} LIMIT";
 		
 		//是否显示全部的信息
@@ -40,7 +40,10 @@ class friendsClass{
 			if ($data['limit'] != "all"){
 				$_limit = "  limit ".$data['limit'];
 			}
-			return $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select, $_order, $_limit), $sql));
+			$var_sql=str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select, $_order, $_limit), $sql);
+			//print_r($var_sql);
+			//exit;
+			return $mysql->db_fetch_arrays($var_sql);
 		}			 
 				 
 		$row = $mysql->db_fetch_array(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array('count(1) as num', '', ''), $sql));
@@ -49,6 +52,9 @@ class friendsClass{
 		$total_page = ceil($total / $epage);
 		$index = $epage * ($page - 1);
 		$limit = " limit {$index}, {$epage}";
+		
+		
+		
 		$list = $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select,$_order, $limit), $sql));		
 		$list = $list?$list:array();
 		

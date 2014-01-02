@@ -85,54 +85,74 @@ jQuery(function(){
 					<div class="fl regTB">
 						<table width="100%" class="tb_reg m_b_20">
 
+							<!-- 							<tr> -->
+							<!-- 								<th>邮 箱：</th> -->
+							<!-- 								<td><div class="input_style01"> -->
+							<!-- 										<span class="r"><input id="email" name="email" type="text" -->
+							<!-- 											size="22" maxlength="30" value="" -->
+							<!-- 											onFocus="this.className='biankuang1';" -->
+							<!-- 											onBlur="this.className='biankuang2';checkEmail(this.value);"/> -->
+							<!-- 										</span> -->
+
+							<!-- 									</div> -->
+							<!-- 									<div class="reg-l-tips" id="email_notice"> -->
+							<!-- 										<span>*</span> 请输入您常用的邮箱地址,进行邮箱认证 -->
+							<!-- 									</div></td> -->
+							<!-- 							</tr> -->
+							<!-- 							<tr> -->
+							<!-- 								<th>手机：</th> -->
+							<!-- 								<td> -->
+							<!-- 									<div class="input_style01"> -->
+							<!-- 										<span class="r"><input id="phone" name="phone" type="text" size="22" -->
+							<!-- 											value="" -->
+							<!-- 											onFocus="this.className='biankuang1';" -->
+							<!-- 											onBlur="this.className='biankuang2';"/> -->
+							<!-- 										</span> -->
+							<!-- 									</div> -->
+
+							<!-- 								</td> -->
+							<!-- 							</tr> -->
+							<!-- 							<tr> -->
+							<!-- 								<th>真实姓名：</th> -->
+							<!-- 								<td> -->
+							<!-- 									<div class="input_style01"> -->
+							<!-- 									<span class="r"> -->
+							<!-- 										<input id="realname" name="realname" type="text" size="22" -->
+							<!-- 											maxlength="10" value="" -->
+							<!-- 											onFocus="this.className='biankuang1';" -->
+							<!-- 											onBlur="this.className='biankuang2';"/> -->
+							<!-- 									</span> -->
+							<!-- 									</div> -->
+
+							<!-- 								</td> -->
+							<!-- 							</tr> -->
+							
 							<tr>
-								<th>邮 箱：</th>
+								<th style="vertical-align: top;">邀请码：</th>
+
 								<td><div class="input_style01">
-										<span class="r"><input id="email" name="email" type="text"
-											size="22" maxlength="30" value=""
+										<span class="r"> <input id="invite_userid"
+											name="invite_userid" type="text" size="22" maxlength="10"
+											value="{$magic.session.reginvite_user_id}"
 											onFocus="this.className='biankuang1';"
-											onBlur="this.className='biankuang2';checkEmail(this.value);"/>
+											onBlur="this.className='biankuang2';checkInviteCode(this.value);" />
 										</span>
-									
-									</div>
-									<div class="reg-l-tips" id="email_notice">
-										<span>*</span> 请输入您常用的邮箱地址,进行邮箱认证
-									</div></td>
-							</tr>
-							<tr>
-								<th>手机：</th>
-								<td>
-									<div class="input_style01">
-										<span class="r"><input id="phone" name="phone" type="text" size="22"
-											value=""
-											onFocus="this.className='biankuang1';"
-											onBlur="this.className='biankuang2';"/>
-										</span>
-									</div>
 
-								</td>
-							</tr>
-							<tr>
-								<th>真实姓名：</th>
-								<td>
-									<div class="input_style01">
-									<span class="r">
-										<input id="realname" name="realname" type="text" size="22"
-											maxlength="10" value=""
-											onFocus="this.className='biankuang1';"
-											onBlur="this.className='biankuang2';"/>
-									</span>
 									</div>
-
-								</td>
+									<div class="reg-l-tips" id="invitecode_notice">
+										<span>*</span> 请输入邀请码,无邀请码不能注册
+									</div>
+									</td>
 							</tr>
+							
+							
 							<tr>
 								<th>用户名：</th>
 								<td><div class="input_style01">
 										<span class="r"><input id="username" name="username"
 											type="text" size="22" maxlength="20" value=""
 											onFocus="this.className='biankuang1';"
-											onBlur="this.className='biankuang2';checkUsername(this.value);"/>
+											onBlur="this.className='biankuang2';checkUsername(this.value);" />
 										</span>
 									</div>
 									<div class="reg-l-tips" id="username_notice">
@@ -147,7 +167,7 @@ jQuery(function(){
 										<span class="r"><input id="password" name="password"
 											type="password" size="22" maxlength="20" value=""
 											onFocus="this.className='biankuang1';"
-											onBlur="this.className='biankuang2';checkPassword(this.value);"/>
+											onBlur="this.className='biankuang2';checkPassword(this.value);" />
 										</span>
 									</div>
 									<div id="passwordStrengthDiv" class="is0"
@@ -165,16 +185,19 @@ jQuery(function(){
 											name="confirm_password" type="password" size="22"
 											maxlength="20" value=""
 											onFocus="this.className='biankuang1';"
-											onBlur="this.className='biankuang2';checkConformPassword(this.value);"/>
+											onBlur="this.className='biankuang2';checkConformPassword(this.value);" />
 										</span>
 									</div>
 									<div class="reg-l-tips" id="conform_password_notice">
 										<span>*</span> 请重复输入上面的密码
-									</div>
-								</td>
+									</div></td>
 							</tr>
 
-							<!-- 							<tr> -->
+
+							
+
+
+							<!-- <tr> -->
 							<!--  <th style="vertical-align: top;">验证码：</th>-->
 
 							<!-- 								<td><div class="input_style01 m_r_10"> -->
@@ -203,10 +226,10 @@ jQuery(function(){
 
 
 						</table>
-					<!--  	<p style="padding-left: 30px; margin-bottom: 20px;">-->
-<!-- 							<input type="checkbox" id="dianji" checked="checked"/>我已阅读并且同意助贷网-个人信用贷款 -->
-<!-- 							小额贷款 投资理财 企业融资 的 <a href="/data/reg.doc">使用协议</a> -->
-<!-- 						</p> -->
+						<!--  	<p style="padding-left: 30px; margin-bottom: 20px;">-->
+						<!-- 							<input type="checkbox" id="dianji" checked="checked"/>我已阅读并且同意助贷网-个人信用贷款 -->
+						<!-- 							小额贷款 投资理财 企业融资 的 <a href="/data/reg.doc">使用协议</a> -->
+						<!-- 						</p> -->
 						<p style="padding-left: 110px;">
 							<input type="submit" id="reg_btn" class="btnnew btn_login"
 								value="注 册" />
@@ -215,8 +238,8 @@ jQuery(function(){
 					<div class="fl regInfo">
 						<h3 class="tit">您还没有注册?</h3>
 						<ol class="list m_b_40">
-<!-- 							<li>1、帮助他人 快乐自己 收获利息</li> -->
-<!-- 							<li>2、助您创业 资金周转 分期偿还</li> -->
+							<!-- 							<li>1、帮助他人 快乐自己 收获利息</li> -->
+							<!-- 							<li>2、助您创业 资金周转 分期偿还</li> -->
 							<li>1、收益稳定可靠回报高</li>
 							<li>2、交易安全快捷有保障</li>
 							<li>3、私密投资结交实力朋友</li>
@@ -246,7 +269,7 @@ jQuery(function(){
 // 	 }	
 
 // });
-</script> 
+</script>
 {/literal}
 <script type="text/javascript" src="{$tempdir}/media/js/user2.js"></script>
 <script src="{$tempdir}/media/js/tooltip.js"></script>

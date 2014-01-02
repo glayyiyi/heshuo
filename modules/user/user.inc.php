@@ -430,10 +430,13 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 			$sql = "insert into `{sms_check}`(code,lasttime,user_id,addtime,itype,phone) values('".$code."','".$lasttime."',".$_G["user_id"].",unix_timestamp(),".$itype.",'".$_POST['phone']."')";
 			$mysql->db_query($sql);
 			$re = sendSMS($_G['user_id'], '手机认证验证码为'.$code.'请在5分钟内提交！', 1, $_POST['phone']);
+			//By Glay 增加exit退出，当echo后直接返回ajax msg
 			if($re){
 				echo 1;
+				exit;
 			}else{
 				echo 0;
+				exit;
 			}
 			//$result = $user->UpdateUserAll($data);
 		}elseif($_POST['code']!="" && is_numeric($_POST['phone']) && !isset($_POST['type'])){
@@ -486,18 +489,20 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 	//邀请好友
 	elseif ($_U['query_type'] == "reginvite"){
 		
-		$oUrl=$_G['weburl'].urlencode("/index.php?user&q=going/reginvite&u=").$_G['user_id'];
+		//$oUrl=$_G['weburl'].urlencode("/index.php?user&q=going/reginvite&u=").$_G['user_id'];
 		
-		$_U['user_inviteid'] =  shortenSinaUrl($oUrl);
+		//$_U['user_inviteid'] =  shortenSinaUrl($oUrl);
+		
+		//$_U['user_inviteid'] = $_G['user_id'] ;
 		
 		//By Glay
-		//$data = '11118';		// 被加密信息
-		//$key = 'reg_invite';					// 密钥
-		//$encrypt = encrypt($data,$key);
+		$data = $_G['user_id'];		// 被加密信息
+		$key = 'reg_invite';					// 密钥
+		$encrypt = encrypt($data,$key);
 		//$decrypt = decrypt($encrypt, $key);
 		//echo $encrypt, "\n", $decrypt;
 		
-		//$_U['user_inviteid'] = $encrypt."XXXXXXXXXXXX".$decrypt;
+		$_U['user_inviteid'] = $encrypt;
 	}
 	
 	
@@ -565,7 +570,7 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 				}else{
 					echo "<form method='post' action='/index.php?user&q=code/user/addfriend'>";
 					echo "<div align='left'><br>&nbsp;&nbsp;&nbsp;好友：{$_REQUEST['username']}<input type='hidden' name='friends_userid' value='{$result['user_id']}'></div>";
-					echo "<div align='left'><br>&nbsp;&nbsp;&nbsp;类型11：<select name='type'>";
+					echo "<div align='left'><br>&nbsp;&nbsp;&nbsp;类型：<select name='type'>";
 					foreach ($_G["_linkage"]['friends_type'] as $key => $value){
 						echo "<option value='{$value['value']}'>{$value['name']}</option>";
 					}
@@ -711,28 +716,7 @@ function encrypt($data, $key) {
 	}
 	return base64_encode ( $str );
 }
-function decrypt($data, $key) {
-	$key = md5 ( $key );
-	$x = 0;
-	$data = base64_decode ( $data );
-	$len = strlen ( $data );
-	$l = strlen ( $key );
-	for($i = 0; $i < $len; $i ++) {
-		if ($x == $l) {
-			$x = 0;
-		}
-		$char .= substr ( $key, $x, 1 );
-		$x ++;
-	}
-	for($i = 0; $i < $len; $i ++) {
-		if (ord ( substr ( $data, $i, 1 ) ) < ord ( substr ( $char, $i, 1 ) )) {
-			$str .= chr ( (ord ( substr ( $data, $i, 1 ) ) + 256) - ord ( substr ( $char, $i, 1 ) ) );
-		} else {
-			$str .= chr ( ord ( substr ( $data, $i, 1 ) ) - ord ( substr ( $char, $i, 1 ) ) );
-		}
-	}
-	return $str;
-}
+
 
 function shortenSinaUrl($url, $key = '2746907695') {
 	$opts['http'] = array('method' => "GET", 'timeout'=>60,);
