@@ -306,7 +306,8 @@ function userReg(){
    	return false;
 }
 
-var msg_can_reg = "<font color=blue># 可以注册</font>";
+//By Glay var msg_can_reg = "<font color=blue># 可以注册</font>";
+var msg_can_reg = "可以注册";
 var username_msg = '<font color=red>* 请输入4-15位字符.英文,数字</font>';
 var invitecode_msg='<font color=red>* 请输入有效的邀请码</font>';
 var username_msg_exist = "<font color=red>* 用户名已经存在,请重新输入</font>";
