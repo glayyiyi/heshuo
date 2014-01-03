@@ -496,13 +496,24 @@ if(strtolower($_POST['valicode']) != $_SESSION['valicode']){
 		//$_U['user_inviteid'] = $_G['user_id'] ;
 		
 		//By Glay
+		$encrypt="000001";
 		$data = $_G['user_id'];		// 被加密信息
-		$key = 'reg_invite';					// 密钥
-		$encrypt = encrypt($data,$key);
+		//$key = 'reg_invite';					// 密钥
+		//$encrypt = encrypt($data,$key);
 		//$decrypt = decrypt($encrypt, $key);
 		//echo $encrypt, "\n", $decrypt;
+		if (intval ( $data ) > 0) {
+			
+			$x = $data;
+			$len = strlen ( $data );
+			
+			for($i = 0; $i < (6 - $len); $i ++) {
+				$x = '0' . $x;
+			}
+			$encrypt = $x;
+		}
 		
-		$_U['user_inviteid'] = $encrypt;
+		$_U ['user_inviteid'] = $encrypt;
 	}
 	
 	

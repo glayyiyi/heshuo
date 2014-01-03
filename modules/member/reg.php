@@ -26,11 +26,12 @@ if (isset($_POST['email'])||isset($_POST['username'])) {
 	if (isset ( $_POST ['invite_userid'] ) && ( $_POST ['invite_userid']!="")) {
 		
 		// By Glay ÑûÇëÂëµÄÃÜÎÄ½øÐÐ½âÃÜ
-		$key = 'reg_invite'; // ÃÜÔ¿
+		//$key = 'reg_invite'; // ÃÜÔ¿
 		
-		$decrypt = decrypt ( $_POST ['invite_userid'], $key );
-		$index ["invite_userid"] = $decrypt;
-		$sql = "select user_id from {user} where `user_id`='{$decrypt}'";
+		//$decrypt = decrypt ( $_POST ['invite_userid'], $key );
+		$index ["invite_userid"] = intval($_POST ['invite_userid']);
+		$sql = "select user_id from {user} where user_id='{$index ["invite_userid"] }'";
+		
 		
 		$result = $mysql->db_fetch_array ( $sql );
 	
