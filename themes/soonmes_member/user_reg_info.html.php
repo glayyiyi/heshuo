@@ -78,7 +78,7 @@ jQuery(function(){
 			<div class="register clearfix m_b_25">
 
 				<div class="hd m_b_20">
-					注册 <font size="2" color="black">君和会是一群高净值客户组成的私密投资圈子，欢迎您的加入，目前开放注册中</font><s
+					注册 <font size="2" color="black">君和会是一群中高收入客户组成的私密投资圈子，欢迎您的加入，目前开放注册中</font><s
 						class="tip"></s>
 				</div>
 				<div class="bg clearfix">
