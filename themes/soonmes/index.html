@@ -225,7 +225,8 @@
 				<div class="hd">
 					<span class="float_left"><h3>
 							<s class="icon_gg"></s>公 告
-						</h3></span><a href="/gonggao/index.html" class="float_right">[更多]</a>
+						</h3></span>
+						<a href="/gonggao/index.html" class="float_right">[更多]</a>
 				</div>
 				<div class="bg">
 					<ul class="noteList">
@@ -243,9 +244,11 @@
 			
 			<div class="module_03">
 				<div class="hd">
-					<h3>
+					<span class="float_left"><h3>
 						<s class="icon_tj"></s>我的好友
 					</h3>
+					</span>
+					<a href="/index.php?user&q=code/user/myfriend" class="float_right">[更多]</a>
 				</div>
 				<div class="bg">
 					<ul class="list_lc">
@@ -256,7 +259,7 @@
 							<div class="clearfix posit_rel">
 								<div class="info">
 									<!-- <h4 class="name m_b_10">{$item.friend_username}</h4> -->
-									<h4 class="name m_b_10">好友姓名：{$item.friend_realname}</h4>
+									<h4 class="name m_b_10">好友姓名：{if $item.friend_realname} {$item.friend_realname} {else} {$item.friend_username}{/if}</h4>
 									
 									<p><a href="/u/{$item.friends_userid}">－查看他投资的项目</a></p>
 									<p><a href="/index.php?user&q=code/message/sent&receive={$item.friend_username}">－给他留言</a></p>
