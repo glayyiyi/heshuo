@@ -1,9 +1,9 @@
 <?php
 class wyzxPayment {
 	public static function ToSubmit($payment){
-		$v_mid = '1001';
+		$v_mid = '22869932';
 		$v_url = 'http://www.viptouzi.com/modules/payment/wyzx_return.php';
-		$key   = 'test';
+		$key   = 'chang_43420024420';
 		
 		
 		if(trim($payment['trade_no'])<>"")
