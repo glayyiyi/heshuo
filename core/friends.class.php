@@ -30,9 +30,9 @@ class friendsClass{
 		if (isset($data['status']) && $data['status']!=""){
 			$_sql .=" and p1.status = '{$data['status']}'";
 		}
-		$_order = "";
+		$_order = " order by addtime desc";
 		$_select = " p1.*,p2.username as friend_username ,p2.realname as friend_realname  ";
-		$sql = "select SELECT from `{friends}` as p1 left join `{user}` as p2 on  p1.friends_userid =p2.user_id {$_sql} LIMIT";
+		$sql = "select SELECT from `{friends}` as p1 left join `{user}` as p2 on  p1.friends_userid =p2.user_id {$_sql} ORDER LIMIT";
 		
 		//是否显示全部的信息
 		if (isset($data['limit']) ){

@@ -579,13 +579,13 @@
 		<div class="user_help alert" style="text-align:left;" > 
 			<strong>温馨提示：</strong><br/>
 请不要发送邀请给不熟悉的人士,避免给别人带来不必要的困扰。<br />
-请把下边的邀请码发给您的好友，注册后，您就成为他的上线用户。<br />
+请把下边的邀请码发给您的好友，注册后，您将成为他的上线用户。<br />
 		</div>
 		<div class="user_right_border">
 			<div class="l">邀请码：</div>
 			<div class="c">
 				<!--  <textarea style="height:100px;width:500px" id="invite">{$_G.weburl}/index.php?user&q=going/reginvite&u={$_U.user_inviteid}</textarea>-->
-				<textarea style="height:100px;width:500px" id="invite">{$_U.user_inviteid}</textarea>
+				<textarea style="height:100px;width:500px" id="invite">邀请你加入君和会VIP投资俱乐部（www.viptouzi.com），注册邀请码是{$_U.user_inviteid}</textarea>
 				<br/><input type="button" onclick="doCopy('invite')" class="btn-action" value="复制" />
 			</div>
 		</div>
