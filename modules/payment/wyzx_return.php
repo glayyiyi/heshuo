@@ -29,21 +29,22 @@ if ($v_md5str==$md5string)
 		require_once ('../../core/config.inc.php');
 		require_once (ROOT_PATH.'modules/account/account.class.php');
 		require_once (ROOT_PATH.'modules/payment/payment.class.php');
-		$file = $cachepath['pay'].$v_oid;
-		$fp = fopen($file , 'w+');    
-		@chmod($file, 0777);	  
-		if(flock($fp , LOCK_EX | LOCK_NB)){    //设定模式独占锁定和不堵塞锁定
-			accountClass::OnlineReturn(array("trade_no"=>$v_oid));
-			flock($fp , LOCK_UN);  
-			echo "充值成功，请点击返回查看充值记录<a href=/?user&q=code/account/recharge> >>>>>></a>";
-		} else{
-			fclose($fp);
-			echo "充值失败ERROE:002，请点击返回<a href=/?user&q=code/account/recharge> >>>>>></a>";
-		}     
-		echo "ok";exit();
-	}
+		//$file = $cachepath['pay'].$v_oid;
+		//$fp = fopen($file , 'w+');    
+		//@chmod($file, 0777);	  
+		//if(flock($fp , LOCK_EX | LOCK_NB)){    //设定模式独占锁定和不堵塞锁定
+		accountClass::OnlineReturn(array("trade_no"=>$v_oid));
+			//flock($fp , LOCK_UN);  
+		echo "充值成功，请点击返回查看充值记录<a href=/?user&q=code/account/recharge> >>>>>></a>";
+		//} else{
+			//fclose($fp);
+			//echo "充值失败ERROE:002，请点击返回<a href=/?user&q=code/account/recharge> >>>>>></a>";
+	}     
+		//echo "ok";
+		//exit();
+	//}
 }else{
-	echo "充值失败ERROE:002，请点击返回<a href=/?user&q=code/account/recharge> >>>>>></a>";
+	echo "充值失败，请点击返回<a href=/?user&q=code/account/recharge> >>>>>></a>";
 	//echo "error";
 }
 ?>
