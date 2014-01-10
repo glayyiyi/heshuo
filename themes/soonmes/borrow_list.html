@@ -800,72 +800,7 @@ function check_form(){
 			errorMsg += '- 请填写借款周期<br/>';
 		}
 	  }
-	  if(danbao){//担宝
-		   if(account > danbao_money){//如果大于担保额度,不允许
-                  errorMsg += '- 您当前的贷款金额大于您的可用担保额度！<br/>';
-           }else if(cr < 30 || real_s != '1'){
-                  errorMsg += '- 您尚未通过实名认证<br/>';
-                  jQuery.jBox.alert(errorMsg,'提示');
-                  location.href='/index.php?user&q=code/user/realname';
-                  return false;
-            }else if(vip_status != 1){
-                            errorMsg += '-您不是VIP用户，请先申请VIP！<br/>';
-                            jQuery.jBox.alert(errorMsg,'提示');
-                            location.href="/vip/index.html";
-                            return false;
-            }else if(cr <30){
-                  errorMsg += '- 您当前的积分小于30分，请上传资料进行认证!<br/>';
-                  jQuery.jBox.alert(errorMsg,'提示');
-                  location.href='/index.php?user&q=code/attestation';
-                  return false;
-            }else if(account>(danbao_money)){
-            	  errorMsg += '- 借款金额大于担保额度<br/>';
-			};
-	  }else if(miaobiao_is){//秒标
-	  		//var donjie = parseFloat(apr)*parseFloat(account)/(100*12) + parseFloat(account)/100*sxf;//冻结资金
-                        //var donjie = parseFloat(apr)*parseFloat(account)/(100*12);
-	  		//if(parseInt(total_zi) < parseInt(donjie)) errorMsg += '- 您的账户总余额小于(利息+管理手续费的金额)' + '\n';
-	  }else if(fastbiao){
-	  		if(scene_status != '1'){
-                          errorMsg += '- 您未进行现场认证，请先进行现场认证<br/>';
-                          jQuery.jBox.alert(errorMsg,'提示');
-                          location.href='/index.php?user&q=code/user/scene_status';
-                          return false;
-                        } 
-	  		else if(account>5000000) errorMsg += '- 贷款总金额不能大于500万<br/>';
-                        
-	  }else if(jinbiao){//净值标:账户总额减去冻结总额减去待还总额减去替人担保金额
-       
-              if(jinMoney < 500){
-                            errorMsg += '-您的净资产小于500，不能发净资产标！<br/>';
-              }else if(account>jinMoney){
-                            errorMsg += '-借款金额不能大于净资产！<br/>';
-              }else if(phone_status != '1'){
-                          errorMsg += '- 您未进行手机认证，请先进行手机认证<br/>';
-                          jQuery.jBox.alert(errorMsg,'提示');
-                          location.href='/index.php?user&q=code/user/phone_status';
-                          return false;
-              }
-              
-          }else{//信用标:
-	  		if(real_s != '1'){
-                            errorMsg += '-请先通过实名认证！<br/>';
-                            jQuery.jBox.alert(errorMsg,'提示');
-                            location.href='/index.php?user&q=code/user/realname';
-                            return false;
-                        }else if(vip_status != 1){
-                            errorMsg += '-您不是VIP用户，请先申请VIP！<br/>';
-                            jQuery.jBox.alert(errorMsg,'提示');
-                            location.href="/vip/index.html";
-                            return false;
-                        }else if(cr < 30 ){
-                            errorMsg += '-您的积分小于30分,请上传资料进行认证！<br/>';
-                            jQuery.jBox.alert(errorMsg,'提示');
-                            location.href="/index.php?user&q=code/attestation";
-                            return false;
-                        }
-			else if(account>max_account) errorMsg += '- 借款金额大于可用信用额度<br/>';
-	  }
+	 
 	  if (apr.length == 0 ) {
 		errorMsg += '- 利率不能为空<br/>';
 	  }

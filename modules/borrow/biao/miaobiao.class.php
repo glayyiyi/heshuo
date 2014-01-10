@@ -41,7 +41,7 @@ class miaobiaoClass extends biaotypeClass{
 		$freeze_fee = round($data['apr']*$data['account']/(100*12), 2);
 		if($account_result['use_money'] < $freeze_fee ){
 			$result = "可用余额不足。";
-			return $result;
+			//By Glay return $result;
 		}
 		//自动审核处理
 		$auto = self::get_auto_verify();

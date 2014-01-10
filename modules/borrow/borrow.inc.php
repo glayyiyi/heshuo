@@ -120,7 +120,8 @@ if ($_U['query_type'] == "add" || $_U['query_type'] == "update"){
 //			$auto['total_jie']=$data['account'];
 //			$auto['zuishao_jie']=$data['lowest_account'];
 //			borrowClass::auto_borrow($auto);
-			$msg = array("借款发布成功。","","/index.php?user&q=code/borrow/publish");
+			//By Glay $msg = array("借款发布成功。","","/index.php?user&q=code/borrow/publish");
+			$msg = array("借款发布成功。","","/?".$_G['system']['con_houtai']."&q=module/borrow&site_id=8&a=borrow");
 		}else{
 			$msg = array($result);
 		}

@@ -48,7 +48,7 @@ class jinbiaoClass extends biaotypeClass{
 		//发标金额大于可用信用额度
 		if (($data['account'] > $account_moneyJin)){
 			$result = "可用净资产不足。";
-			return $result;
+			//By Glay return $result;
 		}
 		//自动审核处理
 		$auto_verify = self::get_auto_verify();

@@ -39,7 +39,7 @@ class xinbiaoClass extends biaotypeClass{
 		//发标金额大于可用信用额度
 		if (($data['account'] > $resultAmount["account_use"])){
 			$result = "可用信用额度不足。";
-			return $result;
+			//By Glay return $result;
 		}
 		//自动审核处理
 		$auto_verify = self::get_auto_verify();
