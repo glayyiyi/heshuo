@@ -55,9 +55,9 @@
 				<li {if $_U.query_type=="realname"} class="cur"{/if}><a href="{$_U.query_url}/realname">实名认证</a></li>
 				<li {if $_U.query_type=="email_status"} class="cur"{/if}><a href="{$_U.query_url}/email_status">邮箱认证</a></li>
 				<li {if $_U.query_type=="phone_status"} class="cur"{/if}><a href="{$_U.query_url}/phone_status">手机认证</a></li>
-				<li {if $_U.query_type=="video_status"} class="cur"{/if}><a href="{$_U.query_url}/video_status">视频认证</a></li>
-				<li {if $_U.query_type=="scene_status"} class="cur"{/if}><a href="{$_U.query_url}/scene_status">现场认证</a></li>
-				<li ><a href="/?user&q=code/attestation">上传资料证明</a></li>
+<!-- 				<li {if $_U.query_type=="video_status"} class="cur"{/if}><a href="{$_U.query_url}/video_status">视频认证</a></li> -->
+<!-- 				<li {if $_U.query_type=="scene_status"} class="cur"{/if}><a href="{$_U.query_url}/scene_status">现场认证</a></li> -->
+<!-- 				<li ><a href="/?user&q=code/attestation">上传资料证明</a></li> -->
 				<li {if $_U.query_type=="avatar"} class="cur"{/if}><a href="{$_U.query_url}/avatar">头像信息</a></li>
  			</ul>
 			{/if}

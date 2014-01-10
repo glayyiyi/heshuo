@@ -708,7 +708,7 @@ elseif ($_A['query_type'] == "vipview"){
 				$remind['content'] = "很遗憾，您的VIP会员申请在".date("Y-m-d",time())."没有通过审核。";
 				$remind['type'] = "system";
 				remindClass::sendRemind($remind);
-                $msg = array("审核成功【用户的VIP用户申请不通过】","","{$_A['query_url']}/vip&a=attestation");
+                $msg = array("审核失败【用户的VIP用户申请不通过】","","{$_A['query_url']}/vip&a=attestation");
 			}
 			$user->add_log($_log,$result);//记录操作
 		}
