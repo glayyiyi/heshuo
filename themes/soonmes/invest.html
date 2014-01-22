@@ -261,9 +261,11 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					{/if}</p>
                         <p>投资门槛：￥{$var.lowest_account}元</p>
                     </div>
+                   {article module="borrow" function="GetInvest" id=$var.id}
                     <div class="info p_t_35">
-                        <p>{$var.content}</p>
+                        <p>{$var.use_name}</p>
                     </div>
+                    {/article}
                 </li>
 
             </ul>

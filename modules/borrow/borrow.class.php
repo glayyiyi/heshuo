@@ -447,7 +447,9 @@ class borrowClass extends amountClass{
 		}else{
 			$kfUserId=$_G['user_id'];
 		}
-		$sql="select u.username,u.qq,u.phone,u.realname from `{user}` as u left join `{user_cache}` as uca on uca.kefu_userid=u.user_id where uca.user_id=".$kfUserId;
+		$sql="select u.username,u.qq,u.phone,u.realname,uca.kefu_userid from `{user}` as u left join `{user_cache}` as uca on uca.kefu_userid=u.user_id where uca.user_id=".$kfUserId;
+		//By Glay add uca.kefu_userid print_r($sql);
+		//exit;
 		$row = $mysql->db_fetch_array($sql);
 		return $row;
 	}
@@ -670,7 +672,10 @@ class borrowClass extends amountClass{
 		global $mysql,$_G;
 		$id = $data['id'];
 		//获取借款标的响应信息
-		$sql = "select * from `{borrow}`  where  id = $id";
+		//By Glay $sql = "select * from `{borrow}`  where  id = $id";
+		$sql ="select brw.*,lkg.name as use_name from `{borrow}` brw left join (select * from `{linkage}` where type_id =19) lkg on brw.use = lkg.value where  brw.id = $id";
+		//print_r($sql);
+		//exit;
 		$result['borrow'] = $mysql->db_fetch_array($sql);
 		if ($result['borrow']==false){
 			return self::ERROR;
@@ -754,6 +759,8 @@ class borrowClass extends amountClass{
 		$result['borrow']['vouch_other'] = $result['borrow']['account'] - $result['borrow']['vouch_account'];
 		$result['borrow']['vouch_scale'] = round(100*$result['borrow']['vouch_account']/$result['borrow']['account'],1);
 		$result['borrow']['vouchscale_width'] = round((20*$result['borrow']['vouch_account']/$result['borrow']['account']))*7;
+		//print_r($result);
+		//exit;
 		return $result;
 	}
 	/**
