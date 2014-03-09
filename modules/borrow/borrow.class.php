@@ -3728,6 +3728,7 @@ class borrowClass extends amountClass{
            $result['extra_fee'] = $cashRecDays_fee;//额外收取手续费部分
            $result["yValue"]=$yValueTmp;
            $result["txValue"]=$cashAmountV;
+           $result["txRepayment"]=$repayment;
            $result['free_extra_part']=$use_money-$result['extra_fee'];//免额外手续费部分
            return $result;
        }
