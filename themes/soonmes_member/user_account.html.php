@@ -665,6 +665,12 @@ function sub_form(){
 				{$var.txValue|default:0}元(金额)
 			</div>
 		</div>
+		<div class="user_right_border">
+			<div class="l" style="font-weight:bold;">要还的借款：</div>
+			<div class="c">
+				{$var.txRepayment}元(金额)
+			</div>
+		</div>
                 
 		<div class="user_right_border">
 			<div class="l" style="font-weight:bold;">建议最大提现：</div>
