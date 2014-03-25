@@ -373,11 +373,11 @@ elseif ($_G['query_site'] == "comment" ){
 	include_once ("modules/comment/comment.inc.php");
 }
 else{
-	//By Glay
-	if  (!isset($_G['user_id']) || $_G['user_id']==""){
-		header('location:/index.action?user&q=going/login');
-		exit;
-	}
+	//By Glay 去掉不登录不能访问的限制
+// 	if  (!isset($_G['user_id']) || $_G['user_id']==""){
+// 		header('location:/index.action?user&q=going/login');
+// 		exit;
+// 	}
 		//获得站点和文章的信息
 		$quer = explode("/",$query_string[0]);	
 		if (isset($_REQUEST['query_site']) && $_REQUEST['query_site']!=""){

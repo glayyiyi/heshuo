@@ -127,7 +127,7 @@ jQuery(function(){
 							<!-- 								</td> -->
 							<!-- 							</tr> -->
 							
-							<tr>
+							<!--  <tr>
 								<th style="vertical-align: top;">邀请码：</th>
 
 								<td><div class="input_style01">
@@ -143,7 +143,7 @@ jQuery(function(){
 										<span>*</span> 请输入邀请码,无邀请码不能注册
 									</div>
 									</td>
-							</tr>
+							</tr>-->
 							
 							
 							<tr>

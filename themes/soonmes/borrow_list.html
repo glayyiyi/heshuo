@@ -207,7 +207,7 @@ jQuery.jBox.prompt('您正在发布的是：流转标!', '提示', 'info');
 	{/if}
 </div>
 <!--子栏目 结束-->
-<form name="form1" method="post" id="form1" action="/index.php?user&q=code/borrow/{if $var.user_id==""}add{else}update{/if}"  enctype="multipart/form-data">
+<form name="form1" method="post" id="form1" action="/index.php?user&q=code/borrow/{if $var.user_id==''}add{else}update{/if}&admin=admin"  enctype="multipart/form-data">
 <!--借款信息 开始-->
 
 <!-- liukun add for biao_type begin-->
