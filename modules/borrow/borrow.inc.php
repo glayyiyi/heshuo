@@ -120,8 +120,8 @@ if ($_U['query_type'] == "add" || $_U['query_type'] == "update"){
 //			$auto['total_jie']=$data['account'];
 //			$auto['zuishao_jie']=$data['lowest_account'];
 //			borrowClass::auto_borrow($auto);
-			//By Glay $msg = array("借款发布成功。","","/index.php?user&q=code/borrow/publish");
-			$msg = array("借款发布成功。","","/?".$_G['system']['con_houtai']."&q=module/borrow&site_id=8&a=borrow");
+			$msg = array("借款发布成功。","","/index.php?user&q=code/borrow/publish");
+			//By Glay $msg = array("借款发布成功。","","/?".$_G['system']['con_houtai']."&q=module/borrow&site_id=8&a=borrow");
 		}else{
 			$msg = array($result);
 		}
@@ -337,8 +337,8 @@ elseif ($_U['query_type'] == "tender"){
 							borrowClass::AddRepayment($data_e);
 						}
 					}
-					//By Glay $msg = array("投标成功","","/index.php?user&q=code/borrow/bid");
-					$msg = array("投标成功","",'/invest/a'.$_POST['id'].'.html?doaction=success&tender_id='.$result['tender_id']);
+					$msg = array("投标成功","","/index.php?user&q=code/borrow/bid");
+					//By Glay $msg = array("投标成功","",'/invest/a'.$_POST['id'].'.html?doaction=success&tender_id='.$result['tender_id']);
 				}else{
 					if(is_bool($result) && $result==false){
 						$msg = array("投标失败",'','/invest/a'.$_POST['id'].'.html');
